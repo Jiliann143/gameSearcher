@@ -10,10 +10,10 @@ import Foundation
 
 struct GameItem: Codable {
     
+    let id: Int
     let name: String
-//    let genres: String
     let background_image: String
-    
+    let description: String?
     let genres: [Genre]
     
 }

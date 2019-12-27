@@ -24,6 +24,9 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.hidesBarsOnSwipe = true
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+
         tableViewSetup()
         setupSearchBar()
         searchBar(searchController.searchBar, textDidChange: "")
@@ -52,7 +55,7 @@ class SearchViewController: UIViewController {
                 return
             }
             
-            APIService.shared.fetchGames(page: self.page, searchText: self.searchController.searchBar.searchTextField.text ?? "") { (games) in
+            APIService.fetchAllGames(page: self.page, searchText: self.searchController.searchBar.searchTextField.text ?? "") { (games) in
                 self.tableView.infiniteScrollingView.stopAnimating()
 
                 if games.count == 0 {
@@ -66,8 +69,10 @@ class SearchViewController: UIViewController {
             }
         }
     }
-    
 }
+
+
+//MARK: - UISearchControllerDelegate
 
 extension SearchViewController: UISearchBarDelegate {
     
@@ -76,13 +81,14 @@ extension SearchViewController: UISearchBarDelegate {
         page = 2
         tableView.infiniteScrollingView.stopAnimating()
         
-        APIService.shared.fetchGames(page: 1, searchText: searchText) { (games) in
+        APIService.fetchAllGames(page: 1, searchText: searchText) { (games) in
                self.games = games
                self.tableView.reloadData()
            }
        }
 }
 
+//MARK: - UITableViewDataSource
 
 extension SearchViewController: UITableViewDataSource {
     
@@ -98,10 +104,21 @@ extension SearchViewController: UITableViewDataSource {
     }
 }
 
+
+//MARK: - UITableViewDataSource
+
 extension SearchViewController: UITableViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
            searchController.searchBar.resignFirstResponder()
        }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "GameDetails", bundle: .main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "GameDetailsController") as? GameDetailsController
+        let game = games[indexPath.row]
+        vc!.game = game
+        navigationController?.pushViewController(vc!, animated: true)
+    }
 }
 

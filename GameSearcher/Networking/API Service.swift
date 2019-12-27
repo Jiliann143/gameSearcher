@@ -11,17 +11,17 @@ import Foundation
 
 class APIService {
     
-    let baseUrl = "https://api.rawg.io/api/games?page_size=10&"
+    static let baseSearchUrl = "https://api.rawg.io/api/games?page_size=10&"
+    static let baseUrl       = "https://api.rawg.io/api/games/"
     
-    typealias FetchGamesCompletion = ([GameItem]) -> ()
-    
-    static let shared = APIService()
-    
-    func fetchGames(page: Int, searchText: String, completion: @escaping FetchGamesCompletion) {
+    typealias FetchGamesCompletion   = ([GameItem]) -> ()
+    typealias FetchDetailsCompletion = (GameItem) -> ()
+        
+    static func fetchAllGames(page: Int, searchText: String, completion: @escaping FetchGamesCompletion) {
         let parameters = ["search" : searchText,
                           "page"   : page     ] as [String : Any]
         
-        Alamofire.request(baseUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (response) in
+        Alamofire.request(baseSearchUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (response) in
             if let error = response.error {
                 print("Failed to contact server", error)
                 return
@@ -35,9 +35,27 @@ class APIService {
             }
         }
     }
+    
+    static func fetchGameDetails(gameId: Int, completion: @escaping FetchDetailsCompletion) {
+        
+        Alamofire.request(baseUrl + "\(gameId)", method: .get, encoding: URLEncoding.default, headers: nil).responseData { (response) in
+            if let error = response.error {
+                print("Failed to contact server", error)
+                return
+            }
+            guard let data = response.data else {return}
+            print(data)
+            do {
+                let searchResult = try JSONDecoder().decode(GameItem.self, from: data)
+                completion(searchResult)
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+    
 }
 
 struct SearchResults: Codable {
-  //  let count: Int
     let results: [GameItem]
 }

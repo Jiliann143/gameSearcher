@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A307074B23B68ABF001F089F /* GameDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A307074A23B68ABF001F089F /* GameDetailsController.swift */; };
+		A307074D23B68E1B001F089F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A307074C23B68E1B001F089F /* Utils.swift */; };
+		A307074F23B68EC0001F089F /* GameDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A307074E23B68EC0001F089F /* GameDetails.storyboard */; };
 		A3775FA423A6AE3E0034EAD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3775FA323A6AE3E0034EAD6 /* AppDelegate.swift */; };
 		A3775FA823A6AE3E0034EAD6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3775FA723A6AE3E0034EAD6 /* SearchViewController.swift */; };
 		A3775FAB23A6AE3E0034EAD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3775FA923A6AE3E0034EAD6 /* Main.storyboard */; };
@@ -21,6 +24,9 @@
 
 /* Begin PBXFileReference section */
 		78FF5DAC43F68E36A0363F72 /* Pods_GameSearcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameSearcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A307074A23B68ABF001F089F /* GameDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailsController.swift; sourceTree = "<group>"; };
+		A307074C23B68E1B001F089F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A307074E23B68EC0001F089F /* GameDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameDetails.storyboard; sourceTree = "<group>"; };
 		A3775FA023A6AE3E0034EAD6 /* GameSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3775FA323A6AE3E0034EAD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3775FA723A6AE3E0034EAD6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +71,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A307074923B68AAC001F089F /* GameDetailsController */ = {
+			isa = PBXGroup;
+			children = (
+				A307074A23B68ABF001F089F /* GameDetailsController.swift */,
+				A307074E23B68EC0001F089F /* GameDetails.storyboard */,
+			);
+			path = GameDetailsController;
+			sourceTree = "<group>";
+		};
 		A3775F9723A6AE3E0034EAD6 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +106,7 @@
 				A3775FBE23A6C16C0034EAD6 /* Networking */,
 				A395BD3F23A6CDC4005BB0A1 /* UI */,
 				A395BD3E23A6CDAA005BB0A1 /* Supporting Files */,
+				A307074C23B68E1B001F089F /* Utils.swift */,
 			);
 			path = GameSearcher;
 			sourceTree = "<group>";
@@ -124,6 +140,7 @@
 		A395BD3F23A6CDC4005BB0A1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A307074923B68AAC001F089F /* GameDetailsController */,
 				A395BD4023A6CDDB005BB0A1 /* SearchViewController */,
 			);
 			path = UI;
@@ -209,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3775FB023A6AE420034EAD6 /* LaunchScreen.storyboard in Resources */,
+				A307074F23B68EC0001F089F /* GameDetails.storyboard in Resources */,
 				A3775FAD23A6AE420034EAD6 /* Assets.xcassets in Resources */,
 				A3775FAB23A6AE3E0034EAD6 /* Main.storyboard in Resources */,
 				A3775FB823A6AF910034EAD6 /* GameCell.xib in Resources */,
@@ -264,8 +282,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A307074B23B68ABF001F089F /* GameDetailsController.swift in Sources */,
 				A3775FA823A6AE3E0034EAD6 /* SearchViewController.swift in Sources */,
 				A3775FA423A6AE3E0034EAD6 /* AppDelegate.swift in Sources */,
+				A307074D23B68E1B001F089F /* Utils.swift in Sources */,
 				A3775FC023A6C1750034EAD6 /* API Service.swift in Sources */,
 				A3775FBD23A6BCB00034EAD6 /* GameItem.swift in Sources */,
 				A3775FBA23A6B1CA0034EAD6 /* GameCell.swift in Sources */,
