@@ -17,7 +17,7 @@ class GameDetailsController: UIViewController {
     
     var game: GameItem!
     
-    var imagesArray: [UIImage] = []
+    var imagesArray: [String] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,7 +31,6 @@ class GameDetailsController: UIViewController {
 
         screenshotsCollectionView.register(UINib(nibName: "ScreenshotCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ScreenshotCollectionViewCell")
         setupGame(game)
-        print(imagesArray)
     }
     
     func setupGame(_ game: GameItem) {
@@ -45,17 +44,9 @@ class GameDetailsController: UIViewController {
             self.gameDescriptionTextView.text = game.description
         }
         
-        APIService.fetchGameScreenshots(gamePk: "") { (screenshots) in
-            screenshots.forEach {
-                guard let url = URL(string: $0.image) else {return}
-               KingfisherManager.shared.retrieveImage(with: url) { result in
-                    let image = try? result.get().image
-                    if let image = image {
-                        self.imagesArray.append(image)
-                        self.screenshotsCollectionView.reloadData()
-                    }
-                }
-            }
+        APIService.fetchGameScreenshots(gameName: game.slug) { (screenshots) in
+            screenshots.forEach { self.imagesArray.append($0.image) }
+            self.screenshotsCollectionView.reloadData()
         }
     }
 }

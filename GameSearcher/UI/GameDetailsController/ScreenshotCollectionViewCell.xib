@@ -19,23 +19,17 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I9L-Zk-cFs">
                         <rect key="frame" x="0.0" y="0.0" width="455" height="279"/>
                     </imageView>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="f9Q-QB-5ec">
-                        <rect key="frame" x="217.5" y="129.5" width="20" height="20"/>
-                    </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="I9L-Zk-cFs" secondAttribute="trailing" id="Biy-7q-QKq"/>
-                    <constraint firstItem="f9Q-QB-5ec" firstAttribute="centerY" secondItem="DLe-hM-tzH" secondAttribute="centerY" id="Kzj-pv-h0J"/>
                     <constraint firstAttribute="bottom" secondItem="I9L-Zk-cFs" secondAttribute="bottom" id="Wbe-nq-Duv"/>
                     <constraint firstItem="I9L-Zk-cFs" firstAttribute="leading" secondItem="DLe-hM-tzH" secondAttribute="leading" id="ZKK-Tb-iNa"/>
-                    <constraint firstItem="f9Q-QB-5ec" firstAttribute="centerX" secondItem="DLe-hM-tzH" secondAttribute="centerX" id="cIF-s5-xhM"/>
                     <constraint firstItem="I9L-Zk-cFs" firstAttribute="top" secondItem="DLe-hM-tzH" secondAttribute="top" id="paY-q3-xyb"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="455" height="279"/>
             <connections>
-                <outlet property="activityIndicator" destination="f9Q-QB-5ec" id="M58-WN-cWh"/>
                 <outlet property="imageView" destination="I9L-Zk-cFs" id="DCC-Xh-zso"/>
             </connections>
             <point key="canvasLocation" x="428.26086956521743" y="-79.352678571428569"/>

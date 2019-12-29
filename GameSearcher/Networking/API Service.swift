@@ -50,16 +50,16 @@ class APIService {
             guard let data = response.data else {return}
             print(data)
             do {
-                let searchResult = try JSONDecoder().decode(GameItem.self, from: data)
-                completion(searchResult)
+                let gameDetails = try JSONDecoder().decode(GameItem.self, from: data)
+                completion(gameDetails)
             } catch let error {
                 print(error)
             }
         }
     }
     
-    static func fetchGameScreenshots(gamePk: String, completion: @escaping ([Screenshot]) -> ()) {
-        let screenshotUrl = "https://api.rawg.io/api/games/the-last-of-us/screenshots"
+    static func fetchGameScreenshots(gameName: String, completion: @escaping ([Screenshot]) -> ()) {
+        let screenshotUrl = "https://api.rawg.io/api/games/\(gameName)/screenshots"
         Alamofire.request(screenshotUrl, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers).responseData { (response) in
             if let error = response.error {
                 print("Failed to contact server", error)
@@ -75,16 +75,17 @@ class APIService {
         }
     }
     
-}
-
-struct SearchResults: Codable {
-    let results: [GameItem]
-}
-
-struct Screenshots: Codable {
-    let results: [Screenshot]
-}
-
-struct Screenshot: Codable {
-    let image: String
+    func handleResponse<T: Codable>(response: DataResponse<Data>, decodableType: T.Type, completion: @escaping (T) -> ()) {
+        if let error = response.error {
+            print("Failed to contact server", error)
+            return
+        }
+        guard let data = response.data else {return}
+        do {
+            let output = try JSONDecoder().decode(decodableType, from: data)
+            completion(output)
+        } catch let error {
+            print(error)
+        }
+    }
 }
