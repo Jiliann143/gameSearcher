@@ -23,14 +23,22 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.hidesBarsOnSwipe = true
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
 
         tableViewSetup()
         setupSearchBar()
         searchBar(searchController.searchBar, textDidChange: "")
        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hidesBarsOnSwipe = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.hidesBarsOnSwipe = false
     }
     
     private func setupSearchBar() {

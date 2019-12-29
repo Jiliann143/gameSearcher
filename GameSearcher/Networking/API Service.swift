@@ -14,6 +14,10 @@ class APIService {
     static let baseSearchUrl = "https://api.rawg.io/api/games?page_size=10&"
     static let baseUrl       = "https://api.rawg.io/api/games/"
     
+    static let headers: HTTPHeaders = [
+      "User-Agent": "TestGameApp"
+    ]
+    
     typealias FetchGamesCompletion   = ([GameItem]) -> ()
     typealias FetchDetailsCompletion = (GameItem) -> ()
         
@@ -21,7 +25,7 @@ class APIService {
         let parameters = ["search" : searchText,
                           "page"   : page     ] as [String : Any]
         
-        Alamofire.request(baseSearchUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (response) in
+        Alamofire.request(baseSearchUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseData { (response) in
             if let error = response.error {
                 print("Failed to contact server", error)
                 return
@@ -38,7 +42,7 @@ class APIService {
     
     static func fetchGameDetails(gameId: Int, completion: @escaping FetchDetailsCompletion) {
         
-        Alamofire.request(baseUrl + "\(gameId)", method: .get, encoding: URLEncoding.default, headers: nil).responseData { (response) in
+        Alamofire.request(baseUrl + "\(gameId)", method: .get, encoding: URLEncoding.default, headers: headers).responseData { (response) in
             if let error = response.error {
                 print("Failed to contact server", error)
                 return
@@ -54,8 +58,33 @@ class APIService {
         }
     }
     
+    static func fetchGameScreenshots(gamePk: String, completion: @escaping ([Screenshot]) -> ()) {
+        let screenshotUrl = "https://api.rawg.io/api/games/the-last-of-us/screenshots"
+        Alamofire.request(screenshotUrl, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers).responseData { (response) in
+            if let error = response.error {
+                print("Failed to contact server", error)
+                return
+            }
+            guard let data = response.data else {return}
+            do {
+                let screenshots = try JSONDecoder().decode(Screenshots.self, from: data)
+                completion(screenshots.results)
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+    
 }
 
 struct SearchResults: Codable {
     let results: [GameItem]
+}
+
+struct Screenshots: Codable {
+    let results: [Screenshot]
+}
+
+struct Screenshot: Codable {
+    let image: String
 }

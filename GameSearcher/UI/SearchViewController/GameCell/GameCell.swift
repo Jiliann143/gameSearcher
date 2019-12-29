@@ -39,6 +39,7 @@ class GameCell: UITableViewCell {
     }
 
     func setupCellUI() {
+        selectionStyle = .none
         containerView.layer.cornerRadius = 15
         containerView.layer.masksToBounds = true
     }

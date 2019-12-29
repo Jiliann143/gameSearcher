@@ -12,41 +12,75 @@ import Alamofire
 
 class GameDetailsController: UIViewController {
     
-    @IBOutlet weak var gameCoverImageView: UIImageView!
     @IBOutlet weak var gameDescriptionTextView: UITextView!
-
+    @IBOutlet weak var screenshotsCollectionView: UICollectionView!
+    
     var game: GameItem!
+    
+    var imagesArray: [UIImage] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
 
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = false
+
+        screenshotsCollectionView.register(UINib(nibName: "ScreenshotCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ScreenshotCollectionViewCell")
         setupGame(game)
-        setupNavBar()
+        print(imagesArray)
     }
     
     func setupGame(_ game: GameItem) {
         title = game.name
-        guard let url = URL(string: game.background_image) else {return}
-        gameCoverImageView.kf.setImage(with: url)
         fetchDetails()
     }
     
     func fetchDetails() {
+   
         APIService.fetchGameDetails(gameId: game.id) { (game) in
             self.gameDescriptionTextView.text = game.description
         }
-      }
+        
+        APIService.fetchGameScreenshots(gamePk: "") { (screenshots) in
+            screenshots.forEach {
+                guard let url = URL(string: $0.image) else {return}
+               KingfisherManager.shared.retrieveImage(with: url) { result in
+                    let image = try? result.get().image
+                    if let image = image {
+                        self.imagesArray.append(image)
+                        self.screenshotsCollectionView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+}
 
+
+//MARK: - UICollectionView Stuff
+
+extension GameDetailsController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    private func setupNavBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-
-     }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imagesArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScreenshotCollectionViewCell", for: indexPath) as! ScreenshotCollectionViewCell
+        let image = imagesArray[indexPath.item]
+        cell.screenshot = image
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 }
