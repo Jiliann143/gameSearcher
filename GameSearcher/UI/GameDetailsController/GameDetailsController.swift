@@ -12,7 +12,7 @@ import Alamofire
 
 class GameDetailsController: UIViewController {
     
-    @IBOutlet weak var gameDescriptionTextView: UITextView!
+    @IBOutlet weak var gameDescriptionLabel: UILabel!
     @IBOutlet weak var screenshotsCollectionView: UICollectionView!
     
     var game: GameItem!
@@ -29,7 +29,7 @@ class GameDetailsController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = false
 
-        screenshotsCollectionView.register(UINib(nibName: "ScreenshotCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ScreenshotCollectionViewCell")
+        screenshotsCollectionView.registerCell(ScreenshotCell.self)
         setupGame(game)
     }
     
@@ -41,7 +41,9 @@ class GameDetailsController: UIViewController {
     func fetchDetails() {
    
         APIService.fetchGameDetails(gameId: game.id) { (game) in
-            self.gameDescriptionTextView.text = game.description
+            if let description = game.description {
+                self.gameDescriptionLabel.text = description.strip()
+            }
         }
         
         APIService.fetchGameScreenshots(gameName: game.slug) { (screenshots) in
@@ -61,7 +63,7 @@ extension GameDetailsController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScreenshotCollectionViewCell", for: indexPath) as! ScreenshotCollectionViewCell
+        let cell = collectionView.cell(ScreenshotCell.self, for: indexPath)
         let image = imagesArray[indexPath.item]
         cell.screenshot = image
         return cell

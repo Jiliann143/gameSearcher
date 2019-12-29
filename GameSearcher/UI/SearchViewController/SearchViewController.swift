@@ -52,7 +52,7 @@ class SearchViewController: UIViewController {
     private func tableViewSetup() {
         tableView.estimatedRowHeight = 400
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(UINib(nibName: "GameCell", bundle: nil), forCellReuseIdentifier: "GameCell")
+        tableView.registerCell(GameCell.self)
         tableView.separatorStyle = .none
         
         tableView.addInfiniteScrolling {
@@ -105,7 +105,7 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath) as! GameCell
+        let cell = tableView.cell(GameCell.self)
         let game = games[indexPath.row]
         cell.setupGameInfo(game)
         return cell
@@ -126,7 +126,7 @@ extension SearchViewController: UITableViewDelegate {
         let vc = storyboard.instantiateViewController(withIdentifier: "GameDetailsController") as? GameDetailsController
         let game = games[indexPath.row]
         vc!.game = game
-        navigationController?.pushViewController(vc!, animated: true)
+        push(vc!)
     }
 }
 

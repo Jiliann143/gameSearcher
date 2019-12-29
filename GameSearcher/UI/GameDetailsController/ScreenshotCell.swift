@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class ScreenshotCollectionViewCell: UICollectionViewCell {
+class ScreenshotCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
