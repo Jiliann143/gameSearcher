@@ -11,80 +11,56 @@ import Foundation
 
 class APIService {
     
+    typealias FetchGamesCompletion   = ([GameItem])   -> ()
+    typealias FetchDetailsCompletion = (GameItem)     -> ()
+    typealias FetchScreensCompletion = ([Screenshot]) -> ()
+    
     static let baseSearchUrl = "https://api.rawg.io/api/games?page_size=10&"
     static let baseUrl       = "https://api.rawg.io/api/games/"
     
     static let headers: HTTPHeaders = [
       "User-Agent": "TestGameApp"
     ]
-    
-    typealias FetchGamesCompletion   = ([GameItem]) -> ()
-    typealias FetchDetailsCompletion = (GameItem) -> ()
         
     static func fetchAllGames(page: Int, searchText: String, completion: @escaping FetchGamesCompletion) {
         let parameters = ["search" : searchText,
                           "page"   : page     ] as [String : Any]
         
         Alamofire.request(baseSearchUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseData { (response) in
-            if let error = response.error {
-                print("Failed to contact server", error)
-                return
-            }
-            guard let data = response.data else {return}
-            do {
-                let searchResult = try JSONDecoder().decode(SearchResults.self, from: data)
+            handleResponse(response, decode: SearchResults.self) { (searchResult) in
                 completion(searchResult.results)
-            } catch let error {
-                print(error)
             }
         }
     }
     
     static func fetchGameDetails(gameId: Int, completion: @escaping FetchDetailsCompletion) {
-        
         Alamofire.request(baseUrl + "\(gameId)", method: .get, encoding: URLEncoding.default, headers: headers).responseData { (response) in
-            if let error = response.error {
-                print("Failed to contact server", error)
-                return
-            }
-            guard let data = response.data else {return}
-            print(data)
-            do {
-                let searchResult = try JSONDecoder().decode(GameItem.self, from: data)
-                completion(searchResult)
-            } catch let error {
-                print(error)
+            handleResponse(response, decode: GameItem.self) { (gameItem) in
+                completion(gameItem)
             }
         }
     }
     
-    static func fetchGameScreenshots(gamePk: String, completion: @escaping ([Screenshot]) -> ()) {
-        let screenshotUrl = "https://api.rawg.io/api/games/the-last-of-us/screenshots"
-        Alamofire.request(screenshotUrl, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers).responseData { (response) in
-            if let error = response.error {
-                print("Failed to contact server", error)
-                return
-            }
-            guard let data = response.data else {return}
-            do {
-                let screenshots = try JSONDecoder().decode(Screenshots.self, from: data)
-                completion(screenshots.results)
-            } catch let error {
-                print(error)
+    static func fetchGameScreenshots(gameName: String, completion: @escaping FetchScreensCompletion) {
+        Alamofire.request(baseUrl + "\(gameName)/screenshots", method: .get, encoding: URLEncoding.default, headers: headers).responseData { (response) in
+            handleResponse(response, decode: Screenshots.self) { (screenshots) in
+                completion (screenshots.results)
             }
         }
     }
     
-}
-
-struct SearchResults: Codable {
-    let results: [GameItem]
-}
-
-struct Screenshots: Codable {
-    let results: [Screenshot]
-}
-
-struct Screenshot: Codable {
-    let image: String
+    
+    private static func handleResponse<T: Codable>(_ response: DataResponse<Data>, decode: T.Type, completion: @escaping (T) -> ()) {
+        if let error = response.error {
+            print("Failed to contact server", error)
+            return
+        }
+        guard let data = response.data else {return}
+        do {
+            let output = try JSONDecoder().decode(decode, from: data)
+            completion(output)
+        } catch let error {
+            print(error)
+        }
+    }
 }

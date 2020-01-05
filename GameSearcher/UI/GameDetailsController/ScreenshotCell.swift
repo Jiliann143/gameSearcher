@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import Kingfisher
 
-class ScreenshotCollectionViewCell: UICollectionViewCell {
+class ScreenshotCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var screenshot: UIImage? {
+    var screenshot: String? {
         didSet {
-            imageView.image = screenshot
+            guard let url = URL(string: screenshot!) else {return}
+            imageView.kf.indicatorType = .activity
+            imageView.kf.setImage(with: url)
         }
     }
     

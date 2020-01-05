@@ -11,6 +11,7 @@ import Foundation
 struct GameItem: Codable {
     
     let id: Int
+    let slug: String
     let name: String
     let background_image: String
     let description: String?

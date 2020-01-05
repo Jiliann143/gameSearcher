@@ -6,7 +6,6 @@
 //  Copyright © 2019 Yulia. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension UIView {
@@ -56,3 +55,118 @@ var window: UIWindow {
 func setRootController(_ controller: UIViewController) {
     window.replaceRootViewControllerWith(controller)
 }
+
+
+extension UITableView {
+    
+    func cell<T>(_ type: T.Type) -> T {
+        return dequeueReusableCell(withIdentifier: String(describing: type)) as! T
+    }
+    
+    func registerCell<T>(_ type: T.Type) {
+        let nib = UINib(nibName: String(describing: type), bundle: nil)
+        register(nib, forCellReuseIdentifier: String(describing: type))
+    }
+}
+
+extension UICollectionView {
+    
+    func registerCell<T>(_ type: T.Type) {
+        let nib = UINib(nibName: String(describing: type), bundle: nil)
+        register(nib, forCellWithReuseIdentifier: String(describing: type))
+    }
+    
+    func cell<T>(_ type: T.Type, for indexPath: IndexPath) -> T {
+        return dequeueReusableCell(withReuseIdentifier: String(describing: type), for: indexPath) as! T
+    }
+}
+
+extension UIViewController {
+    
+    func push(_ controller: UIViewController) {
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func pop() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func present(_ controller: UIViewController) {
+        present(controller, animated: true, completion: nil)
+    }
+    
+    func dismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension String {
+    func htmlAttributed() -> NSAttributedString? {
+        guard let data = data(using: String.Encoding.utf8) else {
+            return nil
+        }
+        if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            return attributedString
+        }
+        return NSAttributedString()
+    }
+    
+    func strip() -> String {
+        return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+    }
+}
+
+public extension UIView {
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        set { clipsToBounds = true; layer.cornerRadius = newValue }
+        get { return layer.cornerRadius }
+    }
+    
+    @IBInspectable var borderWidth: CGFloat {
+        set { layer.borderWidth = newValue }
+        get { return layer.borderWidth }
+    }
+    
+    @IBInspectable var borderColor: UIColor {
+        set { layer.borderColor = newValue.cgColor }
+        get { return UIColor.clear }
+    }
+    
+    var viewController: UIViewController? {
+        var controller: UIResponder? = self.next
+        while controller != nil {
+            if let controller = controller as? UIViewController { return controller }
+            controller = controller?.next
+        }
+        return nil
+    }
+    
+    func flip() {
+        layer.transform = CATransform3DConcat(layer.transform,
+                                              CATransform3DMakeRotation(CGFloat.pi, 1.0, 0.0, 0.0))
+    }
+    
+    func removeAllSubviews() {
+        subviews.forEach { $0.removeFromSuperview() }
+    }
+    
+    func addTransparentBlur(style: UIBlurEffect.Style = .light) {
+        //http://stackoverflow.com/questions/17041669/creating-a-blurring-overlay-view
+        if !UIAccessibility.isReduceTransparencyEnabled {
+            backgroundColor = UIColor.clear
+            
+            let blurEffect = UIBlurEffect(style: style)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            //always fill the view
+            blurEffectView.frame = self.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            insertSubview(blurEffectView, at: 0)
+        }
+        else {
+            backgroundColor = UIColor.clear
+        }
+    }
+}
+
