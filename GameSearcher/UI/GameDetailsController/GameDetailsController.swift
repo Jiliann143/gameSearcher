@@ -14,23 +14,22 @@ class GameDetailsController: UIViewController {
     
     @IBOutlet weak var gameDescriptionLabel: UILabel!
     @IBOutlet weak var screenshotsCollectionView: UICollectionView!
+    @IBOutlet weak var collectionPageControl: PageIndicatorView!
     
     var game: GameItem!
-    
-    var imagesArray: [String] = []
+    var screenshots: [String] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = false
-
         screenshotsCollectionView.registerCell(ScreenshotCell.self)
         setupGame(game)
+        
     }
     
     func setupGame(_ game: GameItem) {
@@ -38,16 +37,17 @@ class GameDetailsController: UIViewController {
         fetchDetails()
     }
     
-    func fetchDetails() {
-   
+    private func fetchDetails() {
         APIService.fetchGameDetails(gameId: game.id) { (game) in
             if let description = game.description {
                 self.gameDescriptionLabel.text = description.strip()
             }
         }
-        
         APIService.fetchGameScreenshots(gameName: game.slug) { (screenshots) in
-            screenshots.forEach { self.imagesArray.append($0.image) }
+            screenshots.forEach {
+                self.screenshots.append($0.image)
+            }
+            self.collectionPageControl.numberOfPages = self.screenshots.count
             self.screenshotsCollectionView.reloadData()
         }
     }
@@ -59,12 +59,12 @@ class GameDetailsController: UIViewController {
 extension GameDetailsController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imagesArray.count
+        return screenshots.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.cell(ScreenshotCell.self, for: indexPath)
-        let image = imagesArray[indexPath.item]
+        let image = screenshots[indexPath.item]
         cell.screenshot = image
         return cell
     }
@@ -73,7 +73,12 @@ extension GameDetailsController: UICollectionViewDelegate, UICollectionViewDataS
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+           if scrollView == screenshotsCollectionView {
+               let x = scrollView.contentOffset.x
+               let width = scrollView.bounds.size.width
+               collectionPageControl.currentPage = Int(round(x/width))
+           }
+       }
+    
 }

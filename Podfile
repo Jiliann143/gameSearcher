@@ -9,6 +9,7 @@ target 'GameSearcher' do
   pod 'Alamofire'
   pod 'Kingfisher'
   pod 'SVPullToRefresh'
+  pod 'CHIPageControl'
 
 
 end

@@ -19,10 +19,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="832"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72O-iW-UPU">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="344"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="449"/>
                                         <subviews>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DUO-Kb-9Zb">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="313.5"/>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DUO-Kb-9Zb">
+                                                <rect key="frame" x="10" y="10" width="394" height="313.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cCe-oI-3Qh">
                                                     <size key="itemSize" width="50" height="50"/>
@@ -31,26 +31,46 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="dataSource" destination="dDD-Vr-gyp" id="TTW-3M-sOJ"/>
                                                     <outlet property="delegate" destination="dDD-Vr-gyp" id="NQe-Tw-f6A"/>
                                                 </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpf-Bn-hdO">
-                                                <rect key="frame" x="5" y="318.5" width="404" height="20.5"/>
+                                                <rect key="frame" x="5" y="328.5" width="404" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Alq-KC-Zhh" customClass="PageIndicatorView" customModule="GameSearcher" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="310.5" width="374" height="8"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="8" id="RXo-gd-Vkz"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="currentPageColor">
+                                                        <color key="value" red="0.86030204911913999" green="0.64268043381864626" blue="0.19658386772036276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="cpf-Bn-hdO" firstAttribute="top" secondItem="DUO-Kb-9Zb" secondAttribute="bottom" constant="5" id="0pE-hG-X6A"/>
-                                            <constraint firstItem="DUO-Kb-9Zb" firstAttribute="top" secondItem="72O-iW-UPU" secondAttribute="top" id="47i-LS-rEB"/>
-                                            <constraint firstAttribute="trailing" secondItem="DUO-Kb-9Zb" secondAttribute="trailing" id="7VC-fy-kJa"/>
-                                            <constraint firstItem="DUO-Kb-9Zb" firstAttribute="leading" secondItem="72O-iW-UPU" secondAttribute="leading" id="Lbu-0I-P7q"/>
+                                            <constraint firstItem="DUO-Kb-9Zb" firstAttribute="top" secondItem="72O-iW-UPU" secondAttribute="top" constant="10" id="47i-LS-rEB"/>
+                                            <constraint firstAttribute="trailing" secondItem="DUO-Kb-9Zb" secondAttribute="trailing" constant="10" id="7VC-fy-kJa"/>
+                                            <constraint firstItem="DUO-Kb-9Zb" firstAttribute="leading" secondItem="72O-iW-UPU" secondAttribute="leading" constant="10" id="Lbu-0I-P7q"/>
+                                            <constraint firstItem="Alq-KC-Zhh" firstAttribute="bottom" secondItem="DUO-Kb-9Zb" secondAttribute="bottom" constant="-5" id="R0y-va-BrH"/>
+                                            <constraint firstItem="Alq-KC-Zhh" firstAttribute="leading" secondItem="DUO-Kb-9Zb" secondAttribute="leading" constant="10" id="S5t-Pu-T6l"/>
                                             <constraint firstAttribute="trailing" secondItem="cpf-Bn-hdO" secondAttribute="trailing" constant="5" id="SKE-aD-4ot"/>
-                                            <constraint firstAttribute="bottom" secondItem="cpf-Bn-hdO" secondAttribute="bottom" constant="5" id="YJR-rk-5SL"/>
+                                            <constraint firstItem="Alq-KC-Zhh" firstAttribute="trailing" secondItem="DUO-Kb-9Zb" secondAttribute="trailing" constant="-10" id="ULN-Lm-feJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="cpf-Bn-hdO" secondAttribute="bottom" constant="100" id="YJR-rk-5SL"/>
                                             <constraint firstItem="cpf-Bn-hdO" firstAttribute="leading" secondItem="72O-iW-UPU" secondAttribute="leading" constant="5" id="c3B-pK-psJ"/>
                                         </constraints>
                                     </view>
@@ -76,6 +96,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Nsf-d6-1Pq"/>
                     <connections>
+                        <outlet property="collectionPageControl" destination="Alq-KC-Zhh" id="IPf-6m-Ii5"/>
                         <outlet property="gameDescriptionLabel" destination="cpf-Bn-hdO" id="oCT-zJ-40Y"/>
                         <outlet property="screenshotsCollectionView" destination="DUO-Kb-9Zb" id="fJf-O5-11R"/>
                     </connections>

@@ -115,3 +115,58 @@ extension String {
         return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
 }
+
+public extension UIView {
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        set { clipsToBounds = true; layer.cornerRadius = newValue }
+        get { return layer.cornerRadius }
+    }
+    
+    @IBInspectable var borderWidth: CGFloat {
+        set { layer.borderWidth = newValue }
+        get { return layer.borderWidth }
+    }
+    
+    @IBInspectable var borderColor: UIColor {
+        set { layer.borderColor = newValue.cgColor }
+        get { return UIColor.clear }
+    }
+    
+    var viewController: UIViewController? {
+        var controller: UIResponder? = self.next
+        while controller != nil {
+            if let controller = controller as? UIViewController { return controller }
+            controller = controller?.next
+        }
+        return nil
+    }
+    
+    func flip() {
+        layer.transform = CATransform3DConcat(layer.transform,
+                                              CATransform3DMakeRotation(CGFloat.pi, 1.0, 0.0, 0.0))
+    }
+    
+    func removeAllSubviews() {
+        subviews.forEach { $0.removeFromSuperview() }
+    }
+    
+    func addTransparentBlur(style: UIBlurEffect.Style = .light) {
+        //http://stackoverflow.com/questions/17041669/creating-a-blurring-overlay-view
+        if !UIAccessibility.isReduceTransparencyEnabled {
+            backgroundColor = UIColor.clear
+            
+            let blurEffect = UIBlurEffect(style: style)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            //always fill the view
+            blurEffectView.frame = self.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            insertSubview(blurEffectView, at: 0)
+        }
+        else {
+            backgroundColor = UIColor.clear
+        }
+    }
+}
+
