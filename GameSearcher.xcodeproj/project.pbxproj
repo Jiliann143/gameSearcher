@@ -126,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				A3775FBC23A6BCB00034EAD6 /* GameItem.swift */,
+				A39565FB23B91EE000B68894 /* CodableStructs.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -134,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				A3775FBF23A6C1750034EAD6 /* API Service.swift */,
-				A39565FB23B91EE000B68894 /* CodableStructs.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";

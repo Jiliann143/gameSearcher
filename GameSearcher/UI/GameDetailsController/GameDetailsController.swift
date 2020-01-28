@@ -15,6 +15,23 @@ class GameDetailsController: UIViewController {
     @IBOutlet weak var gameDescriptionLabel: UILabel!
     @IBOutlet weak var screenshotsCollectionView: UICollectionView!
     @IBOutlet weak var collectionPageControl: PageIndicatorView!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var topRatingLabel: UILabel!
+    
+    @IBOutlet weak var expandArrow: UIButton!
+    @IBOutlet weak var descriptionStackView: UIStackView!
+    
+    var isDescriptionVisible: Bool = false {
+        didSet {
+            if isDescriptionVisible == false {
+                expandArrow.rotateView(360)
+                gameDescriptionLabel.hideAnimated()
+            } else {
+                expandArrow.rotateView(180)
+                gameDescriptionLabel.showAnimated()
+            }
+        }
+    }
     
     var game: GameItem!
     var screenshots: [String] = []
@@ -26,6 +43,7 @@ class GameDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gameDescriptionLabel.isHidden = true
         navigationController?.navigationBar.prefersLargeTitles = false
         screenshotsCollectionView.registerCell(ScreenshotCell.self)
         setupGame(game)
@@ -39,17 +57,23 @@ class GameDetailsController: UIViewController {
     
     private func fetchDetails() {
         APIService.fetchGameDetails(gameId: game.id) { (game) in
-            if let description = game.description {
-                self.gameDescriptionLabel.text = description.strip()
+            if let game = game {
+                self.gameDescriptionLabel.text = game.description?.strip()
             }
         }
         APIService.fetchGameScreenshots(gameName: game.slug) { (screenshots) in
-            screenshots.forEach {
-                self.screenshots.append($0.image)
+            if let screens = screenshots {
+                screens.forEach {
+                    self.screenshots.append($0.image)
+                }
+                self.collectionPageControl.numberOfPages = self.screenshots.count
+                self.screenshotsCollectionView.reloadData()
             }
-            self.collectionPageControl.numberOfPages = self.screenshots.count
-            self.screenshotsCollectionView.reloadData()
         }
+    }
+    
+    @IBAction func didTapExpandDescription(_ sender: UITapGestureRecognizer) {
+        isDescriptionVisible = !isDescriptionVisible
     }
 }
 

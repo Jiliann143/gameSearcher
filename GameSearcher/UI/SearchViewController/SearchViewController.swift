@@ -65,12 +65,12 @@ class SearchViewController: UIViewController {
             
             APIService.fetchAllGames(page: self.page, searchText: self.searchController.searchBar.searchTextField.text ?? "") { (games) in
                 self.tableView.infiniteScrollingView.stopAnimating()
-
-                if games.count == 0 {
+                
+                guard let games = games else {
                     self.finished = true
                     return
                 }
-                
+            
                 self.games += games
                 self.page += 1
                 self.tableView.reloadData()
@@ -90,6 +90,8 @@ extension SearchViewController: UISearchBarDelegate {
         tableView.infiniteScrollingView.stopAnimating()
         
         APIService.fetchAllGames(page: 1, searchText: searchText) { (games) in
+            guard let games = games else { return }
+            
                self.games = games
                self.tableView.reloadData()
            }

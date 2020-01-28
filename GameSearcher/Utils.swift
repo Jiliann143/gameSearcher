@@ -118,6 +118,24 @@ extension String {
 
 public extension UIView {
     
+    func showAnimated() {
+           UIView.animate(withDuration: 0.3) {
+               self.isHidden = false
+           }
+       }
+    
+    func hideAnimated() {
+        UIView.animate(withDuration: 0.3) {
+            self.isHidden = true
+        }
+    }
+    
+    func rotateView(_ angle: CGFloat) {
+        UIView.animate(withDuration: 0.4) {
+            self.transform = CGAffineTransform(rotationAngle: angle * .pi / 180)
+        }
+    }
+    
     @IBInspectable var cornerRadius: CGFloat {
         set { clipsToBounds = true; layer.cornerRadius = newValue }
         get { return layer.cornerRadius }

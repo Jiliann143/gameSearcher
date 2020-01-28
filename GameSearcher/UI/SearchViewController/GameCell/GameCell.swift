@@ -29,10 +29,11 @@ class GameCell: UITableViewCell {
     func setupGameInfo(_ game: GameItem) {
         gameTitle.text = game.name
         
-        let arrayOfNames = game.genres.map{ $0.name }
+        let arrayOfNames = game.genres.compactMap{ $0.name }
         gameGenre.text = arrayOfNames.joined(separator: ", ")
         
-        guard let url = URL(string: game.background_image) else {return}
+        guard let image = game.background_image else { return }
+        guard let url = URL(string: image) else {return}
             gameImageView.kf.indicatorType = .activity
             gameImageView.kf.setImage(with: url)
        

@@ -13,13 +13,14 @@ struct GameItem: Codable {
     let id: Int
     let slug: String
     let name: String
-    let background_image: String
+    let background_image: String?
     let description: String?
     let genres: [Genre]
+    let released: String?
     
 }
 
 struct Genre: Codable {
-    var name: String
+    var name: String?
 }
 
