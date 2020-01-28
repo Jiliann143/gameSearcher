@@ -39,7 +39,7 @@ class APIService {
         }
     }
     
-    static func fetchGameScreenshots(gameName: String, completion: @escaping FetchScreensCompletion) {
+    static func getScreenshots(_ gameName: String, completion: @escaping FetchScreensCompletion) {
         Alamofire.request(APIRouter.screenshots(gameName)).responseData { (response) in
             handleResponse(response, decode: Screenshots.self) { (screenshots) in
                 guard let screenshots = screenshots else {

@@ -15,15 +15,8 @@ class ScreenshotCell: UICollectionViewCell {
     
     var screenshot: String? {
         didSet {
-            guard let url = URL(string: screenshot!) else {return}
-            imageView.kf.indicatorType = .activity
-            imageView.kf.setImage(with: url)
+            imageView.loadImage(screenshot)
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-    
 }
+

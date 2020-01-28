@@ -16,32 +16,17 @@ class GameCell: UITableViewCell {
     @IBOutlet weak var gameImageView: UIImageView!
     @IBOutlet weak var gameGenre: UILabel!
         
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupCellUI()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-    }
-    
-    func setupGameInfo(_ game: GameItem) {
+
+    func setupGameInfo(_ game: GameItem) -> Self {
         gameTitle.text = game.name
         
-        let arrayOfNames = game.genres.compactMap{ $0.name }
-        gameGenre.text = arrayOfNames.joined(separator: ", ")
+        let arrayOfGenres = game.genres.compactMap{ $0.name }
+        gameGenre.text = arrayOfGenres.joined(separator: ", ")
         
-        guard let image = game.background_image else { return }
-        guard let url = URL(string: image) else {return}
+        guard let image = game.background_image else { return self}
+        guard let url = URL(string: image) else { return self}
             gameImageView.kf.indicatorType = .activity
             gameImageView.kf.setImage(with: url)
-       
-    }
-
-    func setupCellUI() {
-        selectionStyle = .none
-        containerView.layer.cornerRadius = 15
-        containerView.layer.masksToBounds = true
+       return self
     }
 }

@@ -17,6 +17,7 @@ class GameDetailsController: UIViewController {
     @IBOutlet weak var collectionPageControl: PageIndicatorView!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var topRatingLabel: UILabel!
+    @IBOutlet weak var noScreensView: UIImageView!
     
     @IBOutlet weak var expandArrow: UIButton!
     @IBOutlet weak var descriptionStackView: UIStackView!
@@ -44,24 +45,25 @@ class GameDetailsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         gameDescriptionLabel.isHidden = true
-        navigationController?.navigationBar.prefersLargeTitles = false
         screenshotsCollectionView.registerCell(ScreenshotCell.self)
         setupGame(game)
-        
     }
     
     func setupGame(_ game: GameItem) {
         title = game.name
-        fetchDetails()
+        fetchDetails {
+            self.noScreensView.isHidden = !self.screenshots.isEmpty
+        }
     }
     
-    private func fetchDetails() {
-        APIService.fetchGameDetails(gameId: game.id) { (game) in
+    private func fetchDetails(_ completion: @escaping () -> ()) {
+        APIService.fetchGameDetails(gameId: game.id) { game in
             if let game = game {
                 self.gameDescriptionLabel.text = game.description?.strip()
             }
         }
-        APIService.fetchGameScreenshots(gameName: game.slug) { (screenshots) in
+        
+        APIService.getScreenshots(game.slug) { screenshots in
             if let screens = screenshots {
                 screens.forEach {
                     self.screenshots.append($0.image)
@@ -69,6 +71,7 @@ class GameDetailsController: UIViewController {
                 self.collectionPageControl.numberOfPages = self.screenshots.count
                 self.screenshotsCollectionView.reloadData()
             }
+            completion()
         }
     }
     
@@ -88,8 +91,7 @@ extension GameDetailsController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.cell(ScreenshotCell.self, for: indexPath)
-        let image = screenshots[indexPath.item]
-        cell.screenshot = image
+        cell.screenshot = screenshots[indexPath.item]
         return cell
     }
     

@@ -23,6 +23,7 @@
 		A39565F723B8AEB700B68894 /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39565F523B8AEB700B68894 /* ScreenshotCell.swift */; };
 		A39565FA23B8B73D00B68894 /* ScreenshotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39565F923B8B73D00B68894 /* ScreenshotCell.xib */; };
 		A39565FC23B91EE000B68894 /* CodableStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39565FB23B91EE000B68894 /* CodableStructs.swift */; };
+		A3BF441B23E0C655009F9F45 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF441A23E0C655009F9F45 /* APIRouter.swift */; };
 		FD5F048E0BF8007671E590A5 /* Pods_GameSearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FF5DAC43F68E36A0363F72 /* Pods_GameSearcher.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		A39565F523B8AEB700B68894 /* ScreenshotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
 		A39565F923B8B73D00B68894 /* ScreenshotCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenshotCell.xib; sourceTree = "<group>"; };
 		A39565FB23B91EE000B68894 /* CodableStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableStructs.swift; sourceTree = "<group>"; };
+		A3BF441A23E0C655009F9F45 /* APIRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		B3073587B82659DB9C66AB20 /* Pods-GameSearcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameSearcher.debug.xcconfig"; path = "Target Support Files/Pods-GameSearcher/Pods-GameSearcher.debug.xcconfig"; sourceTree = "<group>"; };
 		E598FBBC01C2527783176E75 /* Pods-GameSearcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameSearcher.release.xcconfig"; path = "Target Support Files/Pods-GameSearcher/Pods-GameSearcher.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,7 +88,6 @@
 				A307074E23B68EC0001F089F /* GameDetails.storyboard */,
 				A39565F523B8AEB700B68894 /* ScreenshotCell.swift */,
 				A39565F923B8B73D00B68894 /* ScreenshotCell.xib */,
-				A3417C4A23C157C9003172D2 /* CustomViewPageControl.swift */,
 			);
 			path = GameDetailsController;
 			sourceTree = "<group>";
@@ -117,7 +118,7 @@
 				A3775FBE23A6C16C0034EAD6 /* Networking */,
 				A395BD3F23A6CDC4005BB0A1 /* UI */,
 				A395BD3E23A6CDAA005BB0A1 /* Supporting Files */,
-				A307074C23B68E1B001F089F /* Utils.swift */,
+				A3BF441923E0C586009F9F45 /* CustomComponents */,
 			);
 			path = GameSearcher;
 			sourceTree = "<group>";
@@ -134,6 +135,7 @@
 		A3775FBE23A6C16C0034EAD6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A3BF441A23E0C655009F9F45 /* APIRouter.swift */,
 				A3775FBF23A6C1750034EAD6 /* API Service.swift */,
 			);
 			path = Networking;
@@ -161,9 +163,9 @@
 		A395BD4023A6CDDB005BB0A1 /* SearchViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A395BD4123A6CDE9005BB0A1 /* GameCell */,
 				A3775FA723A6AE3E0034EAD6 /* SearchViewController.swift */,
 				A3775FA923A6AE3E0034EAD6 /* Main.storyboard */,
+				A395BD4123A6CDE9005BB0A1 /* GameCell */,
 			);
 			path = SearchViewController;
 			sourceTree = "<group>";
@@ -175,6 +177,15 @@
 				A3775FB923A6B1CA0034EAD6 /* GameCell.swift */,
 			);
 			path = GameCell;
+			sourceTree = "<group>";
+		};
+		A3BF441923E0C586009F9F45 /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A307074C23B68E1B001F089F /* Utils.swift */,
+				A3417C4A23C157C9003172D2 /* CustomViewPageControl.swift */,
+			);
+			path = CustomComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +313,7 @@
 				A3775FA423A6AE3E0034EAD6 /* AppDelegate.swift in Sources */,
 				A39565FC23B91EE000B68894 /* CodableStructs.swift in Sources */,
 				A307074D23B68E1B001F089F /* Utils.swift in Sources */,
+				A3BF441B23E0C655009F9F45 /* APIRouter.swift in Sources */,
 				A3775FC023A6C1750034EAD6 /* API Service.swift in Sources */,
 				A3775FBD23A6BCB00034EAD6 /* GameItem.swift in Sources */,
 				A3775FBA23A6B1CA0034EAD6 /* GameCell.swift in Sources */,

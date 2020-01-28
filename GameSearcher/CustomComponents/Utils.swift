@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 extension UIView {
     func snapshot() -> UIImage {
@@ -82,6 +83,17 @@ extension UICollectionView {
 }
 
 extension UIViewController {
+    
+    class func instantiate(_ name: String = "Main") -> Self {
+        return instantiateFromStoryboardHelper(name)
+    }
+    
+    fileprivate class func instantiateFromStoryboardHelper<T>(_ name: String) -> T {
+        let storyboard = UIStoryboard(name: name, bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: String(describing: self)) as! T
+        return controller
+    }
+
     
     func push(_ controller: UIViewController) {
         navigationController?.pushViewController(controller, animated: true)
@@ -170,13 +182,11 @@ public extension UIView {
     }
     
     func addTransparentBlur(style: UIBlurEffect.Style = .light) {
-        //http://stackoverflow.com/questions/17041669/creating-a-blurring-overlay-view
         if !UIAccessibility.isReduceTransparencyEnabled {
             backgroundColor = UIColor.clear
             
             let blurEffect = UIBlurEffect(style: style)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            //always fill the view
             blurEffectView.frame = self.bounds
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             
@@ -188,3 +198,12 @@ public extension UIView {
     }
 }
 
+extension UIImageView {
+    
+    func loadImage(_ urlString: String?) {
+        guard let string = urlString else { return }
+        guard let url = URL(string: string) else { return }
+        self.kf.indicatorType = .activity
+        self.kf.setImage(with: url)
+    }
+}

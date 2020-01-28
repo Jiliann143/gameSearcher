@@ -33,12 +33,12 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.hidesBarsOnSwipe = true
+   //     navigationController?.hidesBarsOnSwipe = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        navigationController?.hidesBarsOnSwipe = false
+    //    navigationController?.hidesBarsOnSwipe = false
     }
     
     private func setupSearchBar() {
@@ -50,11 +50,14 @@ class SearchViewController: UIViewController {
        }
     
     private func tableViewSetup() {
+        tableView.registerCell(GameCell.self)
         tableView.estimatedRowHeight = 400
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.registerCell(GameCell.self)
         tableView.separatorStyle = .none
-        
+        addLazyLoading()
+    }
+    
+    private func addLazyLoading() {
         tableView.addInfiniteScrolling {
             self.tableView.infiniteScrollingView.activityIndicatorViewStyle = .medium
             
@@ -70,7 +73,7 @@ class SearchViewController: UIViewController {
                     self.finished = true
                     return
                 }
-            
+                
                 self.games += games
                 self.page += 1
                 self.tableView.reloadData()
@@ -89,9 +92,8 @@ extension SearchViewController: UISearchBarDelegate {
         page = 2
         tableView.infiniteScrollingView.stopAnimating()
         
-        APIService.fetchAllGames(page: 1, searchText: searchText) { (games) in
+        APIService.fetchAllGames(page: 1, searchText: searchText) { games in
             guard let games = games else { return }
-            
                self.games = games
                self.tableView.reloadData()
            }
@@ -107,10 +109,7 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.cell(GameCell.self)
-        let game = games[indexPath.row]
-        cell.setupGameInfo(game)
-        return cell
+        return tableView.cell(GameCell.self).setupGameInfo(games[indexPath.row])
     }
 }
 
@@ -124,11 +123,9 @@ extension SearchViewController: UITableViewDelegate {
        }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "GameDetails", bundle: .main)
-        let vc = storyboard.instantiateViewController(withIdentifier: "GameDetailsController") as? GameDetailsController
-        let game = games[indexPath.row]
-        vc!.game = game
-        push(vc!)
+        let details = GameDetailsController.instantiate("GameDetails")
+        details.game = games[indexPath.row]
+        push(details)
     }
 }
 

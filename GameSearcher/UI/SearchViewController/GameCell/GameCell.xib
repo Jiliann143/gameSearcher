@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameCell" rowHeight="988" id="axG-y1-RyQ" customClass="GameCell" customModule="GameSearcher" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GameCell" rowHeight="988" id="axG-y1-RyQ" customClass="GameCell" customModule="GameSearcher" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="620" height="601"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="axG-y1-RyQ" id="EQ6-YI-6w6">
@@ -58,6 +58,11 @@
                             <constraint firstItem="WNz-oS-3Hw" firstAttribute="bottom" secondItem="gMx-E2-SRi" secondAttribute="bottom" id="tbx-Ye-Nff"/>
                             <constraint firstItem="GoY-Vq-6Mn" firstAttribute="top" secondItem="vtQ-eb-ZBs" secondAttribute="bottom" constant="5" id="yx0-Vk-16C"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
