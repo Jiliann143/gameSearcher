@@ -24,6 +24,7 @@ class PageIndicatorView: UIStackView {
     
     var numberOfPages: Int = 0 {
         didSet {
+            guard numberOfPages != 0 else {return}
             for _ in 0...numberOfPages - 1 {
                 createBarView()
             }

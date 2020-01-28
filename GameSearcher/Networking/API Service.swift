@@ -14,19 +14,9 @@ class APIService {
     typealias FetchGamesCompletion   = ([GameItem]?)   -> ()
     typealias FetchDetailsCompletion = (GameItem?)     -> ()
     typealias FetchScreensCompletion = ([Screenshot]?) -> ()
-    
-    static let baseSearchUrl = "https://api.rawg.io/api/games?page_size=10&"
-    static let baseUrl       = "https://api.rawg.io/api/games/"
-    
-    static let headers: HTTPHeaders = [
-      "User-Agent": "TestGameApp"
-    ]
         
     static func fetchAllGames(page: Int, searchText: String, completion: @escaping FetchGamesCompletion) {
-        let parameters = ["search" : searchText,
-                          "page"   : page     ] as [String : Any]
-        
-        Alamofire.request(baseSearchUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseData { (response) in
+            Alamofire.request(APIRouter.searchGames(searchText, page)).responseData { (response) in
             handleResponse(response, decode: SearchResults.self) { searchResult in
                 guard let results = searchResult else {
                     completion(nil)
@@ -38,16 +28,19 @@ class APIService {
     }
     
     static func fetchGameDetails(gameId: Int, completion: @escaping FetchDetailsCompletion) {
-        Alamofire.request(baseUrl + "\(gameId)", method: .get, encoding: URLEncoding.default, headers: headers).responseData { response in
+        Alamofire.request(APIRouter.details(gameId)).responseData { response in
             handleResponse(response, decode: GameItem.self) { gameItem in
-                guard let gameItem = gameItem else { completion(nil); return }
+                guard let gameItem = gameItem else {
+                    completion(nil)
+                    return
+                }
                 completion(gameItem)
             }
         }
     }
     
     static func fetchGameScreenshots(gameName: String, completion: @escaping FetchScreensCompletion) {
-        Alamofire.request(baseUrl + "\(gameName)/screenshots", method: .get, encoding: URLEncoding.default, headers: headers).responseData { (response) in
+        Alamofire.request(APIRouter.screenshots(gameName)).responseData { (response) in
             handleResponse(response, decode: Screenshots.self) { (screenshots) in
                 guard let screenshots = screenshots else {
                     completion(nil)
