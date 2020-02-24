@@ -16,7 +16,7 @@ class APIService {
     typealias FetchScreensCompletion = ([Screenshot]?) -> ()
         
     static func fetchAllGames(page: Int, searchText: String, completion: @escaping FetchGamesCompletion) {
-            Alamofire.request(APIRouter.searchGames(searchText, page)).responseData { (response) in
+            Alamofire.request(APIRouter.searchGames(searchText, page)).responseData { response in
             handleResponse(response, decode: SearchResults.self) { searchResult in
                 guard let results = searchResult else {
                     completion(nil)
@@ -40,8 +40,8 @@ class APIService {
     }
     
     static func getScreenshots(_ gameName: String, completion: @escaping FetchScreensCompletion) {
-        Alamofire.request(APIRouter.screenshots(gameName)).responseData { (response) in
-            handleResponse(response, decode: Screenshots.self) { (screenshots) in
+        Alamofire.request(APIRouter.screenshots(gameName)).responseData { response in
+            handleResponse(response, decode: Screenshots.self) { screenshots in
                 guard let screenshots = screenshots else {
                     completion(nil)
                     return
@@ -57,7 +57,7 @@ class APIService {
             print(error.localizedDescription)
             return
         }
-        guard let data = response.data else {return}
+        guard let data = response.data else { return }
         do {
             let output = try JSONDecoder().decode(decode, from: data)
             completion(output)

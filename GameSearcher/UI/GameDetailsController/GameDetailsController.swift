@@ -15,9 +15,11 @@ class GameDetailsController: UIViewController {
     @IBOutlet weak var gameDescriptionLabel: UILabel!
     @IBOutlet weak var screenshotsCollectionView: UICollectionView!
     @IBOutlet weak var collectionPageControl: PageIndicatorView!
-    @IBOutlet weak var ratingLabel: UILabel!
-    @IBOutlet weak var topRatingLabel: UILabel!
     @IBOutlet weak var noScreensView: UIImageView!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var releasedDateLabel: UILabel!
+    @IBOutlet weak var platformsLabel: UILabel!
+    @IBOutlet weak var developerLabel: UILabel!
     
     @IBOutlet weak var expandArrow: UIButton!
     @IBOutlet weak var descriptionStackView: UIStackView!
@@ -51,6 +53,8 @@ class GameDetailsController: UIViewController {
     
     func setupGame(_ game: GameItem) {
         title = game.name
+        releasedDateLabel.text = game.released
+        genreLabel.text = game.genres.compactMap{ $0.name }.joined(separator: ", ")
         fetchDetails {
             self.noScreensView.isHidden = !self.screenshots.isEmpty
         }
@@ -60,6 +64,7 @@ class GameDetailsController: UIViewController {
         APIService.fetchGameDetails(gameId: game.id) { game in
             if let game = game {
                 self.gameDescriptionLabel.text = game.description?.strip()
+                self.developerLabel.text = game.developers?.compactMap{ $0.name }.joined(separator: ", ")
             }
         }
         
