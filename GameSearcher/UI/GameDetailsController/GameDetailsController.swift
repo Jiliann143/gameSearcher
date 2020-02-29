@@ -26,7 +26,7 @@ class GameDetailsController: UIViewController {
     
     var isDescriptionVisible: Bool = false {
         didSet {
-            if isDescriptionVisible == false {
+            if isDescriptionVisible {
                 expandArrow.rotateView(360)
                 gameDescriptionLabel.hideAnimated()
             } else {
@@ -41,7 +41,10 @@ class GameDetailsController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     override func viewDidLoad() {
@@ -51,7 +54,9 @@ class GameDetailsController: UIViewController {
         setupGame(game)
     }
     
-    func setupGame(_ game: GameItem) {
+//MARK: - Setup
+    
+    private func setupGame(_ game: GameItem) {
         title = game.name
         releasedDateLabel.text = game.released
         genreLabel.text = game.genres.compactMap{ $0.name }.joined(separator: ", ")
@@ -59,6 +64,9 @@ class GameDetailsController: UIViewController {
             self.noScreensView.isHidden = !self.screenshots.isEmpty
         }
     }
+
+    
+//MARK: - Private methods
     
     private func fetchDetails(_ completion: @escaping () -> ()) {
         APIService.fetchGameDetails(gameId: game.id) { game in
@@ -86,9 +94,9 @@ class GameDetailsController: UIViewController {
 }
 
 
-//MARK: - UICollectionView Stuff
+//MARK: - UICollectionViewDataSource
 
-extension GameDetailsController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension GameDetailsController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return screenshots.count
@@ -100,16 +108,21 @@ extension GameDetailsController: UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
+}
+    
+    //MARK: - UICollectionViewDelegate
+
+extension GameDetailsController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-           if scrollView == screenshotsCollectionView {
-               let x = scrollView.contentOffset.x
-               let width = scrollView.bounds.size.width
-               collectionPageControl.currentPage = Int(round(x/width))
-           }
-       }
-    
+        if scrollView == screenshotsCollectionView {
+            let x = scrollView.contentOffset.x
+            let width = scrollView.bounds.size.width
+            collectionPageControl.currentPage = Int(round(x/width))
+        }
+    }
 }

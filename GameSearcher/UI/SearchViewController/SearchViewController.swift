@@ -31,16 +31,6 @@ class SearchViewController: UIViewController {
        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-   //     navigationController?.hidesBarsOnSwipe = true
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    //    navigationController?.hidesBarsOnSwipe = false
-    }
-    
     private func setupSearchBar() {
            self.definesPresentationContext = true
            navigationItem.searchController = searchController

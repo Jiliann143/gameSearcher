@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="832"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72O-iW-UPU">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="732"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                         <subviews>
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testimage" translatesAutoresizingMaskIntoConstraints="NO" id="5tT-FK-w9u">
                                                 <rect key="frame" x="10" y="10" width="394" height="313.5"/>
@@ -84,7 +84,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ucE-M7-3A0">
-                                                <rect key="frame" x="10" y="631.5" width="394" height="60.5"/>
+                                                <rect key="frame" x="10" y="571.5" width="394" height="60.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpJ-Qy-gYq">
                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="40"/>
@@ -230,7 +230,7 @@
                                             <constraint firstItem="cNa-OD-Gwa" firstAttribute="bottom" secondItem="VBG-xH-6qv" secondAttribute="bottom" id="NwK-w2-A1U"/>
                                             <constraint firstItem="Alq-KC-Zhh" firstAttribute="bottom" secondItem="DUO-Kb-9Zb" secondAttribute="bottom" constant="-5" id="R0y-va-BrH"/>
                                             <constraint firstItem="Alq-KC-Zhh" firstAttribute="leading" secondItem="DUO-Kb-9Zb" secondAttribute="leading" constant="10" id="S5t-Pu-T6l"/>
-                                            <constraint firstItem="bSG-WZ-C1k" firstAttribute="top" secondItem="pqA-7A-2Co" secondAttribute="bottom" constant="80" id="SyZ-en-Vfs"/>
+                                            <constraint firstItem="bSG-WZ-C1k" firstAttribute="top" secondItem="pqA-7A-2Co" secondAttribute="bottom" constant="20" id="SyZ-en-Vfs"/>
                                             <constraint firstItem="Alq-KC-Zhh" firstAttribute="trailing" secondItem="DUO-Kb-9Zb" secondAttribute="trailing" constant="-10" id="ULN-Lm-feJ"/>
                                             <constraint firstItem="VBG-xH-6qv" firstAttribute="top" secondItem="DEv-bW-Psg" secondAttribute="bottom" constant="20" id="VVC-c3-pFz"/>
                                             <constraint firstItem="5tT-FK-w9u" firstAttribute="leading" secondItem="DUO-Kb-9Zb" secondAttribute="leading" id="a2k-Ch-RKB"/>

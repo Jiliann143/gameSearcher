@@ -16,7 +16,7 @@ class APIService {
     typealias FetchScreensCompletion = ([Screenshot]?) -> ()
         
     static func fetchAllGames(page: Int, searchText: String, completion: @escaping FetchGamesCompletion) {
-            Alamofire.request(APIRouter.searchGames(searchText, page)).responseData { response in
+            AF.request(APIRouter.searchGames(searchText, page)).responseData { response in
             handleResponse(response, decode: SearchResults.self) { searchResult in
                 guard let results = searchResult else {
                     completion(nil)
@@ -28,7 +28,7 @@ class APIService {
     }
     
     static func fetchGameDetails(gameId: Int, completion: @escaping FetchDetailsCompletion) {
-        Alamofire.request(APIRouter.details(gameId)).responseData { response in
+        AF.request(APIRouter.details(gameId)).responseData { response in
             handleResponse(response, decode: GameItem.self) { gameItem in
                 guard let gameItem = gameItem else {
                     completion(nil)
@@ -40,7 +40,7 @@ class APIService {
     }
     
     static func getScreenshots(_ gameName: String, completion: @escaping FetchScreensCompletion) {
-        Alamofire.request(APIRouter.screenshots(gameName)).responseData { response in
+        AF.request(APIRouter.screenshots(gameName)).responseData { response in
             handleResponse(response, decode: Screenshots.self) { screenshots in
                 guard let screenshots = screenshots else {
                     completion(nil)
@@ -52,7 +52,7 @@ class APIService {
     }
     
     
-    private static func handleResponse<T: Codable>(_ response: DataResponse<Data>, decode: T.Type, completion: @escaping (T?) -> ()) {
+    private static func handleResponse<T: Codable>(_ response: AFDataResponse<Data>, decode: T.Type, completion: @escaping (T?) -> ()) {
         if let error = response.error {
             print(error.localizedDescription)
             return
