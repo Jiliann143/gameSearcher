@@ -23,17 +23,18 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
-
         tableViewSetup()
         setupSearchBar()
         searchBar(searchController.searchBar, textDidChange: "")
-       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.searchController = searchController
     }
     
     private func setupSearchBar() {
            self.definesPresentationContext = true
-           navigationItem.searchController = searchController
            navigationItem.hidesSearchBarWhenScrolling = false
            searchController.searchBar.delegate = self
            searchController.obscuresBackgroundDuringPresentation = false
@@ -61,7 +62,9 @@ class SearchViewController: UIViewController {
                 return
             }
             
-            APIService.fetchAllGames(page: self.page, searchText: self.searchController.searchBar.searchTextField.text ?? "") { (games) in
+            HUD.show()
+            APIService.fetchAllGames(page: self.page, searchText: self.searchController.searchBar.searchTextField.text ?? "") { games in
+                HUD.hide()
                 self.tableView.infiniteScrollingView.stopAnimating()
                 
                 guard let games = games else {
