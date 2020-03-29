@@ -47,6 +47,11 @@ class SearchViewController: UIViewController {
         addLazyLoading()
     }
     
+    @IBAction func didPressMyGamesButton(_ sender: UIBarButtonItem) {
+         let details = MyGamesViewController.instantiate("MyGames")
+         push(details)
+    }
+    
     private func addLazyLoading() {
         tableView.addInfiniteScrolling {
             self.tableView.infiniteScrollingView.activityIndicatorViewStyle = .medium

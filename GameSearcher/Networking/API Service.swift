@@ -52,7 +52,7 @@ class APIService {
     }
     
     
-    private static func handleResponse<T: Codable>(_ response: AFDataResponse<Data>, decode: T.Type, completion: @escaping (T?) -> ()) {
+    private static func handleResponse<T: Decodable>(_ response: AFDataResponse<Data>, decode: T.Type, completion: @escaping (T?) -> ()) {
         if let error = response.error {
             print(error.localizedDescription)
             return
@@ -60,6 +60,7 @@ class APIService {
         guard let data = response.data else { return }
         do {
             let output = try JSONDecoder().decode(decode, from: data)
+            print(output)
             completion(output)
         } catch let error {
             print(error.localizedDescription)

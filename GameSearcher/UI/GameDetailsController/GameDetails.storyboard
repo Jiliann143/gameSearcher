@@ -76,6 +76,9 @@
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="didPressSaveGameButton:" destination="dDD-Vr-gyp" eventType="touchUpInside" id="WBD-hU-uRF"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.47460305689999999" green="0.74352365730000003" blue="0.22465088959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct SearchResults: Codable {
+class SearchResults: Decodable {
     let results: [GameItem]
 }
 

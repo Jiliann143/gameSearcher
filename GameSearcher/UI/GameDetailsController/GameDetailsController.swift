@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import Alamofire
+import RealmSwift
 
 class GameDetailsController: UIViewController {
     
@@ -24,6 +25,10 @@ class GameDetailsController: UIViewController {
     @IBOutlet weak var expandArrow: UIButton!
     @IBOutlet weak var descriptionStackView: UIStackView!
     
+    
+    var game: GameItem!
+    var screenshots: [String] = []
+    
     var isDescriptionVisible: Bool = false {
         didSet {
             if isDescriptionVisible {
@@ -34,17 +39,6 @@ class GameDetailsController: UIViewController {
                 gameDescriptionLabel.showAnimated()
             }
         }
-    }
-    
-    var game: GameItem!
-    var screenshots: [String] = []
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
     }
     
     override func viewDidLoad() {
@@ -71,8 +65,8 @@ class GameDetailsController: UIViewController {
     private func fetchDetails(_ completion: @escaping () -> ()) {
         APIService.fetchGameDetails(gameId: game.id) { game in
             if let game = game {
-                self.gameDescriptionLabel.text = game.description?.strip()
-                self.developerLabel.text = game.developers?.compactMap{ $0.name }.joined(separator: ", ")
+                self.gameDescriptionLabel.text = game.game_description?.strip()
+       //         self.developerLabel.text = game.developers.compactMap{ $0.devName }.joined(separator: ", ")
             }
         }
         
@@ -90,6 +84,10 @@ class GameDetailsController: UIViewController {
     
     @IBAction func didTapExpandDescription(_ sender: UITapGestureRecognizer) {
         isDescriptionVisible = !isDescriptionVisible
+    }
+    
+    @IBAction func didPressSaveGameButton(_ sender: UIButton) {
+        RealmService.shared.create(game)
     }
 }
 

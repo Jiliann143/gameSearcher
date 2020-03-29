@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 extension UIView {
     func snapshot() -> UIImage {
@@ -207,3 +208,4 @@ extension UIImageView {
         self.kf.setImage(with: url)
     }
 }
+
