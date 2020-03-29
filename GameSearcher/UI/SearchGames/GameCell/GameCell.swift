@@ -19,14 +19,13 @@ class GameCell: UITableViewCell {
 
     func setupGameInfo(_ game: GameItem) -> Self {
         gameTitle.text = game.name
+        gameGenre.text = game.genres.joined(separator: ", ")
         
-        let arrayOfGenres = game.genres.compactMap{ $0.name }
-        gameGenre.text = arrayOfGenres.joined(separator: ", ")
+        guard let image = game.mainImage else   { return self }
+        guard let url = URL(string: image) else { return self }
+        gameImageView.kf.indicatorType = .activity
+        gameImageView.kf.setImage(with: url)
         
-        guard let image = game.mainImage else { return self}
-        guard let url = URL(string: image) else { return self}
-            gameImageView.kf.indicatorType = .activity
-            gameImageView.kf.setImage(with: url)
        return self
     }
 }

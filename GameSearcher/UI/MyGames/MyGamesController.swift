@@ -20,16 +20,12 @@ class MyGamesViewController: UIViewController {
         
         let realm = RealmService.shared.realm
         myGames = realm.objects(GameItem.self)
-        
         tableViewSetup()
     }
     
     private func tableViewSetup() {
-           tableView.registerCell(GameCell.self)
-           tableView.estimatedRowHeight = 400
-           tableView.rowHeight = UITableView.automaticDimension
-           tableView.separatorStyle = .none
-       }
+        tableView.registerCell(GameCell.self)
+    }
     
 }
 
@@ -42,12 +38,7 @@ extension MyGamesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return tableView.cell(GameCell.self).setupGameInfo(myGames[indexPath.row])
     }
-    
-    
 }
 
-extension MyGamesViewController: UITableViewDelegate {
-    
-}
 
 

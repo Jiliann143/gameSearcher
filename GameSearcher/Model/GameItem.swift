@@ -20,11 +20,7 @@ class GameItem: Object, Decodable {
     @objc dynamic var rating:    Double = 0
     
     let platforms = List<String>()
-//    let developers = List<Developer>()
-    
-    //    @objc dynamic var ratings: [Rating]?
-    
-    let genres = List<Genre>()
+    let genres    = List<String>()
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -61,7 +57,7 @@ class GameItem: Object, Decodable {
         platforms.append(objectsIn: arrayOfStrings)
         
         
-        genres.append(objectsIn: genreList)
+        genres.append(objectsIn: genreList.compactMap { $0.name })
         
         super.init()
     }

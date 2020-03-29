@@ -25,26 +25,26 @@ class SearchViewController: UIViewController {
         
         tableViewSetup()
         setupSearchBar()
-        searchBar(searchController.searchBar, textDidChange: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.searchController = searchController
+        setupDefaultNavBar()
     }
     
     private func setupSearchBar() {
-           self.definesPresentationContext = true
-           navigationItem.hidesSearchBarWhenScrolling = false
-           searchController.searchBar.delegate = self
-           searchController.obscuresBackgroundDuringPresentation = false
-       }
+        definesPresentationContext = true
+        searchController.searchBar.barStyle = .black
+        searchController.searchBar.delegate = self
+        searchBar(searchController.searchBar, textDidChange: "")
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
+    
     
     private func tableViewSetup() {
         tableView.registerCell(GameCell.self)
-        tableView.estimatedRowHeight = 400
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.separatorStyle = .none
         addLazyLoading()
     }
     

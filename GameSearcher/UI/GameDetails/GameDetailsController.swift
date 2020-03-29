@@ -41,6 +41,8 @@ class GameDetailsController: UIViewController {
         }
     }
     
+//MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         gameDescriptionLabel.isHidden = true
@@ -50,12 +52,7 @@ class GameDetailsController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navBarSetup()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        defaultTabBar()
+        setupGradientNavBar()
     }
     
 //MARK: - Setup
@@ -63,19 +60,18 @@ class GameDetailsController: UIViewController {
     private func setupGame(_ game: GameItem) {
         title = game.name
         releasedDateLabel.text = game.released
-        genreLabel.text = game.genres.compactMap{ $0.name }.joined(separator: ", ")
+        genreLabel.text = game.genres.joined(separator: ", ")
+        
         if let image = game.mainImage {
             screenshots.append(image)
             screenshotsCollectionView.reloadData()
         }
+        
         fetchDetails {
             self.noScreensView.isHidden = !self.screenshots.isEmpty
         }
     }
     
-    private func navBarSetup() {
-        gradientTabBar()
-    }
 
     
 //MARK: - Private methods
@@ -100,14 +96,14 @@ class GameDetailsController: UIViewController {
         }
     }
     
+    
+    
     @IBAction func didTapExpandDescription(_ sender: UITapGestureRecognizer) {
         isDescriptionVisible = !isDescriptionVisible
     }
     
     @IBAction func didPressSaveGameButton(_ sender: UIButton) {
-        HUD.show()
         RealmService.shared.create(game)
-        HUD.hide()
     }
 }
 

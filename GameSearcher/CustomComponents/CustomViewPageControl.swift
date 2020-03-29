@@ -16,7 +16,7 @@ class PageIndicatorView: UIStackView {
         }
     }
     
-    @IBInspectable var inactivePageColor: UIColor = UIColor(white: 3, alpha: 0.1) {
+    @IBInspectable var inactivePageColor: UIColor = UIColor(white: 1.0, alpha: 0.1) {
         didSet {
             setNeedsLayout()
         }
@@ -54,7 +54,7 @@ class PageIndicatorView: UIStackView {
     
     private func createBarView() {
         let barView = UIView()
-        barView.backgroundColor = UIColor(white: 3, alpha: 0.1)
+        barView.backgroundColor = UIColor(white: 1.0, alpha: 0.1)
         barView.layer.cornerRadius = 4
         barView.layer.masksToBounds = true
         addArrangedSubview(barView)

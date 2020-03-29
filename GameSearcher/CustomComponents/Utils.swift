@@ -83,35 +83,6 @@ extension UICollectionView {
     }
 }
 
-extension UIViewController {
-    
-    class func instantiate(_ name: String = "Main") -> Self {
-        return instantiateFromStoryboardHelper(name)
-    }
-    
-    fileprivate class func instantiateFromStoryboardHelper<T>(_ name: String) -> T {
-        let storyboard = UIStoryboard(name: name, bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: String(describing: self)) as! T
-        return controller
-    }
-
-    
-    func push(_ controller: UIViewController) {
-        navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    func pop() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    func present(_ controller: UIViewController) {
-        present(controller, animated: true, completion: nil)
-    }
-    
-    func dismiss() {
-        dismiss(animated: true, completion: nil)
-    }
-}
 
 extension String {
     func htmlAttributed() -> NSAttributedString? {
@@ -206,6 +177,29 @@ extension UIImageView {
         guard let url = URL(string: string) else { return }
         self.kf.indicatorType = .activity
         self.kf.setImage(with: url)
+    }
+}
+
+func getImageFrom(gradientLayer:CAGradientLayer) -> UIImage? {
+     var gradientImage:UIImage?
+     UIGraphicsBeginImageContext(gradientLayer.frame.size)
+     if let context = UIGraphicsGetCurrentContext() {
+         gradientLayer.render(in: context)
+         gradientImage = UIGraphicsGetImageFromCurrentImageContext()?.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch)
+     }
+     UIGraphicsEndImageContext()
+     return gradientImage
+}
+
+struct Screen {
+    static var width: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    static var height: CGFloat {
+        return UIScreen.main.bounds.height
+    }
+    static var statusBarHeight: CGFloat {
+        return UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height ?? 20
     }
 }
 
