@@ -60,10 +60,9 @@ class APIService {
         guard let data = response.data else { return }
         do {
             let output = try JSONDecoder().decode(decode, from: data)
-            print(output)
             completion(output)
         } catch let error {
-            print(error.localizedDescription)
+            print(error)
             completion(nil)
         }
     }

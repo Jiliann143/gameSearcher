@@ -11,13 +11,18 @@ import RealmSwift
 
 class GameItem: Object, Decodable {
     
-    @objc dynamic var id: Int = 0
-    @objc dynamic var slug: String = ""
-    @objc dynamic var name: String = ""
-    @objc dynamic var background_image: String? = nil
-    @objc dynamic var game_description: String? = nil
-    @objc dynamic var released: String? = nil
-    @objc dynamic var rating: Double = 0
+    @objc dynamic var id:        Int = 0
+    @objc dynamic var slug:      String = ""
+    @objc dynamic var name:      String = ""
+    @objc dynamic var mainImage: String? = nil
+    @objc dynamic var gameInfo:  String? = nil
+    @objc dynamic var released:  String? = nil
+    @objc dynamic var rating:    Double = 0
+    
+    let platforms = List<String>()
+//    let developers = List<Developer>()
+    
+    //    @objc dynamic var ratings: [Rating]?
     
     let genres = List<Genre>()
     
@@ -30,51 +35,52 @@ class GameItem: Object, Decodable {
         case released
         case genres
         case rating
+        case platforms
+        case developers
+    }
+    
+    enum PlatformCodingKeys: String, CodingKey {
+        case name
     }
     
     required init(from decoder: Decoder) throws {
-        let container    = try decoder.container(keyedBy: CodingKeys.self)
-        id               = try container.decode(Int.self, forKey: .id)
-        name             = try container.decode(String.self, forKey: .name)
-        slug             = try container.decode(String.self, forKey: .slug)
-        background_image = try? container.decode(String.self, forKey: .background_image)
-        game_description = try? container.decode(String.self, forKey: .description)
-        released         = try? container.decode(String.self, forKey: .released)
-        rating           = try container.decode(Double.self, forKey: .rating)
-        let genreList    = try container.decode([Genre].self, forKey: .genres)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id        = try container.decode(Int.self, forKey: .id)
+        name      = try container.decode(String.self, forKey: .name)
+        slug      = try container.decode(String.self, forKey: .slug)
+        mainImage = try? container.decode(String.self, forKey: .background_image)
+        gameInfo  = try? container.decode(String.self, forKey: .description)
+        released  = try? container.decode(String.self, forKey: .released)
+        rating    = try container.decode(Double.self, forKey: .rating)
+        
+        let genreList     = try container.decode([Genre].self, forKey: .genres)
+        
+        let platformList = try container.decode([Platforms].self, forKey: .platforms)
+        let arrayOfStrings = platformList.compactMap{ $0.platform.name }
+        platforms.append(objectsIn: arrayOfStrings)
+        
+        
         genres.append(objectsIn: genreList)
+        
         super.init()
     }
     
     required init() {
         super.init()
     }
-    
-  //  let parent_platforms: [Platform]
-    //    let developers = List<Developer>()
-  //  @objc dynamic var developers: [Developer]?
-//    @objc dynamic var ratings: [Rating]?
-    
 }
 
-class Genre: Object, Decodable {
-    
-    @objc dynamic var name: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case name
-    }
+class Platforms: Codable {
+    let platform: Platform
 }
 
 class Platform: Object, Codable {
     @objc dynamic var name: String?
 }
 
-class Developer: Object, Codable {
-    @objc dynamic var devName: String?
-    @objc dynamic var games_count: Int
-    @objc dynamic var image_background: String?
-    
+class Genre: Object, Codable {
+    @objc dynamic var name: String?
 }
 
 class Rating: Object, Codable {

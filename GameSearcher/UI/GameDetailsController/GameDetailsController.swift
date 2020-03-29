@@ -65,8 +65,8 @@ class GameDetailsController: UIViewController {
     private func fetchDetails(_ completion: @escaping () -> ()) {
         APIService.fetchGameDetails(gameId: game.id) { game in
             if let game = game {
-                self.gameDescriptionLabel.text = game.game_description?.strip()
-       //         self.developerLabel.text = game.developers.compactMap{ $0.devName }.joined(separator: ", ")
+                self.gameDescriptionLabel.text = game.gameInfo?.strip()
+                self.platformsLabel.text = game.platforms.compactMap{ $0 }.joined(separator: ", ")
             }
         }
         
