@@ -28,6 +28,7 @@
 		A3BF441B23E0C655009F9F45 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF441A23E0C655009F9F45 /* APIRouter.swift */; };
 		A3E42ECF240C451600E4CC97 /* MyGamesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E42ECE240C451600E4CC97 /* MyGamesController.swift */; };
 		A3E42ED3240C45B900E4CC97 /* MyGames.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3E42ED2240C45B900E4CC97 /* MyGames.storyboard */; };
+		A3E8A44B243104F6007E1A41 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E8A44A243104F6007E1A41 /* HUD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		A3BF441A23E0C655009F9F45 /* APIRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		A3E42ECE240C451600E4CC97 /* MyGamesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGamesController.swift; sourceTree = "<group>"; };
 		A3E42ED2240C45B900E4CC97 /* MyGames.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyGames.storyboard; sourceTree = "<group>"; };
+		A3E8A44A243104F6007E1A41 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		A3EAE37A240AF317008902BF /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5ADABEF7AB205105DE3DC56 /* Pods-GameSearcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameSearcher.debug.xcconfig"; path = "Target Support Files/Pods-GameSearcher/Pods-GameSearcher.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,6 +204,7 @@
 			children = (
 				A307074C23B68E1B001F089F /* Utils.swift */,
 				A3417C4A23C157C9003172D2 /* CustomViewPageControl.swift */,
+				A3E8A44A243104F6007E1A41 /* HUD.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				A3BF441B23E0C655009F9F45 /* APIRouter.swift in Sources */,
 				A3775FC023A6C1750034EAD6 /* API Service.swift in Sources */,
 				A3775FBD23A6BCB00034EAD6 /* GameItem.swift in Sources */,
+				A3E8A44B243104F6007E1A41 /* HUD.swift in Sources */,
 				A3775FBA23A6B1CA0034EAD6 /* GameCell.swift in Sources */,
 				A3E42ECF240C451600E4CC97 /* MyGamesController.swift in Sources */,
 			);

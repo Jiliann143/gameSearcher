@@ -10,5 +10,6 @@ target 'GameSearcher' do
   pod 'Kingfisher'
   pod 'SVPullToRefresh'
   pod 'RealmSwift'
+  pod 'NVActivityIndicatorView'
 
 end

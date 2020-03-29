@@ -87,7 +87,9 @@ class GameDetailsController: UIViewController {
     }
     
     @IBAction func didPressSaveGameButton(_ sender: UIButton) {
+        HUD.show()
         RealmService.shared.create(game)
+        HUD.hide()
     }
 }
 
