@@ -16,6 +16,10 @@ class RealmService {
     static let shared = RealmService()
     
     var realm = try! Realm()
+    
+    func get<T: Object>(_ object: T.Type) -> Results<T> {
+        return realm.objects(T.self)
+    }
         
     func create<T: Object>(_ object: T) {
         do {

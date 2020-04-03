@@ -11,15 +11,15 @@ import RealmSwift
 
 class MyGamesViewController: UIViewController {
     
-    private var myGames: Results<GameItem>!
+    private var dataSource: Results<GameItem>!
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let realm = RealmService.shared.realm
-        myGames = realm.objects(GameItem.self)
+        dataSource = RealmService.shared.get(GameItem.self)
+        
         tableViewSetup()
     }
     
@@ -32,11 +32,11 @@ class MyGamesViewController: UIViewController {
 
 extension MyGamesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myGames.count
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.cell(GameCell.self).setupGameInfo(myGames[indexPath.row])
+        return tableView.cell(GameCell.self).setupGameInfo(dataSource[indexPath.row])
     }
 }
 

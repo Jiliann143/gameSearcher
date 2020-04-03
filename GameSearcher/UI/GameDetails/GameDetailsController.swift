@@ -25,6 +25,10 @@ class GameDetailsController: UIViewController {
     @IBOutlet weak var expandArrow: UIButton!
     @IBOutlet weak var descriptionStackView: UIStackView!
     
+    @IBOutlet weak var similarGamesCollectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    let similarGamesDataSource = SimilarGamesDataSource()
     
     var game: GameItem!
     var screenshots: [String] = []
@@ -45,6 +49,8 @@ class GameDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        similarGamesDataSource.set(collectionView: similarGamesCollectionView)
         gameDescriptionLabel.isHidden = true
         screenshotsCollectionView.registerCell(ScreenshotCell.self)
         setupGame(game)
@@ -53,6 +59,12 @@ class GameDetailsController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupGradientNavBar()
+     //   navigationController?.hidesBarsOnSwipe = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+   //     navigationController?.hidesBarsOnSwipe = false
     }
     
 //MARK: - Setup
