@@ -12,6 +12,7 @@ PODS:
   - RealmSwift (4.3.2):
     - Realm (= 4.3.2)
   - SVPullToRefresh (0.4.1)
+  - Swiftools (1.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - RealmSwift
   - SVPullToRefresh
+  - Swiftools (from `https://github.com/Jiliann143/swiftools.git`)
 
 SPEC REPOS:
   trunk:
@@ -29,6 +31,15 @@ SPEC REPOS:
     - RealmSwift
     - SVPullToRefresh
 
+EXTERNAL SOURCES:
+  Swiftools:
+    :git: https://github.com/Jiliann143/swiftools.git
+
+CHECKOUT OPTIONS:
+  Swiftools:
+    :commit: 0bedc0d3e43026ca0ee861798f94a9dbd186f85e
+    :git: https://github.com/Jiliann143/swiftools.git
+
 SPEC CHECKSUMS:
   Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
   Kingfisher: d342c8354c10c3d85a27d6d4c42c41285924b898
@@ -36,7 +47,8 @@ SPEC CHECKSUMS:
   Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
   RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  Swiftools: 7c6881f933e99b32ef59a9f0390e09f381b434a0
 
-PODFILE CHECKSUM: 4e225dd89a4f140ab214df5ee4dec2c98131d3cc
+PODFILE CHECKSUM: 32745c317e2308039fb80111c37ec2e534ef7918
 
 COCOAPODS: 1.9.1

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Swiftools
 
 
 extension UIViewController {
@@ -38,5 +39,28 @@ extension UIViewController {
     func dismiss() {
         dismiss(animated: true, completion: nil)
     }
+}
+
+public var topmostController: UIViewController {
+    
+    var topController = UIApplication.shared.keyWindow?.rootViewController;
+    
+    while topController?.presentedViewController != nil {
+        topController = topController?.presentedViewController;
+    }
+    
+    guard let controller = topController
+        else { LogError(); return UIViewController() }
+    
+    return controller
+}
+
+public var keyWindow: UIView {
+    
+    guard let _window = UIApplication.shared.delegate?.window,
+        let window = _window
+        else { LogError(); return UIView() }
+    
+    return window
 }
 

@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1280"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72O-iW-UPU">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1139"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1118.5"/>
                                         <subviews>
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testimage" translatesAutoresizingMaskIntoConstraints="NO" id="5tT-FK-w9u">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="611"/>
@@ -45,10 +45,6 @@
                                                         <real key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="dDD-Vr-gyp" id="TTW-3M-sOJ"/>
-                                                    <outlet property="delegate" destination="dDD-Vr-gyp" id="NQe-Tw-f6A"/>
-                                                </connections>
                                             </collectionView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Alq-KC-Zhh" customClass="PageIndicatorView" customModule="GameSearcher" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="598" width="394" height="8"/>
@@ -88,7 +84,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ucE-M7-3A0">
-                                                <rect key="frame" x="10" y="859" width="394" height="60.5"/>
+                                                <rect key="frame" x="10" y="859" width="394" height="40"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpJ-Qy-gYq">
                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="40"/>
@@ -132,8 +128,8 @@
                                                             <constraint firstItem="UA7-cT-7GT" firstAttribute="top" secondItem="zpJ-Qy-gYq" secondAttribute="top" id="zvi-yn-8Fb"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpf-Bn-hdO">
-                                                        <rect key="frame" x="0.0" y="40" width="394" height="20.5"/>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpf-Bn-hdO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -202,7 +198,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fav-0m-whf">
-                                                <rect key="frame" x="10" y="969" width="394" height="150"/>
+                                                <rect key="frame" x="10" y="948.5" width="394" height="150"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="qCS-ZY-Scu"/>
@@ -225,7 +221,7 @@
                                                 </cells>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More games like this:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEi-Fe-bde">
-                                                <rect key="frame" x="10" y="940" width="192.5" height="24"/>
+                                                <rect key="frame" x="10" y="919.5" width="192.5" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -301,12 +297,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GuW-Kd-Bw2"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Nsf-d6-1Pq"/>
+                    <navigationItem key="navigationItem" id="Nsf-d6-1Pq">
+                        <barButtonItem key="backBarButtonItem" title=" " id="nNp-d5-Vnc"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="1300"/>
                     <connections>
                         <outlet property="collectionPageControl" destination="Alq-KC-Zhh" id="IPf-6m-Ii5"/>
-                        <outlet property="collectionView" destination="fav-0m-whf" id="YKE-l6-Xka"/>
                         <outlet property="descriptionStackView" destination="ucE-M7-3A0" id="jTT-zd-mKN"/>
                         <outlet property="developerLabel" destination="kli-XL-5h3" id="06S-KH-lhA"/>
                         <outlet property="expandArrow" destination="PwK-Hh-54Y" id="QFW-JK-6Bz"/>
@@ -315,8 +312,8 @@
                         <outlet property="noScreensView" destination="5tT-FK-w9u" id="vXc-Eu-6IS"/>
                         <outlet property="platformsLabel" destination="yHP-Vn-xfx" id="vuR-gK-HJ6"/>
                         <outlet property="releasedDateLabel" destination="cNa-OD-Gwa" id="fgM-Km-0sE"/>
-                        <outlet property="screenshotsCollectionView" destination="DUO-Kb-9Zb" id="fJf-O5-11R"/>
-                        <outlet property="similarGamesCollectionView" destination="fav-0m-whf" id="12i-oi-pYR"/>
+                        <outlet property="screenshotsCollectionView" destination="DUO-Kb-9Zb" id="v5k-BS-WKO"/>
+                        <outlet property="similarCollectionView" destination="fav-0m-whf" id="rJH-b5-bMP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f4c-1G-dKX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -14,24 +14,24 @@ import RealmSwift
 class GameDetailsController: UIViewController {
     
     @IBOutlet weak var gameDescriptionLabel: UILabel!
-    @IBOutlet weak var screenshotsCollectionView: UICollectionView!
     @IBOutlet weak var collectionPageControl: PageIndicatorView!
     @IBOutlet weak var noScreensView: UIImageView!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releasedDateLabel: UILabel!
     @IBOutlet weak var platformsLabel: UILabel!
     @IBOutlet weak var developerLabel: UILabel!
-    
     @IBOutlet weak var expandArrow: UIButton!
     @IBOutlet weak var descriptionStackView: UIStackView!
     
-    @IBOutlet weak var similarGamesCollectionView: UICollectionView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var screenshotsCollectionView: UICollectionView!
+    @IBOutlet weak var similarCollectionView: UICollectionView!
     
-    let similarGamesDataSource = SimilarGamesDataSource()
+    private let similarGamesDataSource = SimilarGamesDataSource()
+    private let screenshotsDataSource  = ScreenshotsDataSource()
+    
+    private var screenshots: [String] = []
     
     var game: GameItem!
-    var screenshots: [String] = []
     
     var isDescriptionVisible: Bool = false {
         didSet {
@@ -49,10 +49,8 @@ class GameDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        similarGamesDataSource.set(collectionView: similarGamesCollectionView)
-        gameDescriptionLabel.isHidden = true
-        screenshotsCollectionView.registerCell(ScreenshotCell.self)
+                
+        getSimilarGames()
         setupGame(game)
     }
     
@@ -67,7 +65,17 @@ class GameDetailsController: UIViewController {
    //     navigationController?.hidesBarsOnSwipe = false
     }
     
+    
+    
 //MARK: - Setup
+    
+    private func getSimilarGames() {
+        APIService.getSimilarGames(1, game.id) { error, games in
+            if let games = games {
+                self.similarGamesDataSource.set(collectionView: self.similarCollectionView, data: games, presentingVC: self)
+            }
+        }
+    }
     
     private func setupGame(_ game: GameItem) {
         title = game.name
@@ -81,6 +89,7 @@ class GameDetailsController: UIViewController {
         
         fetchDetails {
             self.noScreensView.isHidden = !self.screenshots.isEmpty
+            self.screenshotsDataSource.set(self.screenshotsCollectionView, self.screenshots, self.collectionPageControl)
         }
     }
     
@@ -89,26 +98,26 @@ class GameDetailsController: UIViewController {
 //MARK: - Private methods
     
     private func fetchDetails(_ completion: @escaping () -> ()) {
-        APIService.fetchGameDetails(gameId: game.id) { game in
+        APIService.fetchGameDetails(gameId: game.id) { error, game in
             if let game = game {
                 self.gameDescriptionLabel.text = game.gameInfo?.strip()
                 self.platformsLabel.text = game.platforms.compactMap{ $0 }.joined(separator: ", ")
             }
         }
         
-        APIService.getScreenshots(game.slug) { screenshots in
+        APIService.getScreenshots(game.slug) { error, screenshots in
             if let screens = screenshots {
                 screens.forEach {
                     self.screenshots.append($0.image)
                 }
-                self.collectionPageControl.numberOfPages = self.screenshots.count
                 self.screenshotsCollectionView.reloadData()
             }
             completion()
         }
     }
     
-    
+        
+//MARK: - @IBActions
     
     @IBAction func didTapExpandDescription(_ sender: UITapGestureRecognizer) {
         isDescriptionVisible = !isDescriptionVisible
@@ -119,36 +128,3 @@ class GameDetailsController: UIViewController {
     }
 }
 
-
-//MARK: - UICollectionViewDataSource
-
-extension GameDetailsController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return screenshots.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.cell(ScreenshotCell.self, for: indexPath)
-        cell.screenshot = screenshots[indexPath.item]
-        return cell
-    }
-    
-}
-    
-    //MARK: - UICollectionViewDelegate
-
-extension GameDetailsController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == screenshotsCollectionView {
-            let x = scrollView.contentOffset.x
-            let width = scrollView.bounds.size.width
-            collectionPageControl.currentPage = Int(round(x/width))
-        }
-    }
-}

@@ -63,7 +63,7 @@ class SearchViewController: UIViewController {
             }
             
             HUD.show()
-            APIService.fetchAllGames(page: self.page, searchText: self.searchController.searchBar.searchTextField.text ?? "") { games in
+            APIService.fetchAllGames(page: self.page, searchText: self.searchController.searchBar.searchTextField.text ?? "") { error, games in
                 HUD.hide()
                 self.tableView.infiniteScrollingView.stopAnimating()
                 
@@ -90,7 +90,7 @@ extension SearchViewController: UISearchBarDelegate {
         page = 2
         tableView.infiniteScrollingView.stopAnimating()
         
-        APIService.fetchAllGames(page: 1, searchText: searchText) { games in
+        APIService.fetchAllGames(page: 1, searchText: searchText) { error, games in
             guard let games = games else { return }
                self.games = games
                self.tableView.reloadData()

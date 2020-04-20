@@ -42,13 +42,13 @@ class GameItem: Object, Decodable {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        id        = try container.decode(Int.self, forKey: .id)
-        name      = try container.decode(String.self, forKey: .name)
-        slug      = try container.decode(String.self, forKey: .slug)
+        id        = try  container.decode(Int.self, forKey: .id)
+        name      = try  container.decode(String.self, forKey: .name)
+        slug      = try  container.decode(String.self, forKey: .slug)
         mainImage = try? container.decode(String.self, forKey: .background_image)
         gameInfo  = try? container.decode(String.self, forKey: .description)
         released  = try? container.decode(String.self, forKey: .released)
-        rating    = try container.decode(Double.self, forKey: .rating)
+        rating    = try  container.decode(Double.self, forKey: .rating)
         
         let genreList     = try container.decode([Genre].self, forKey: .genres)
         

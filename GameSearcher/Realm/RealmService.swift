@@ -8,6 +8,7 @@
 
 import RealmSwift
 import Foundation
+import Swiftools
 
 class RealmService {
     
@@ -26,8 +27,9 @@ class RealmService {
             try realm.write {
                 realm.add(object)
             }
+            Log("Succesfully added")
         } catch {
-            print(error)
+            LogError(error)
         }
     }
     
@@ -37,7 +39,7 @@ class RealmService {
                 realm.delete(object)
             }
         } catch {
-            print(error)
+            LogError(error)
         }
     }
     
