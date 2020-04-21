@@ -19,6 +19,7 @@ public enum APIRouter: URLRequestConvertible {
     case details(Int)
     case screenshots(String)
     case similar(Int, Int)
+    case trailers(Int)
     
     var method: HTTPMethod {
         return .get
@@ -35,6 +36,8 @@ public enum APIRouter: URLRequestConvertible {
             return "\(name)/screenshots"
         case .similar(_ , let id):
             return "\(id)/suggested"
+        case .trailers(let id):
+            return "\(id)/movies"
         }
     }
     
@@ -51,6 +54,8 @@ public enum APIRouter: URLRequestConvertible {
             return [:]
         case .similar(let page, _):
             return ["page" : page]
+        case .trailers(_):
+            return [:]
         }
     }
     
@@ -63,6 +68,8 @@ public enum APIRouter: URLRequestConvertible {
         case .screenshots:
             return URLEncoding.default
         case .similar:
+            return URLEncoding.queryString
+        case .trailers:
             return URLEncoding.queryString
         }
     }

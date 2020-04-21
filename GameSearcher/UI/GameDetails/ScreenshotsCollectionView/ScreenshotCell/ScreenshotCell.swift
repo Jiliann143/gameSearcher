@@ -13,10 +13,15 @@ class ScreenshotCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    var screenshot: String? {
+    private var screenshot: String? {
         didSet {
             imageView.loadImage(screenshot)
         }
+    }
+    
+    func setup(_ screenshot: String?) -> Self {
+        self.screenshot = screenshot
+        return self
     }
 }
 

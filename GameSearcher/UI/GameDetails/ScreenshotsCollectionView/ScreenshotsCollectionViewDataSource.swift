@@ -29,9 +29,7 @@ class ScreenshotsDataSource: NSObject, UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.cell(ScreenshotCell.self, for: indexPath)
-        cell.screenshot = screenshots[indexPath.item]
-        return cell
+        collectionView.cell(ScreenshotCell.self, for: indexPath).setup(screenshots[indexPath.item])
     }
       
 //MARK:- UICollectionViewDelegate + FlowLayout

@@ -12,9 +12,10 @@ import Swiftools
 
 class APIService {
     
-    typealias FetchGamesCompletion   = (_ error: String?, [GameItem]?)   -> ()
-    typealias FetchDetailsCompletion = (_ error: String?, GameItem?)     -> ()
-    typealias FetchScreensCompletion = (_ error: String?, [Screenshot]?) -> ()
+    typealias FetchGamesCompletion    = (_ error: String?, [GameItem]?)   -> ()
+    typealias FetchDetailsCompletion  = (_ error: String?, GameItem?)     -> ()
+    typealias FetchScreensCompletion  = (_ error: String?, [Screenshot]?) -> ()
+    typealias FetchTrailersCompletion = (_ error: String?, [Trailer]?)    -> ()
         
     static func fetchAllGames(page: Int, searchText: String, completion: @escaping FetchGamesCompletion) {
         AF.request(APIRouter.searchGames(searchText, page)).responseJSON { response in
@@ -64,6 +65,20 @@ class APIService {
         }
     }
     
+    static func getGameTrailers(_ gameId: Int, completion: @escaping FetchTrailersCompletion) {
+        AF.request(APIRouter.trailers(gameId)).responseJSON { response in
+            Log(response.request)
+            Log(response.data?.prettyPrintedJSONString)
+            handleResponse(response, decode: TrailerResults.self) { trailers, error in
+                guard let trailers = trailers else {
+                    completion(error, nil)
+                    return
+                }
+                completion(nil, trailers.results)
+            }
+        }
+    }
+    
     
     private static func handleResponse<T: Decodable>(_ response: AFDataResponse<Any>, decode: T.Type, completion: @escaping (T?, String?) -> ()) {
         if let error = response.error {
@@ -81,7 +96,7 @@ class APIService {
 }
 
 extension Data {
-    var prettyPrintedJSONString: NSString? { /// NSString gives us a nice sanitized debugDescription
+    var prettyPrintedJSONString: NSString? {
         guard let object = try? JSONSerialization.jsonObject(with: self, options: []),
               let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
               let prettyPrintedString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return nil }

@@ -1,22 +1,24 @@
 PODS:
-  - Alamofire (5.0.2)
-  - Kingfisher (5.13.2):
-    - Kingfisher/Core (= 5.13.2)
-  - Kingfisher/Core (5.13.2)
+  - Alamofire (5.1.0)
+  - Kingfisher (5.13.4):
+    - Kingfisher/Core (= 5.13.4)
+  - Kingfisher/Core (5.13.4)
+  - MMPlayerView (6.0.0)
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
-  - Realm (4.3.2):
-    - Realm/Headers (= 4.3.2)
-  - Realm/Headers (4.3.2)
-  - RealmSwift (4.3.2):
-    - Realm (= 4.3.2)
+  - Realm (4.4.1):
+    - Realm/Headers (= 4.4.1)
+  - Realm/Headers (4.4.1)
+  - RealmSwift (4.4.1):
+    - Realm (= 4.4.1)
   - SVPullToRefresh (0.4.1)
   - Swiftools (1.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - Kingfisher
+  - MMPlayerView
   - NVActivityIndicatorView
   - RealmSwift
   - SVPullToRefresh
@@ -26,6 +28,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
+    - MMPlayerView
     - NVActivityIndicatorView
     - Realm
     - RealmSwift
@@ -41,14 +44,15 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Jiliann143/swiftools.git
 
 SPEC CHECKSUMS:
-  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
-  Kingfisher: d342c8354c10c3d85a27d6d4c42c41285924b898
+  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  Kingfisher: d2279a7abece3c7f25a80cd2b7f363ca5cf3f44c
+  MMPlayerView: 563b53392b7b2af32982b6f5a890cafff64ae806
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
-  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
-  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
+  Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
+  RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   Swiftools: 7c6881f933e99b32ef59a9f0390e09f381b434a0
 
-PODFILE CHECKSUM: 32745c317e2308039fb80111c37ec2e534ef7918
+PODFILE CHECKSUM: 097c73b4c965ce24ca193bdc474d79fdc84d61e4
 
 COCOAPODS: 1.9.1

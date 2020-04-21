@@ -9,6 +9,10 @@
 import Foundation
 import RealmSwift
 
+class TrailerResults: Decodable {
+    let results: [Trailer]
+}
+
 class SearchResults: Decodable {
     let results: [GameItem]
 }

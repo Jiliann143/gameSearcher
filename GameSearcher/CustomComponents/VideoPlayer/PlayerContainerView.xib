@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PlayerContainerView" customModule="GameSearcher" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="451" height="323"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MU4-m3-8Fr">
+                    <rect key="frame" x="10" y="283" width="431" height="35"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8b-xK-eoa">
+                            <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="KQf-jg-vd8"/>
+                                <constraint firstAttribute="width" constant="35" id="ZvA-EU-uGv"/>
+                            </constraints>
+                            <state key="normal" image="play"/>
+                            <connections>
+                                <action selector="didPressPlayPauseButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="EUs-JU-5a1"/>
+                            </connections>
+                        </button>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="AhF-XH-4qg">
+                            <rect key="frame" x="41" y="0.0" width="392" height="36"/>
+                            <connections>
+                                <action selector="didDragSlider:" destination="iN0-l3-epB" eventType="valueChanged" id="ui4-sd-Ey8"/>
+                            </connections>
+                        </slider>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="QzY-aw-w2c"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="MU4-m3-8Fr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="VA6-CZ-nyy"/>
+                <constraint firstAttribute="bottom" secondItem="MU4-m3-8Fr" secondAttribute="bottom" constant="5" id="vfP-ZL-Itv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="MU4-m3-8Fr" secondAttribute="trailing" constant="10" id="z6S-gM-vQ9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="controlsStackView" destination="MU4-m3-8Fr" id="aCF-KF-g6k"/>
+                <outlet property="playPauseButton" destination="x8b-xK-eoa" id="gDX-4w-jge"/>
+                <outlet property="slider" destination="AhF-XH-4qg" id="odF-eO-6mp"/>
+            </connections>
+            <point key="canvasLocation" x="164.49275362318841" y="-65.290178571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="play" width="47" height="47"/>
+    </resources>
+</document>

@@ -10,6 +10,9 @@ import UIKit
 import Kingfisher
 import Alamofire
 import RealmSwift
+import AVFoundation
+import AVKit
+import Swiftools
 
 class GameDetailsController: UIViewController {
     
@@ -23,11 +26,13 @@ class GameDetailsController: UIViewController {
     @IBOutlet weak var expandArrow: UIButton!
     @IBOutlet weak var descriptionStackView: UIStackView!
     
+    @IBOutlet weak var trailersCollectionView: UICollectionView!
     @IBOutlet weak var screenshotsCollectionView: UICollectionView!
     @IBOutlet weak var similarCollectionView: UICollectionView!
     
     private let similarGamesDataSource = SimilarGamesDataSource()
     private let screenshotsDataSource  = ScreenshotsDataSource()
+    private let trailersDataSource     = GameTrailersDataSource()
     
     private var screenshots: [String] = []
     
@@ -49,25 +54,28 @@ class GameDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        Log(game.id)
         getSimilarGames()
         setupGame(game)
+        getTrailers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupGradientNavBar()
-     //   navigationController?.hidesBarsOnSwipe = true
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-   //     navigationController?.hidesBarsOnSwipe = false
-    }
-    
-    
     
 //MARK: - Setup
+    
+    private func getTrailers() {
+        APIService.getGameTrailers(game.id) { error, trailers in
+            if let trailers = trailers {
+                trailers.forEach { Log($0.name)}
+                self.trailersDataSource.set(self.trailersCollectionView, trailers)
+            }
+        }
+    }
     
     private func getSimilarGames() {
         APIService.getSimilarGames(1, game.id) { error, games in
