@@ -10,13 +10,17 @@
 		A307074B23B68ABF001F089F /* GameDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A307074A23B68ABF001F089F /* GameDetailsController.swift */; };
 		A307074D23B68E1B001F089F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A307074C23B68E1B001F089F /* Utils.swift */; };
 		A307074F23B68EC0001F089F /* GameDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A307074E23B68EC0001F089F /* GameDetails.storyboard */; };
-		A30A6E23244DB325007A8D19 /* GameTrailerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A6E22244DB325007A8D19 /* GameTrailerView.swift */; };
 		A30A6E25244DC7F0007A8D19 /* GameTrailersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A6E24244DC7F0007A8D19 /* GameTrailersDataSource.swift */; };
 		A30A6E27244DC904007A8D19 /* Trailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A6E26244DC904007A8D19 /* Trailer.swift */; };
 		A30A6E2B244DD1DE007A8D19 /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A6E29244DD1DE007A8D19 /* TrailerCell.swift */; };
 		A30A6E2C244DD1DE007A8D19 /* TrailerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A6E2A244DD1DE007A8D19 /* TrailerCell.xib */; };
-		A30A6E33244F093B007A8D19 /* PlayerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A6E32244F093B007A8D19 /* PlayerContainerView.swift */; };
-		A30A6E36244F0964007A8D19 /* PlayerContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A6E35244F0964007A8D19 /* PlayerContainerView.xib */; };
+		A30A6E33244F093B007A8D19 /* VideoControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A6E32244F093B007A8D19 /* VideoControlsView.swift */; };
+		A30A6E36244F0964007A8D19 /* VideoControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A6E35244F0964007A8D19 /* VideoControlsView.xib */; };
+		A30A6E38244F1802007A8D19 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A6E37244F1802007A8D19 /* TestViewController.swift */; };
+		A30A6E3F244F1A1C007A8D19 /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A6E3D244F1A1C007A8D19 /* TestTableViewCell.swift */; };
+		A30A6E40244F1A1C007A8D19 /* TestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A6E3E244F1A1C007A8D19 /* TestTableViewCell.xib */; };
+		A30A6E42244F34EA007A8D19 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A6E41244F34EA007A8D19 /* VideoPlayerView.swift */; };
+		A30A6E4424502A38007A8D19 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A6E4324502A38007A8D19 /* ImageLoader.swift */; };
 		A3417C4B23C157C9003172D2 /* CustomViewPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3417C4A23C157C9003172D2 /* CustomViewPageControl.swift */; };
 		A352B9C62437965900A86A7E /* SimilarGamesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352B9C52437965900A86A7E /* SimilarGamesDataSource.swift */; };
 		A352B9CB2437984800A86A7E /* SimilarGamesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352B9C92437984800A86A7E /* SimilarGamesCell.swift */; };
@@ -64,13 +68,17 @@
 		A307074A23B68ABF001F089F /* GameDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailsController.swift; sourceTree = "<group>"; };
 		A307074C23B68E1B001F089F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A307074E23B68EC0001F089F /* GameDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameDetails.storyboard; sourceTree = "<group>"; };
-		A30A6E22244DB325007A8D19 /* GameTrailerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTrailerView.swift; sourceTree = "<group>"; };
 		A30A6E24244DC7F0007A8D19 /* GameTrailersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTrailersDataSource.swift; sourceTree = "<group>"; };
 		A30A6E26244DC904007A8D19 /* Trailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trailer.swift; sourceTree = "<group>"; };
 		A30A6E29244DD1DE007A8D19 /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
 		A30A6E2A244DD1DE007A8D19 /* TrailerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrailerCell.xib; sourceTree = "<group>"; };
-		A30A6E32244F093B007A8D19 /* PlayerContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContainerView.swift; sourceTree = "<group>"; };
-		A30A6E35244F0964007A8D19 /* PlayerContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerContainerView.xib; sourceTree = "<group>"; };
+		A30A6E32244F093B007A8D19 /* VideoControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoControlsView.swift; sourceTree = "<group>"; };
+		A30A6E35244F0964007A8D19 /* VideoControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoControlsView.xib; sourceTree = "<group>"; };
+		A30A6E37244F1802007A8D19 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		A30A6E3D244F1A1C007A8D19 /* TestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
+		A30A6E3E244F1A1C007A8D19 /* TestTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestTableViewCell.xib; sourceTree = "<group>"; };
+		A30A6E41244F34EA007A8D19 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoPlayerView.swift; path = ../../../../../../.Trash/VideoPlayerView.swift; sourceTree = "<group>"; };
+		A30A6E4324502A38007A8D19 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		A3417C4A23C157C9003172D2 /* CustomViewPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewPageControl.swift; sourceTree = "<group>"; };
 		A352B9C52437965900A86A7E /* SimilarGamesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarGamesDataSource.swift; sourceTree = "<group>"; };
 		A352B9C92437984800A86A7E /* SimilarGamesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarGamesCell.swift; sourceTree = "<group>"; };
@@ -165,9 +173,9 @@
 		A30A6E34244F0948007A8D19 /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				A30A6E22244DB325007A8D19 /* GameTrailerView.swift */,
-				A30A6E32244F093B007A8D19 /* PlayerContainerView.swift */,
-				A30A6E35244F0964007A8D19 /* PlayerContainerView.xib */,
+				A30A6E32244F093B007A8D19 /* VideoControlsView.swift */,
+				A30A6E41244F34EA007A8D19 /* VideoPlayerView.swift */,
+				A30A6E35244F0964007A8D19 /* VideoControlsView.xib */,
 			);
 			path = VideoPlayer;
 			sourceTree = "<group>";
@@ -255,6 +263,7 @@
 			children = (
 				A3BF441A23E0C655009F9F45 /* APIRouter.swift */,
 				A3775FBF23A6C1750034EAD6 /* APIService.swift */,
+				A30A6E4324502A38007A8D19 /* ImageLoader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -285,6 +294,9 @@
 				A3775FA723A6AE3E0034EAD6 /* SearchViewController.swift */,
 				A3775FA923A6AE3E0034EAD6 /* Main.storyboard */,
 				A395BD4123A6CDE9005BB0A1 /* GameCell */,
+				A30A6E37244F1802007A8D19 /* TestViewController.swift */,
+				A30A6E3D244F1A1C007A8D19 /* TestTableViewCell.swift */,
+				A30A6E3E244F1A1C007A8D19 /* TestTableViewCell.xib */,
 			);
 			path = SearchGames;
 			sourceTree = "<group>";
@@ -391,10 +403,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3775FB023A6AE420034EAD6 /* LaunchScreen.storyboard in Resources */,
-				A30A6E36244F0964007A8D19 /* PlayerContainerView.xib in Resources */,
+				A30A6E36244F0964007A8D19 /* VideoControlsView.xib in Resources */,
 				A307074F23B68EC0001F089F /* GameDetails.storyboard in Resources */,
 				A39565FA23B8B73D00B68894 /* ScreenshotCell.xib in Resources */,
 				A30A6E2C244DD1DE007A8D19 /* TrailerCell.xib in Resources */,
+				A30A6E40244F1A1C007A8D19 /* TestTableViewCell.xib in Resources */,
 				A352B9CC2437984800A86A7E /* SimilarGamesCell.xib in Resources */,
 				A3E42ED3240C45B900E4CC97 /* MyGames.storyboard in Resources */,
 				A3775FAD23A6AE420034EAD6 /* Assets.xcassets in Resources */,
@@ -454,26 +467,29 @@
 			files = (
 				A3417C4B23C157C9003172D2 /* CustomViewPageControl.swift in Sources */,
 				A307074B23B68ABF001F089F /* GameDetailsController.swift in Sources */,
+				A30A6E3F244F1A1C007A8D19 /* TestTableViewCell.swift in Sources */,
 				A3775FA823A6AE3E0034EAD6 /* SearchViewController.swift in Sources */,
 				A3580AE5244DA4D900FF4313 /* ScreenshotsCollectionViewDataSource.swift in Sources */,
 				A352B9CB2437984800A86A7E /* SimilarGamesCell.swift in Sources */,
 				A30A6E27244DC904007A8D19 /* Trailer.swift in Sources */,
+				A30A6E42244F34EA007A8D19 /* VideoPlayerView.swift in Sources */,
 				A39565F723B8AEB700B68894 /* ScreenshotCell.swift in Sources */,
 				A352B9C62437965900A86A7E /* SimilarGamesDataSource.swift in Sources */,
 				A3775FA423A6AE3E0034EAD6 /* AppDelegate.swift in Sources */,
 				A3E8A45124314478007E1A41 /* NavigationBarConfigurator.swift in Sources */,
 				A39565FC23B91EE000B68894 /* ResultStructs.swift in Sources */,
 				A307074D23B68E1B001F089F /* Utils.swift in Sources */,
+				A30A6E4424502A38007A8D19 /* ImageLoader.swift in Sources */,
 				A376FB9D240BBDA000A0E022 /* RealmService.swift in Sources */,
 				A30A6E25244DC7F0007A8D19 /* GameTrailersDataSource.swift in Sources */,
 				A3BF441B23E0C655009F9F45 /* APIRouter.swift in Sources */,
 				A30A6E2B244DD1DE007A8D19 /* TrailerCell.swift in Sources */,
 				A3E8A44D2431165B007E1A41 /* UIViewControllerTools.swift in Sources */,
 				A3775FC023A6C1750034EAD6 /* APIService.swift in Sources */,
+				A30A6E38244F1802007A8D19 /* TestViewController.swift in Sources */,
 				A3775FBD23A6BCB00034EAD6 /* GameItem.swift in Sources */,
-				A30A6E23244DB325007A8D19 /* GameTrailerView.swift in Sources */,
 				A352B9CE24379D0A00A86A7E /* SimilarGamesCollectionFlowLayout.swift in Sources */,
-				A30A6E33244F093B007A8D19 /* PlayerContainerView.swift in Sources */,
+				A30A6E33244F093B007A8D19 /* VideoControlsView.swift in Sources */,
 				A3E8A44B243104F6007E1A41 /* HUD.swift in Sources */,
 				A3775FBA23A6B1CA0034EAD6 /* GameCell.swift in Sources */,
 				A3E42ECF240C451600E4CC97 /* MyGamesController.swift in Sources */,

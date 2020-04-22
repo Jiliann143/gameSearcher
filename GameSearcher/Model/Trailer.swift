@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 import Swiftools
+import Kingfisher
 
 class Trailer: Object, Decodable {
     
@@ -46,5 +47,13 @@ class Trailer: Object, Decodable {
     
     required init() {
         super.init()
+    }
+}
+
+extension Trailer {
+    
+    var previewImage: UIImage? {
+        guard let url = preview else { return nil }
+        return ImageLoader.retrieveImage(with: url)
     }
 }

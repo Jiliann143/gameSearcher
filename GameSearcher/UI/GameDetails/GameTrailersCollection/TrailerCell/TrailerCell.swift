@@ -10,7 +10,7 @@ import UIKit
 
 class TrailerCell: UICollectionViewCell {
 
-    @IBOutlet weak var videoPlayerView: GameTrailerView!
+    @IBOutlet weak var videoPlayerView: VideoPlayerView!
     private var trailer: Trailer!
     
     func setup(_ trailer: Trailer) -> Self {
