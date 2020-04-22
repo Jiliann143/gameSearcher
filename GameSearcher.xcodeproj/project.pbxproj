@@ -27,6 +27,7 @@
 		A352B9CC2437984800A86A7E /* SimilarGamesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A352B9CA2437984800A86A7E /* SimilarGamesCell.xib */; };
 		A352B9CE24379D0A00A86A7E /* SimilarGamesCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352B9CD24379D0A00A86A7E /* SimilarGamesCollectionFlowLayout.swift */; };
 		A3580AE5244DA4D900FF4313 /* ScreenshotsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3580AE4244DA4D900FF4313 /* ScreenshotsCollectionViewDataSource.swift */; };
+		A3769FE224506604007E1F87 /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3769FE124506604007E1F87 /* NotificationsService.swift */; };
 		A376FB9D240BBDA000A0E022 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A376FB9C240BBDA000A0E022 /* RealmService.swift */; };
 		A3775FA423A6AE3E0034EAD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3775FA323A6AE3E0034EAD6 /* AppDelegate.swift */; };
 		A3775FA823A6AE3E0034EAD6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3775FA723A6AE3E0034EAD6 /* SearchViewController.swift */; };
@@ -85,6 +86,7 @@
 		A352B9CA2437984800A86A7E /* SimilarGamesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarGamesCell.xib; sourceTree = "<group>"; };
 		A352B9CD24379D0A00A86A7E /* SimilarGamesCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarGamesCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		A3580AE4244DA4D900FF4313 /* ScreenshotsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		A3769FE124506604007E1F87 /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		A376FB9C240BBDA000A0E022 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		A3775FA023A6AE3E0034EAD6 /* GameSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3775FA323A6AE3E0034EAD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				A395BD3F23A6CDC4005BB0A1 /* UI */,
 				A395BD3E23A6CDAA005BB0A1 /* Supporting Files */,
 				A3BF441923E0C586009F9F45 /* CustomComponents */,
+				A3769FE124506604007E1F87 /* NotificationsService.swift */,
 			);
 			path = GameSearcher;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				A352B9CB2437984800A86A7E /* SimilarGamesCell.swift in Sources */,
 				A30A6E27244DC904007A8D19 /* Trailer.swift in Sources */,
 				A30A6E42244F34EA007A8D19 /* VideoPlayerView.swift in Sources */,
+				A3769FE224506604007E1F87 /* NotificationsService.swift in Sources */,
 				A39565F723B8AEB700B68894 /* ScreenshotCell.swift in Sources */,
 				A352B9C62437965900A86A7E /* SimilarGamesDataSource.swift in Sources */,
 				A3775FA423A6AE3E0034EAD6 /* AppDelegate.swift in Sources */,

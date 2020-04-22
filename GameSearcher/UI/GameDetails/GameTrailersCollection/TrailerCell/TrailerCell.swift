@@ -15,7 +15,7 @@ class TrailerCell: UICollectionViewCell {
     
     func setup(_ trailer: Trailer) -> Self {
         self.trailer = trailer
-        videoPlayerView.setupPlayer(with: trailer.videoUrl!)
+        videoPlayerView.setupPlayer(with: trailer.videoUrl!, delegate: self as! VideoPlayerViewDelegate)
         return self
     }
 }

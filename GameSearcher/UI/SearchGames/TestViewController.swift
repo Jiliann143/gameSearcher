@@ -21,11 +21,16 @@ class TestViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.dataSource = self
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         APIService.getGameTrailers(3498) { error, trailers in
             if let trailers = trailers {
                 self.data = trailers
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -41,11 +46,6 @@ class TestViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return tableView.cell(TestTableViewCell.self).setup(data[indexPath.row])
     }
-    
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard let videoCell = (cell as? TestTableViewCell) else { return }
-//            videoCell.playerView.player?.play()
-//    }
 
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let videoCell = cell as? TestTableViewCell else { return }

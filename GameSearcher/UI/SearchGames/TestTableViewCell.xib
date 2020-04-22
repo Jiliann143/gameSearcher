@@ -16,23 +16,64 @@
                 <rect key="frame" x="0.0" y="0.0" width="337" height="211"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gT7-cp-vOa" customClass="VideoPlayerView" customModule="GameSearcher" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRv-r5-EcA" customClass="VideoPlayerView" customModule="GameSearcher" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="337" height="211"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V2Q-ar-V6X">
+                        <rect key="frame" x="0.0" y="0.0" width="337" height="211"/>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="gJZ-Ah-C9V">
+                        <rect key="frame" x="10" y="171" width="317" height="35"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ck-br-QrV">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="c8I-OC-V6W"/>
+                                    <constraint firstAttribute="height" constant="35" id="wgR-Lz-jUI"/>
+                                </constraints>
+                                <state key="normal" image="play"/>
+                                <connections>
+                                    <action selector="didPressPlayPauseButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PyQ-ZV-1ja"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rah-TL-iMF">
+                                <rect key="frame" x="34" y="0.0" width="285" height="36"/>
+                                <connections>
+                                    <action selector="didUseSlider:" destination="KGk-i7-Jjw" eventType="valueChanged" id="iTB-ta-5Mn"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="JVP-Aa-3hx"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="gT7-cp-vOa" secondAttribute="bottom" id="SLX-6s-00f"/>
-                    <constraint firstAttribute="trailing" secondItem="gT7-cp-vOa" secondAttribute="trailing" id="eRs-SF-yZH"/>
-                    <constraint firstItem="gT7-cp-vOa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sHL-rS-JQu"/>
-                    <constraint firstItem="gT7-cp-vOa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sh1-WV-eJm"/>
+                    <constraint firstAttribute="trailing" secondItem="gJZ-Ah-C9V" secondAttribute="trailing" constant="10" id="6Dv-AC-W51"/>
+                    <constraint firstAttribute="trailing" secondItem="V2Q-ar-V6X" secondAttribute="trailing" id="6OY-1k-q9t"/>
+                    <constraint firstItem="lRv-r5-EcA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9mv-Ru-plL"/>
+                    <constraint firstItem="V2Q-ar-V6X" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9o1-Dr-5Oj"/>
+                    <constraint firstItem="gJZ-Ah-C9V" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Cge-E7-sV3"/>
+                    <constraint firstAttribute="bottom" secondItem="lRv-r5-EcA" secondAttribute="bottom" id="R03-Gs-ISS"/>
+                    <constraint firstAttribute="trailing" secondItem="lRv-r5-EcA" secondAttribute="trailing" id="YYs-jE-dKi"/>
+                    <constraint firstAttribute="bottom" secondItem="gJZ-Ah-C9V" secondAttribute="bottom" constant="5" id="kPh-8V-JW8"/>
+                    <constraint firstItem="lRv-r5-EcA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oqk-LV-Iip"/>
+                    <constraint firstItem="V2Q-ar-V6X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pBh-Dt-poz"/>
+                    <constraint firstAttribute="bottom" secondItem="V2Q-ar-V6X" secondAttribute="bottom" id="syz-dd-hMd"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="playerView" destination="gT7-cp-vOa" id="GhR-8g-G8Q"/>
+                <outlet property="playPauseButton" destination="1ck-br-QrV" id="EGo-dD-hPR"/>
+                <outlet property="playerView" destination="lRv-r5-EcA" id="LV1-Nx-KPC"/>
+                <outlet property="slider" destination="Rah-TL-iMF" id="PJE-kK-RZq"/>
+                <outlet property="thumbnailImageView" destination="V2Q-ar-V6X" id="YJg-dD-NXm"/>
             </connections>
-            <point key="canvasLocation" x="150" y="143.63839285714286"/>
+            <point key="canvasLocation" x="148.55072463768118" y="143.63839285714286"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="play" width="47" height="47"/>
+    </resources>
 </document>
