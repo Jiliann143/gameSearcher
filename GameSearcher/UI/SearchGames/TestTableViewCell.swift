@@ -24,7 +24,7 @@ class TestTableViewCell: UITableViewCell {
             thumbnailImageView.kf.indicatorType = .activity
             thumbnailImageView.kf.setImage(with: url)
         }
-        playerView.setupPlayer(with: trailer.videoUrl!, previewImage: trailer.previewImage, delegate: self)
+        playerView.setupPlayer(with: trailer.videoUrl!, delegate: self)
         return self
     }
     

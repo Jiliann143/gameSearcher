@@ -52,4 +52,5 @@ class TestViewController: UIViewController, UITableViewDelegate, UITableViewData
         videoCell.playerView.player?.pause()
         videoCell.playerView.player = nil
     }
+    
 }
