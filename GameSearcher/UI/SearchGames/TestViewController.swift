@@ -13,6 +13,8 @@ class TestViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var tableView: UITableView!
     
+    private var currentlyPlaying: UITableViewCell?
+    
     var data: [Trailer] = []
     
     override func viewDidLoad() {
@@ -28,10 +30,35 @@ class TestViewController: UIViewController, UITableViewDelegate, UITableViewData
         APIService.getGameTrailers(3498) { error, trailers in
             if let trailers = trailers {
                 self.data = trailers
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                self.tableView.reloadData()
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
             }
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        autoPlayVideo()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            autoPlayVideo()
+        }
+    }
+    
+    private func autoPlayVideo() {
+        guard let visibleCells = tableView.visibleCells as? [TestTableViewCell] else { return }
+        visibleCells.forEach { $0.playerView.backgroundColor = .blue}
+        let triggerPoint = CGPoint(x: tableView.bounds.midX, y: tableView.bounds.midY - 125)
+        if let indexPath = tableView.indexPathForRow(at: triggerPoint) {
+            guard let cell = tableView.cellForRow(at: indexPath) as? TestTableViewCell else { return }
+            cell.playerView.backgroundColor = .yellow
+            let cellsShouldStopPlaying = visibleCells.filter { $0 != cell }
+            cellsShouldStopPlaying.forEach {$0.stopVideo() }
+            cellsShouldStopPlaying.forEach { $0.playerView.backgroundColor = .systemPink }
+            cell.playerView.playVideo()
         }
     }
     
@@ -52,5 +79,6 @@ class TestViewController: UIViewController, UITableViewDelegate, UITableViewData
         videoCell.playerView.player?.pause()
         videoCell.playerView.player = nil
     }
+    
     
 }

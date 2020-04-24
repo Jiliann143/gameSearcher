@@ -42,8 +42,12 @@ class VideoPlayerView: UIView {
         }
     }
     
-    func videoDidPressPlay() {
-        player?.timeControlStatus == .playing ? pause() : play()
+    func playVideo() {
+        play()
+    }
+    
+    func pauseVideo() {
+        pause()
     }
     
     func videoSliderDidChangeValue(_ value: Float) {

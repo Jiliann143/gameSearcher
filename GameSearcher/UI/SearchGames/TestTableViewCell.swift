@@ -28,27 +28,21 @@ class TestTableViewCell: UITableViewCell {
         return self
     }
     
+    
     @IBAction func didPressPlayPauseButton(_ sender: UIButton) {
-        playerView.videoDidPressPlay()
+        playerView.playVideo()
     }
     
     @IBAction func didUseSlider(_ sender: Any) {
         playerView.videoSliderDidChangeValue(slider.value)
     }
     
-    private func handlePlayModeUI() {
-        thumbnailImageView.isHidden = true
-        playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-    }
-    
-    private func handlePauseModeUI() {
-        playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+    func stopVideo() {
+        playerView.pauseVideo()
     }
     
     private func reset() {
         thumbnailImageView.isHidden = false
-        playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-        slider.setValue(0, animated: false)
     }
     
     override func prepareForReuse() {
@@ -62,10 +56,10 @@ class TestTableViewCell: UITableViewCell {
 extension TestTableViewCell: VideoPlayerViewDelegate {
     
     func videoPlayerDidStartPlaying() {
-        handlePlayModeUI()
+        thumbnailImageView.isHidden = true
     }
     
     func videoPlayerDidPausePlaying() {
-        handlePauseModeUI()
-    }   
+
+    }
 }
