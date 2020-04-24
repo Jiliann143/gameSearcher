@@ -17,17 +17,19 @@ protocol VideoPlayerViewDelegate: class {
 
 class VideoPlayerView: UIView {
     
+    override static var layerClass: AnyClass {
+        return AVPlayerLayer.self
+    }
+    
     var player: AVPlayer? {
         get { return playerLayer.player }
         set { playerLayer.player = newValue }
     }
     
-    override static var layerClass: AnyClass {
-        return AVPlayerLayer.self
-    }
-    
     var playerLayer: AVPlayerLayer {
-        return layer as! AVPlayerLayer
+        let playerLayer = layer as! AVPlayerLayer
+        playerLayer.videoGravity = .resizeAspectFill
+        return playerLayer
     }
     
     private var url: String = ""

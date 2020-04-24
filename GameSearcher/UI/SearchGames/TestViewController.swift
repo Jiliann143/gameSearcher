@@ -27,7 +27,7 @@ class TestViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        APIService.getGameTrailers(3498) { error, trailers in
+        APIService.getGameTrailers(10035) { error, trailers in
             if let trailers = trailers {
                 self.data = trailers
                 self.tableView.reloadData()
@@ -50,20 +50,17 @@ class TestViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     private func autoPlayVideo() {
         guard let visibleCells = tableView.visibleCells as? [TestTableViewCell] else { return }
-        visibleCells.forEach { $0.playerView.backgroundColor = .blue}
         let triggerPoint = CGPoint(x: tableView.bounds.midX, y: tableView.bounds.midY - 125)
         if let indexPath = tableView.indexPathForRow(at: triggerPoint) {
-            guard let cell = tableView.cellForRow(at: indexPath) as? TestTableViewCell else { return }
-            cell.playerView.backgroundColor = .yellow
-            let cellsShouldStopPlaying = visibleCells.filter { $0 != cell }
+            guard let playingCell = tableView.cellForRow(at: indexPath) as? TestTableViewCell else { return }
+            let cellsShouldStopPlaying = visibleCells.filter { $0 != playingCell }
             cellsShouldStopPlaying.forEach {$0.stopVideo() }
-            cellsShouldStopPlaying.forEach { $0.playerView.backgroundColor = .systemPink }
-            cell.playerView.playVideo()
+            playingCell.playerView.playVideo()
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return 400
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -43,7 +43,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.12547165160000001" green="0.12550082800000001" blue="0.1254698336" alpha="0.66184182359999999" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="0.66184182359999999" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gMx-E2-SRi" firstAttribute="leading" secondItem="GoY-Vq-6Mn" secondAttribute="leading" id="4zC-0k-r0B"/>
                             <constraint firstItem="WNz-oS-3Hw" firstAttribute="leading" secondItem="gMx-E2-SRi" secondAttribute="trailing" constant="5" id="7qW-7j-1d7"/>

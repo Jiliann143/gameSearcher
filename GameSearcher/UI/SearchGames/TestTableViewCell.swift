@@ -12,29 +12,18 @@ class TestTableViewCell: UITableViewCell {
 
     @IBOutlet weak var playerView: VideoPlayerView!
     @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
     
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var playPauseButton: UIButton!
-    
-    private var trailer: Trailer!
     
     func setup(_ trailer: Trailer) -> Self {
-        self.trailer = trailer
+        titleLabel.text = trailer.name
         if let url = URL(string: trailer.preview!) {
             thumbnailImageView.kf.indicatorType = .activity
             thumbnailImageView.kf.setImage(with: url)
         }
         playerView.setupPlayer(with: trailer.videoUrl!, delegate: self)
         return self
-    }
-    
-    
-    @IBAction func didPressPlayPauseButton(_ sender: UIButton) {
-        playerView.playVideo()
-    }
-    
-    @IBAction func didUseSlider(_ sender: Any) {
-        playerView.videoSliderDidChangeValue(slider.value)
     }
     
     func stopVideo() {
