@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Swiftools
 
 class MyGamesViewController: UIViewController {
     
@@ -39,6 +40,16 @@ extension MyGamesViewController: UITableViewDataSource {
         return tableView.cell(GameCell.self).setupGameInfo(dataSource[indexPath.row])
     }
 }
+
+extension MyGamesViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        LogInfo(dataSource[indexPath.row].gameInfo)
+        LogInfo(dataSource[indexPath.row].releaseYear)
+
+    }
+}
+
 
 
 

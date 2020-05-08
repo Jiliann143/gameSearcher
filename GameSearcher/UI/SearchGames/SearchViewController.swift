@@ -8,6 +8,7 @@
 
 import UIKit
 import SVPullToRefresh
+import HelperKit
 
 class SearchViewController: UIViewController {
 

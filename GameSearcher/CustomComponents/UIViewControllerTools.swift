@@ -21,24 +21,7 @@ extension UIViewController {
         let controller = storyboard.instantiateViewController(withIdentifier: String(describing: self)) as! T
         return controller
     }
-
-//MARK: - Navigation helpers
     
-    func push(_ controller: UIViewController) {
-        navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    func pop() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    func present(_ controller: UIViewController) {
-        present(controller, animated: true, completion: nil)
-    }
-    
-    func dismiss() {
-        dismiss(animated: true, completion: nil)
-    }
 }
 
 public var topmostController: UIViewController {

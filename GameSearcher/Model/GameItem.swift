@@ -11,6 +11,10 @@ import RealmSwift
 
 class GameItem: Object, Decodable {
     
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+    
     @objc dynamic var id:        Int = 0
     @objc dynamic var slug:      String = ""
     @objc dynamic var name:      String = ""
@@ -18,6 +22,12 @@ class GameItem: Object, Decodable {
     @objc dynamic var gameInfo:  String? = nil
     @objc dynamic var released:  String? = nil
     @objc dynamic var rating:    Double = 0
+    
+    @objc dynamic var releaseYear: Int {
+        guard let date = released else { return 0 }
+        let yearString = String(date.prefix(4))
+        return Int(yearString) ?? 0
+    }
     
     let platforms = List<String>()
     let genres    = List<String>()

@@ -58,24 +58,77 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fEx-ep-nv4">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fEx-ep-nv4">
                                                 <rect key="frame" x="10" y="720" width="394" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHo-LM-pS6">
-                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="50"/>
-                                                        <color key="backgroundColor" red="0.93839126829999997" green="0.42688128349999999" blue="0.1229705289" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHo-LM-pS6" customClass="TwoStateButton" customModule="GameSearcher" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="NotoSansOriya" family="Noto Sans Oriya" pointSize="17"/>
                                                         <state key="normal" title="Save to my list">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="10"/>
+                                                                <real key="value" value="25"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.93839126829999997" green="0.3882736208" blue="0.27916701859999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTextColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="deselectedTextColor">
+                                                                <color key="value" red="0.93839126829999997" green="0.3882736208" blue="0.27916701859999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Added To My List"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
+                                                                <color key="value" red="0.93839126829999997" green="0.3882736208" blue="0.27916701859999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="deselectedColor">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="deselectedTitle" value="Save To My List"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="didPressSaveGameButton:" destination="dDD-Vr-gyp" eventType="touchUpInside" id="WBD-hU-uRF"/>
                                                         </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Exg-ZM-7yn" customClass="TwoStateButton" customModule="GameSearcher" customModuleProvider="target">
+                                                        <rect key="frame" x="207" y="0.0" width="187" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="NotoSansOriya" family="Noto Sans Oriya" pointSize="17"/>
+                                                        <state key="normal" title="Save to my list">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="25"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.54003403370000003" green="0.4390013606" blue="0.98381706140000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTextColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="deselectedTextColor">
+                                                                <color key="value" red="0.54003403370000003" green="0.4390013606" blue="0.98381706140000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
+                                                                <color key="value" red="0.54003403370000003" green="0.4390013606" blue="0.98381706140000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="deselectedColor">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="deselectedTitle" value="Add To Played"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Added To Played"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.47460305689999999" green="0.74352365730000003" blue="0.22465088959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -228,7 +281,7 @@
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KKL-yh-VYF">
                                                 <rect key="frame" x="10" y="1008" width="394" height="250"/>
-                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="250" id="zMF-mN-xVA"/>
                                                 </constraints>
@@ -256,6 +309,7 @@
                                             <constraint firstItem="kli-XL-5h3" firstAttribute="top" secondItem="pqA-7A-2Co" secondAttribute="top" id="IAB-6x-5wM"/>
                                             <constraint firstItem="yHP-Vn-xfx" firstAttribute="leading" secondItem="929-Mm-yAT" secondAttribute="trailing" constant="15" id="IbF-DM-1nO"/>
                                             <constraint firstItem="fav-0m-whf" firstAttribute="top" secondItem="EEi-Fe-bde" secondAttribute="bottom" constant="5" id="JqT-en-Zh8"/>
+                                            <constraint firstItem="KKL-yh-VYF" firstAttribute="leading" secondItem="fEx-ep-nv4" secondAttribute="leading" id="KaC-sX-ZpI"/>
                                             <constraint firstItem="cNa-OD-Gwa" firstAttribute="top" secondItem="VBG-xH-6qv" secondAttribute="top" id="LVL-Se-SGa"/>
                                             <constraint firstItem="DUO-Kb-9Zb" firstAttribute="leading" secondItem="72O-iW-UPU" secondAttribute="leading" id="Lbu-0I-P7q"/>
                                             <constraint firstItem="5tT-FK-w9u" firstAttribute="top" secondItem="DUO-Kb-9Zb" secondAttribute="top" id="LzK-1B-VaF"/>
@@ -270,15 +324,14 @@
                                             <constraint firstItem="Alq-KC-Zhh" firstAttribute="trailing" secondItem="DUO-Kb-9Zb" secondAttribute="trailing" constant="-10" id="ULN-Lm-feJ"/>
                                             <constraint firstItem="VBG-xH-6qv" firstAttribute="top" secondItem="DEv-bW-Psg" secondAttribute="bottom" constant="20" id="VVC-c3-pFz"/>
                                             <constraint firstAttribute="bottom" secondItem="fav-0m-whf" secondAttribute="bottom" constant="20" id="Vuf-dH-iga"/>
-                                            <constraint firstItem="KKL-yh-VYF" firstAttribute="leading" secondItem="SHo-LM-pS6" secondAttribute="leading" id="Wg8-eL-0Q0"/>
                                             <constraint firstItem="5tT-FK-w9u" firstAttribute="leading" secondItem="DUO-Kb-9Zb" secondAttribute="leading" id="a2k-Ch-RKB"/>
                                             <constraint firstItem="fEx-ep-nv4" firstAttribute="leading" secondItem="72O-iW-UPU" secondAttribute="leading" constant="10" id="aYo-lR-B6X"/>
                                             <constraint firstItem="kli-XL-5h3" firstAttribute="leading" secondItem="pqA-7A-2Co" secondAttribute="trailing" constant="15" id="arC-a7-5HI"/>
                                             <constraint firstItem="EEi-Fe-bde" firstAttribute="leading" secondItem="ucE-M7-3A0" secondAttribute="leading" id="asH-93-0Ju"/>
                                             <constraint firstItem="DEv-bW-Psg" firstAttribute="leading" secondItem="Eez-i5-Lae" secondAttribute="trailing" constant="15" id="cPy-Yp-oI9"/>
+                                            <constraint firstItem="KKL-yh-VYF" firstAttribute="trailing" secondItem="fEx-ep-nv4" secondAttribute="trailing" id="e8V-kF-5dW"/>
                                             <constraint firstItem="5tT-FK-w9u" firstAttribute="trailing" secondItem="DUO-Kb-9Zb" secondAttribute="trailing" id="hNL-qH-ufM"/>
                                             <constraint firstItem="yHP-Vn-xfx" firstAttribute="bottom" secondItem="929-Mm-yAT" secondAttribute="bottom" id="ici-Sj-n5l"/>
-                                            <constraint firstItem="KKL-yh-VYF" firstAttribute="trailing" secondItem="SHo-LM-pS6" secondAttribute="trailing" id="ihT-G9-dfg"/>
                                             <constraint firstItem="Eez-i5-Lae" firstAttribute="top" secondItem="fEx-ep-nv4" secondAttribute="bottom" constant="15" id="j5q-r5-750"/>
                                             <constraint firstAttribute="trailing" secondItem="cNa-OD-Gwa" secondAttribute="trailing" constant="10" id="jri-eL-OUu"/>
                                             <constraint firstItem="DEv-bW-Psg" firstAttribute="top" secondItem="Eez-i5-Lae" secondAttribute="top" id="mRv-dx-qLs"/>
@@ -320,6 +373,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
+                        <outlet property="addToListButton" destination="SHo-LM-pS6" id="xxv-al-q1N"/>
                         <outlet property="collectionPageControl" destination="Alq-KC-Zhh" id="IPf-6m-Ii5"/>
                         <outlet property="descriptionStackView" destination="ucE-M7-3A0" id="jTT-zd-mKN"/>
                         <outlet property="developerLabel" destination="kli-XL-5h3" id="06S-KH-lhA"/>

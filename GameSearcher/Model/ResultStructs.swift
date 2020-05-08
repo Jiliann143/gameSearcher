@@ -17,11 +17,8 @@ class SearchResults: Decodable {
     let results: [GameItem]
 }
 
-struct Screenshots: Codable {
+struct ScreenshotResults: Codable {
     let results: [Screenshot]
 }
 
-struct Screenshot: Codable {
-    let image: String
-}
 

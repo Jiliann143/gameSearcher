@@ -12,6 +12,7 @@ import Alamofire
 import RealmSwift
 import AVFoundation
 import AVKit
+import HelperKit
 import Swiftools
 
 class GameDetailsController: UIViewController {
@@ -34,6 +35,9 @@ class GameDetailsController: UIViewController {
     private let screenshotsDataSource  = ScreenshotsDataSource()
     private let trailersDataSource     = GameTrailersDataSource()
     
+    @IBOutlet weak var addToPlayedButton: TwoStateButton!
+    @IBOutlet weak var addToListButton: TwoStateButton!
+    
     private var screenshots: [String] = []
     
     var game: GameItem!
@@ -54,7 +58,9 @@ class GameDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        LogInfo(RealmService.shared.gameExists(id: game.id))
+        addToListButton.isActive   = RealmService.shared.gameExists(id: game.id)
+     //   addToPlayedButton.isActive = RealmService.shared.gameExists(id: game.id)
         Log(game.id)
         getSimilarGames()
         setupGame(game)
@@ -66,12 +72,17 @@ class GameDetailsController: UIViewController {
         setupGradientNavBar()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Log(addToListButton.isActive)
+        addToListButton.isActive ? RealmService.shared.create(game) : RealmService.shared.deleteGame(game)
+    }
+    
 //MARK: - Setup
     
     private func getTrailers() {
         APIService.getGameTrailers(game.id) { error, trailers in
             if let trailers = trailers {
-                trailers.forEach { Log($0.name)}
                 self.trailersDataSource.set(self.trailersCollectionView, trailers)
             }
         }
@@ -108,6 +119,7 @@ class GameDetailsController: UIViewController {
     private func fetchDetails(_ completion: @escaping () -> ()) {
         APIService.fetchGameDetails(gameId: game.id) { error, game in
             if let game = game {
+                self.game = game
                 self.gameDescriptionLabel.text = game.gameInfo?.strip()
                 self.platformsLabel.text = game.platforms.compactMap{ $0 }.joined(separator: ", ")
             }
@@ -131,8 +143,8 @@ class GameDetailsController: UIViewController {
         isDescriptionVisible = !isDescriptionVisible
     }
     
-    @IBAction func didPressSaveGameButton(_ sender: UIButton) {
-        RealmService.shared.create(game)
+    @IBAction func didPressSaveGameButton(_ sender: TwoStateButton) {
+        sender.togle()
     }
 }
 

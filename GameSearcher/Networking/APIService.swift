@@ -43,7 +43,7 @@ class APIService {
     
     static func getScreenshots(_ gameName: String, completion: @escaping FetchScreensCompletion) {
         AF.request(APIRouter.screenshots(gameName)).responseJSON { response in
-            handleResponse(response, decode: Screenshots.self) { screenshots, error in
+            handleResponse(response, decode: ScreenshotResults.self) { screenshots, error in
                 guard let screenshots = screenshots else {
                     completion(error, nil)
                     return
@@ -67,8 +67,7 @@ class APIService {
     
     static func getGameTrailers(_ gameId: Int, completion: @escaping FetchTrailersCompletion) {
         AF.request(APIRouter.trailers(gameId)).responseJSON { response in
-            Log(response.request)
-            Log(response.data?.prettyPrintedJSONString)
+     //       Log(response.data?.prettyPrintedJSONString)
             handleResponse(response, decode: TrailerResults.self) { trailers, error in
                 guard let trailers = trailers else {
                     completion(error, nil)

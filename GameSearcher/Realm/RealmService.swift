@@ -12,11 +12,13 @@ import Swiftools
 
 class RealmService {
     
-    private init() {}
+    private init() { Log(Realm.Configuration.defaultConfiguration.fileURL) }
         
     static let shared = RealmService()
     
     var realm = try! Realm()
+
+//MARK: - CRUD
     
     func get<T: Object>(_ object: T.Type) -> Results<T> {
         return realm.objects(T.self)
@@ -25,7 +27,7 @@ class RealmService {
     func create<T: Object>(_ object: T) {
         do {
             try realm.write {
-                realm.add(object)
+                realm.add(object, update: .all)
             }
             Log("Succesfully added")
         } catch {
@@ -38,9 +40,32 @@ class RealmService {
             try realm.write {
                 realm.delete(object)
             }
+            Log("Succesfully deleted")
         } catch {
             LogError(error)
         }
     }
     
+//MARK: - Queries
+    
+    func getGame(with id: Int) -> Results<GameItem> {
+        return realm.objects(GameItem.self).filter("id =\(id)")
+    }
+    
+    func gameExists(id: Int) -> Bool {
+        !getGame(with: id).isEmpty
+    }
+    
+    
+//MARK: - Game Item Operations
+
+    func deleteGame(_ game: GameItem) {
+        if let gameForDeletion = realm.object(ofType: GameItem.self, forPrimaryKey: game.id) {
+            if gameForDeletion.isInvalidated { return }
+            delete(gameForDeletion)
+        }
+    }
+
+    
 }
+

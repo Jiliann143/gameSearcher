@@ -25,7 +25,6 @@
 		A352B9CC2437984800A86A7E /* SimilarGamesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A352B9CA2437984800A86A7E /* SimilarGamesCell.xib */; };
 		A352B9CE24379D0A00A86A7E /* SimilarGamesCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352B9CD24379D0A00A86A7E /* SimilarGamesCollectionFlowLayout.swift */; };
 		A3580AE5244DA4D900FF4313 /* ScreenshotsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3580AE4244DA4D900FF4313 /* ScreenshotsCollectionViewDataSource.swift */; };
-		A3769FE224506604007E1F87 /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3769FE124506604007E1F87 /* NotificationsService.swift */; };
 		A376FB9D240BBDA000A0E022 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A376FB9C240BBDA000A0E022 /* RealmService.swift */; };
 		A3775FA423A6AE3E0034EAD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3775FA323A6AE3E0034EAD6 /* AppDelegate.swift */; };
 		A3775FA823A6AE3E0034EAD6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3775FA723A6AE3E0034EAD6 /* SearchViewController.swift */; };
@@ -40,6 +39,8 @@
 		A39565FA23B8B73D00B68894 /* ScreenshotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39565F923B8B73D00B68894 /* ScreenshotCell.xib */; };
 		A39565FC23B91EE000B68894 /* ResultStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39565FB23B91EE000B68894 /* ResultStructs.swift */; };
 		A3BF441B23E0C655009F9F45 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF441A23E0C655009F9F45 /* APIRouter.swift */; };
+		A3E0E2A72465BE2C0044A073 /* Screenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E0E2A62465BE2C0044A073 /* Screenshot.swift */; };
+		A3E0E2A92465D3EF0044A073 /* TwoStateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E0E2A82465D3EF0044A073 /* TwoStateButton.swift */; };
 		A3E42ECF240C451600E4CC97 /* MyGamesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E42ECE240C451600E4CC97 /* MyGamesController.swift */; };
 		A3E42ED3240C45B900E4CC97 /* MyGames.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3E42ED2240C45B900E4CC97 /* MyGames.storyboard */; };
 		A3E8A44B243104F6007E1A41 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E8A44A243104F6007E1A41 /* HUD.swift */; };
@@ -82,7 +83,6 @@
 		A352B9CA2437984800A86A7E /* SimilarGamesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarGamesCell.xib; sourceTree = "<group>"; };
 		A352B9CD24379D0A00A86A7E /* SimilarGamesCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarGamesCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		A3580AE4244DA4D900FF4313 /* ScreenshotsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsCollectionViewDataSource.swift; sourceTree = "<group>"; };
-		A3769FE124506604007E1F87 /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		A376FB9C240BBDA000A0E022 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		A3775FA023A6AE3E0034EAD6 /* GameSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3775FA323A6AE3E0034EAD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +99,8 @@
 		A39565F923B8B73D00B68894 /* ScreenshotCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenshotCell.xib; sourceTree = "<group>"; };
 		A39565FB23B91EE000B68894 /* ResultStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultStructs.swift; sourceTree = "<group>"; };
 		A3BF441A23E0C655009F9F45 /* APIRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		A3E0E2A62465BE2C0044A073 /* Screenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshot.swift; sourceTree = "<group>"; };
+		A3E0E2A82465D3EF0044A073 /* TwoStateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoStateButton.swift; sourceTree = "<group>"; };
 		A3E42ECE240C451600E4CC97 /* MyGamesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGamesController.swift; sourceTree = "<group>"; };
 		A3E42ED2240C45B900E4CC97 /* MyGames.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyGames.storyboard; sourceTree = "<group>"; };
 		A3E8A44A243104F6007E1A41 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
@@ -233,14 +235,13 @@
 		A3775FA223A6AE3E0034EAD6 /* GameSearcher */ = {
 			isa = PBXGroup;
 			children = (
-				A376FB98240B0E5500A0E022 /* Realm */,
 				A3775FB123A6AE420034EAD6 /* Info.plist */,
+				A376FB98240B0E5500A0E022 /* Realm */,
 				A3775FBB23A6BC9E0034EAD6 /* Model */,
 				A3775FBE23A6C16C0034EAD6 /* Networking */,
 				A395BD3F23A6CDC4005BB0A1 /* UI */,
 				A395BD3E23A6CDAA005BB0A1 /* Supporting Files */,
 				A3BF441923E0C586009F9F45 /* CustomComponents */,
-				A3769FE124506604007E1F87 /* NotificationsService.swift */,
 			);
 			path = GameSearcher;
 			sourceTree = "<group>";
@@ -251,6 +252,7 @@
 				A3775FBC23A6BCB00034EAD6 /* GameItem.swift */,
 				A39565FB23B91EE000B68894 /* ResultStructs.swift */,
 				A30A6E26244DC904007A8D19 /* Trailer.swift */,
+				A3E0E2A62465BE2C0044A073 /* Screenshot.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -316,6 +318,7 @@
 				A3E8A44A243104F6007E1A41 /* HUD.swift */,
 				A3E8A44C2431165B007E1A41 /* UIViewControllerTools.swift */,
 				A3E8A45024314478007E1A41 /* NavigationBarConfigurator.swift */,
+				A3E0E2A82465D3EF0044A073 /* TwoStateButton.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -468,7 +471,6 @@
 				A3580AE5244DA4D900FF4313 /* ScreenshotsCollectionViewDataSource.swift in Sources */,
 				A352B9CB2437984800A86A7E /* SimilarGamesCell.swift in Sources */,
 				A30A6E27244DC904007A8D19 /* Trailer.swift in Sources */,
-				A3769FE224506604007E1F87 /* NotificationsService.swift in Sources */,
 				A39565F723B8AEB700B68894 /* ScreenshotCell.swift in Sources */,
 				A352B9C62437965900A86A7E /* SimilarGamesDataSource.swift in Sources */,
 				A3775FA423A6AE3E0034EAD6 /* AppDelegate.swift in Sources */,
@@ -478,6 +480,7 @@
 				A30A6E4424502A38007A8D19 /* ImageLoader.swift in Sources */,
 				A376FB9D240BBDA000A0E022 /* RealmService.swift in Sources */,
 				A30A6E25244DC7F0007A8D19 /* GameTrailersDataSource.swift in Sources */,
+				A3E0E2A92465D3EF0044A073 /* TwoStateButton.swift in Sources */,
 				A3BF441B23E0C655009F9F45 /* APIRouter.swift in Sources */,
 				A30A6E2B244DD1DE007A8D19 /* TrailerCell.swift in Sources */,
 				A3E8A44D2431165B007E1A41 /* UIViewControllerTools.swift in Sources */,
@@ -487,6 +490,7 @@
 				A352B9CE24379D0A00A86A7E /* SimilarGamesCollectionFlowLayout.swift in Sources */,
 				A30A6E33244F093B007A8D19 /* VideoPlayerView.swift in Sources */,
 				A3E8A44B243104F6007E1A41 /* HUD.swift in Sources */,
+				A3E0E2A72465BE2C0044A073 /* Screenshot.swift in Sources */,
 				A3775FBA23A6B1CA0034EAD6 /* GameCell.swift in Sources */,
 				A3E42ECF240C451600E4CC97 /* MyGamesController.swift in Sources */,
 			);
