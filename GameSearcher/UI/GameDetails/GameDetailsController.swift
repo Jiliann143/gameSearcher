@@ -39,9 +39,18 @@ class GameDetailsController: UIViewController {
     @IBOutlet weak var addToListButton: TwoStateButton!
     
     private var screenshots: [String] = []
+    private var storedGame: GameItem? {
+        RealmService.shared.object(GameItem.self, key: game.id)
+    }
     
-    var game: GameItem!
-    
+    var game: GameItem! {
+        didSet {
+            if let game = RealmService.shared.object(GameItem.self, key: game.id) {
+                self.game = game
+            }
+        }
+    }
+       
     var isDescriptionVisible: Bool = false {
         didSet {
             if isDescriptionVisible {
@@ -58,10 +67,8 @@ class GameDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        LogInfo(RealmService.shared.gameExists(id: game.id))
-        addToListButton.isActive   = RealmService.shared.gameExists(id: game.id)
-     //   addToPlayedButton.isActive = RealmService.shared.gameExists(id: game.id)
         Log(game.id)
+        setupButtonsState()
         getSimilarGames()
         setupGame(game)
         getTrailers()
@@ -74,8 +81,19 @@ class GameDetailsController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        Log(addToListButton.isActive)
-        addToListButton.isActive ? RealmService.shared.create(game) : RealmService.shared.deleteGame(game)
+        handleSaveButtonsState()
+    }
+    
+    private func setupButtonsState() {
+        guard let game = storedGame else { return }
+        addToListButton.isActive = game.isFavourite
+        addToPlayedButton.isActive = game.played
+    }
+    
+    private func handleSaveButtonsState() {
+        if let game = storedGame {
+            (!addToListButton.isActive && !addToPlayedButton.isActive) ? RealmService.shared.delete(game) : RealmService.shared.append(game)
+        }
     }
     
 //MARK: - Setup
@@ -140,11 +158,26 @@ class GameDetailsController: UIViewController {
 //MARK: - @IBActions
     
     @IBAction func didTapExpandDescription(_ sender: UITapGestureRecognizer) {
+        LogError("played \(game.played)")
+        LogError("fav \(game.isFavourite)")
         isDescriptionVisible = !isDescriptionVisible
     }
     
     @IBAction func didPressSaveGameButton(_ sender: TwoStateButton) {
         sender.togle()
+        RealmService.shared.commitWriting {
+            game.isFavourite = sender.isActive
+            RealmService.shared.append(game)
+        }
+    }
+    
+    @IBAction func didPressAddToPlayedButton(_ sender: TwoStateButton) {
+        sender.togle()
+        RealmService.shared.commitWriting {
+            game.played = sender.isActive
+            RealmService.shared.append(game)
+        }
     }
 }
+
 

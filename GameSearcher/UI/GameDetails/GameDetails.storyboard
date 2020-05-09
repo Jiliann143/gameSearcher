@@ -129,6 +129,9 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="deselectedTitle" value="Add To Played"/>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Added To Played"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="didPressAddToPlayedButton:" destination="dDD-Vr-gyp" eventType="touchUpInside" id="di4-m5-no9"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.47460305689999999" green="0.74352365730000003" blue="0.22465088959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -374,6 +377,7 @@
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
                         <outlet property="addToListButton" destination="SHo-LM-pS6" id="xxv-al-q1N"/>
+                        <outlet property="addToPlayedButton" destination="Exg-ZM-7yn" id="Yzm-yr-kkL"/>
                         <outlet property="collectionPageControl" destination="Alq-KC-Zhh" id="IPf-6m-Ii5"/>
                         <outlet property="descriptionStackView" destination="ucE-M7-3A0" id="jTT-zd-mKN"/>
                         <outlet property="developerLabel" destination="kli-XL-5h3" id="06S-KH-lhA"/>

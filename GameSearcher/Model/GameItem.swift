@@ -15,19 +15,15 @@ class GameItem: Object, Decodable {
         return "id"
     }
     
-    @objc dynamic var id:        Int = 0
-    @objc dynamic var slug:      String = ""
-    @objc dynamic var name:      String = ""
-    @objc dynamic var mainImage: String? = nil
-    @objc dynamic var gameInfo:  String? = nil
-    @objc dynamic var released:  String? = nil
-    @objc dynamic var rating:    Double = 0
-    
-    @objc dynamic var releaseYear: Int {
-        guard let date = released else { return 0 }
-        let yearString = String(date.prefix(4))
-        return Int(yearString) ?? 0
-    }
+    @objc dynamic var id:          Int     = 0
+    @objc dynamic var slug:        String  = ""
+    @objc dynamic var name:        String  = ""
+    @objc dynamic var mainImage:   String? = nil
+    @objc dynamic var gameInfo:    String? = nil
+    @objc dynamic var released:    String? = nil
+    @objc dynamic var rating:      Double  = 0
+    @objc dynamic var played:      Bool    = false
+    @objc dynamic var isFavourite: Bool    = false
     
     let platforms = List<String>()
     let genres    = List<String>()
@@ -76,6 +72,21 @@ class GameItem: Object, Decodable {
         super.init()
     }
 }
+
+extension GameItem {
+    
+    @objc dynamic var releaseYear: Int {
+        guard let date = released else { return 0 }
+        let yearString = String(date.prefix(4))
+        return Int(yearString) ?? 0
+    }
+    
+}
+
+
+
+
+
 
 class Platforms: Codable {
     let platform: Platform

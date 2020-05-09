@@ -19,7 +19,7 @@ class MyGamesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = RealmService.shared.get(GameItem.self)
+        dataSource = RealmService.shared.objects(GameItem.self)
         
         tableViewSetup()
     }
