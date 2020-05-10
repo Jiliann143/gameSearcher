@@ -25,7 +25,7 @@ extension UIWindow {
         let snapshotImageView = UIImageView(image: self.snapshot())
         self.addSubview(snapshotImageView)
         
-        let dismissCompletion = { () -> Void in // dismiss all modal view controllers
+        let dismissCompletion = { () -> Void in
             self.rootViewController = replacementController
             self.bringSubviewToFront(snapshotImageView)
             if animated {
@@ -58,7 +58,7 @@ func setRootController(_ controller: UIViewController) {
     window.replaceRootViewControllerWith(controller)
 }
 
-
+//done
 extension String {
     
     func strip() -> String {
@@ -95,6 +95,16 @@ extension UIColor {
             rendererContext.fill(CGRect(origin: .zero, size: size))
         }
     }
+}
+
+extension UITableView {
+    
+    func updateHeight() {
+           DispatchQueue.main.async {
+               self.beginUpdates()
+               self.endUpdates()
+           }
+       }
 }
 
 

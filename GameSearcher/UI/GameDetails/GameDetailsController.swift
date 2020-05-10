@@ -17,19 +17,12 @@ import Swiftools
 
 class GameDetailsController: UIViewController {
     
-    @IBOutlet weak var gameDescriptionLabel: UILabel!
     @IBOutlet weak var collectionPageControl: PageIndicatorView!
     @IBOutlet weak var noScreensView: UIImageView!
-    @IBOutlet weak var genreLabel: UILabel!
-    @IBOutlet weak var releasedDateLabel: UILabel!
-    @IBOutlet weak var platformsLabel: UILabel!
-    @IBOutlet weak var developerLabel: UILabel!
-    @IBOutlet weak var expandArrow: UIButton!
-    @IBOutlet weak var descriptionStackView: UIStackView!
-    
     @IBOutlet weak var trailersCollectionView: UICollectionView!
     @IBOutlet weak var screenshotsCollectionView: UICollectionView!
     @IBOutlet weak var similarCollectionView: UICollectionView!
+    @IBOutlet weak var gameInfoTableView: InfoTableView!
     
     private let similarGamesDataSource = SimilarGamesDataSource()
     private let screenshotsDataSource  = ScreenshotsDataSource()
@@ -50,18 +43,6 @@ class GameDetailsController: UIViewController {
             }
         }
     }
-       
-    var isDescriptionVisible: Bool = false {
-        didSet {
-            if isDescriptionVisible {
-                expandArrow.rotateView(360)
-                gameDescriptionLabel.hideAnimated()
-            } else {
-                expandArrow.rotateView(180)
-                gameDescriptionLabel.showAnimated()
-            }
-        }
-    }
     
 //MARK: - Lifecycle
     
@@ -71,7 +52,8 @@ class GameDetailsController: UIViewController {
         setupButtonsState()
         getSimilarGames()
         setupGame(game)
-        getTrailers()
+        gameInfoTableView.setup(game)
+     //   getTrailers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,18 +64,6 @@ class GameDetailsController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         handleSaveButtonsState()
-    }
-    
-    private func setupButtonsState() {
-        guard let game = storedGame else { return }
-        addToListButton.isActive = game.isFavourite
-        addToPlayedButton.isActive = game.played
-    }
-    
-    private func handleSaveButtonsState() {
-        if let game = storedGame {
-            (!addToListButton.isActive && !addToPlayedButton.isActive) ? RealmService.shared.delete(game) : RealmService.shared.append(game)
-        }
     }
     
 //MARK: - Setup
@@ -116,21 +86,27 @@ class GameDetailsController: UIViewController {
     
     private func setupGame(_ game: GameItem) {
         title = game.name
-        releasedDateLabel.text = game.released
-        genreLabel.text = game.genres.joined(separator: ", ")
-        
         if let image = game.mainImage {
             screenshots.append(image)
             screenshotsCollectionView.reloadData()
         }
-        
         fetchDetails {
             self.noScreensView.isHidden = !self.screenshots.isEmpty
             self.screenshotsDataSource.set(self.screenshotsCollectionView, self.screenshots, self.collectionPageControl)
         }
     }
     
-
+    private func setupButtonsState() {
+        guard let game = storedGame else { return }
+        addToListButton.isActive = game.isFavourite
+        addToPlayedButton.isActive = game.played
+    }
+    
+    private func handleSaveButtonsState() {
+        if let game = storedGame {
+            (!addToListButton.isActive && !addToPlayedButton.isActive) ? RealmService.shared.delete(game) : RealmService.shared.append(game)
+        }
+    }
     
 //MARK: - Private methods
     
@@ -138,8 +114,6 @@ class GameDetailsController: UIViewController {
         APIService.fetchGameDetails(gameId: game.id) { error, game in
             if let game = game {
                 self.game = game
-                self.gameDescriptionLabel.text = game.gameInfo?.strip()
-                self.platformsLabel.text = game.platforms.compactMap{ $0 }.joined(separator: ", ")
             }
         }
         
@@ -156,12 +130,6 @@ class GameDetailsController: UIViewController {
     
         
 //MARK: - @IBActions
-    
-    @IBAction func didTapExpandDescription(_ sender: UITapGestureRecognizer) {
-        LogError("played \(game.played)")
-        LogError("fav \(game.isFavourite)")
-        isDescriptionVisible = !isDescriptionVisible
-    }
     
     @IBAction func didPressSaveGameButton(_ sender: TwoStateButton) {
         sender.togle()
