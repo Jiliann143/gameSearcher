@@ -39,7 +39,7 @@ class InfoTableView: DynamicTableView, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            return tableView.cell(InfoCell.self).setup(.genre, game.genres.joined())
+            return tableView.cell(InfoCell.self).setup(.genre, game.genres.joined(separator: ", "))
         case 1:
             return tableView.cell(InfoCell.self).setup(.released, game.released.anyString)
         case 2:

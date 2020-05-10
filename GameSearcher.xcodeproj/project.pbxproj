@@ -33,6 +33,7 @@
 		A35C702B2468166B00B57632 /* InfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35C70292468166B00B57632 /* InfoCell.xib */; };
 		A35C703924681C2700B57632 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35C703724681C2700B57632 /* DescriptionCell.swift */; };
 		A35C703A24681C2700B57632 /* DescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35C703824681C2700B57632 /* DescriptionCell.xib */; };
+		A35C704024683F8500B57632 /* SortedGamesCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35C703F24683F8500B57632 /* SortedGamesCollectionViewLayout.swift */; };
 		A376FB9D240BBDA000A0E022 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A376FB9C240BBDA000A0E022 /* RealmService.swift */; };
 		A3775FA423A6AE3E0034EAD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3775FA323A6AE3E0034EAD6 /* AppDelegate.swift */; };
 		A3775FA823A6AE3E0034EAD6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3775FA723A6AE3E0034EAD6 /* SearchViewController.swift */; };
@@ -95,6 +96,7 @@
 		A35C70292468166B00B57632 /* InfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoCell.xib; sourceTree = "<group>"; };
 		A35C703724681C2700B57632 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		A35C703824681C2700B57632 /* DescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionCell.xib; sourceTree = "<group>"; };
+		A35C703F24683F8500B57632 /* SortedGamesCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedGamesCollectionViewLayout.swift; sourceTree = "<group>"; };
 		A376FB9C240BBDA000A0E022 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		A3775FA023A6AE3E0034EAD6 /* GameSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3775FA323A6AE3E0034EAD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				A35C701A2467126B00B57632 /* HeaderView */,
+				A35C703F24683F8500B57632 /* SortedGamesCollectionViewLayout.swift */,
 			);
 			path = MyGamesCollectionCell;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				A307074D23B68E1B001F089F /* Utils.swift in Sources */,
 				A30A6E4424502A38007A8D19 /* ImageLoader.swift in Sources */,
 				A376FB9D240BBDA000A0E022 /* RealmService.swift in Sources */,
+				A35C704024683F8500B57632 /* SortedGamesCollectionViewLayout.swift in Sources */,
 				A30A6E25244DC7F0007A8D19 /* GameTrailersDataSource.swift in Sources */,
 				A3E0E2A92465D3EF0044A073 /* TwoStateButton.swift in Sources */,
 				A3BF441B23E0C655009F9F45 /* APIRouter.swift in Sources */,
