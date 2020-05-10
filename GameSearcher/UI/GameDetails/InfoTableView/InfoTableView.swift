@@ -29,6 +29,7 @@ class InfoTableView: DynamicTableView, UITableViewDelegate, UITableViewDataSourc
         registerCell(InfoCell.self)
         registerCell(DescriptionCell.self)
         rowHeight = UITableView.automaticDimension
+        reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,7 +47,7 @@ class InfoTableView: DynamicTableView, UITableViewDelegate, UITableViewDataSourc
         case 3:
             return tableView.cell(InfoCell.self).setup(.developer, "coming soon")
         case 4:
-            return tableView.cell(DescriptionCell.self).setDelegate(self).setup(GameInfo.description, game.gameInfo.anyString.stripHTML ?? "")
+            return tableView.cell(DescriptionCell.self).setDelegate(self).setup(.description, game.gameInfo.anyString.stripHTML ?? "")
         default:
             return UITableViewCell()
         }
@@ -61,7 +62,6 @@ extension InfoTableView: DescriptionCellDelegate {
 }
 
 
-    
 public extension Array where Element : Hashable {
     var unique: [Element] { return Array(Set(self)) }
     
@@ -71,6 +71,12 @@ public extension Array {
     var randomElement: Element? {
         if count == 0 { return nil }
         return self[Int(arc4random_uniform(UInt32(count)))]
+    }
+}
+
+extension String {
+    var trim: String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
 

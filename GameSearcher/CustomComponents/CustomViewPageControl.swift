@@ -10,27 +10,18 @@ import UIKit
 
 class PageIndicatorView: UIStackView {
     
+    @IBInspectable var hideForSinglePage: Bool = true
+    
     @IBInspectable var currentPageColor: UIColor = .yellow {
-        didSet {
-            setNeedsLayout()
-        }
+        didSet { setNeedsLayout() }
     }
     
     @IBInspectable var inactivePageColor: UIColor = UIColor(white: 1.0, alpha: 0.1) {
-        didSet {
-            setNeedsLayout()
-        }
+        didSet { setNeedsLayout() }
     }
     
     var numberOfPages: Int = 0 {
-        didSet {
-            guard numberOfPages != 0 else {return}
-            for _ in 0...numberOfPages - 1 {
-                createBarView()
-            }
-            self.isHidden = hideForSinglePage && numberOfPages <= 1
-            arrangedSubviews.first?.backgroundColor = currentPageColor
-        }
+        didSet { populate() }
     }
     
     var currentPage: Int = 0 {
@@ -42,14 +33,22 @@ class PageIndicatorView: UIStackView {
         }
     }
     
-    var hideForSinglePage: Bool = true
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    private func populate() {
+        removeAllSubviews()
+        guard numberOfPages != 0 else {return}
+        for _ in 0...numberOfPages - 1 {
+            createBarView()
+        }
+        self.isHidden = hideForSinglePage && numberOfPages <= 1
+        arrangedSubviews.first?.backgroundColor = currentPageColor
     }
     
     private func createBarView() {

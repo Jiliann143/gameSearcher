@@ -28,7 +28,6 @@ public enum APIRouter: URLRequestConvertible {
     var path: String {
         switch self {
         case .searchGames:
-       //     return Constants.baseUrl
             return "https://api.rawg.io/api/games?page_size=10&"
         case .details(let id):
             return "\(id)"

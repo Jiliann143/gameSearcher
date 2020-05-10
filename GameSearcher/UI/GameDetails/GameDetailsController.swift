@@ -48,11 +48,11 @@ class GameDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gameInfoTableView.setup(game)
         Log(game.id)
         setupButtonsState()
-        getSimilarGames()
         setupGame(game)
-        gameInfoTableView.setup(game)
+        getSimilarGames()
      //   getTrailers()
     }
     
@@ -86,14 +86,13 @@ class GameDetailsController: UIViewController {
     
     private func setupGame(_ game: GameItem) {
         title = game.name
+        fetchDetails()
         if let image = game.mainImage {
             screenshots.append(image)
+            screenshotsDataSource.set(screenshotsCollectionView, screenshots, collectionPageControl)
             screenshotsCollectionView.reloadData()
         }
-        fetchDetails {
-            self.noScreensView.isHidden = !self.screenshots.isEmpty
-            self.screenshotsDataSource.set(self.screenshotsCollectionView, self.screenshots, self.collectionPageControl)
-        }
+        fetchScreenshots()
     }
     
     private func setupButtonsState() {
@@ -110,21 +109,25 @@ class GameDetailsController: UIViewController {
     
 //MARK: - Private methods
     
-    private func fetchDetails(_ completion: @escaping () -> ()) {
+    private func fetchDetails() {
         APIService.fetchGameDetails(gameId: game.id) { error, game in
             if let game = game {
                 self.game = game
+                self.gameInfoTableView.setup(game)
             }
         }
-        
+    }
+    
+    private func fetchScreenshots() {
         APIService.getScreenshots(game.slug) { error, screenshots in
             if let screens = screenshots {
                 screens.forEach {
                     self.screenshots.append($0.image)
                 }
+                self.noScreensView.isHidden = !self.screenshots.isEmpty
+                self.screenshotsDataSource.set(self.screenshotsCollectionView, self.screenshots, self.collectionPageControl)
                 self.screenshotsCollectionView.reloadData()
             }
-            completion()
         }
     }
     

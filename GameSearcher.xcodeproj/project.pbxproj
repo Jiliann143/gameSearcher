@@ -160,20 +160,20 @@
 				A35C7025246815EC00B57632 /* InfoTableView */,
 				A307074E23B68EC0001F089F /* GameDetails.storyboard */,
 				A307074A23B68ABF001F089F /* GameDetailsController.swift */,
-				A30A6E21244DB30B007A8D19 /* GameTrailersCollection */,
+				A30A6E21244DB30B007A8D19 /* GameTrailersCollectionView */,
 				A3580AE3244DA4C500FF4313 /* ScreenshotsCollectionView */,
 				A352B9C72437981600A86A7E /* SimilarGamesCollectionView */,
 			);
 			path = GameDetails;
 			sourceTree = "<group>";
 		};
-		A30A6E21244DB30B007A8D19 /* GameTrailersCollection */ = {
+		A30A6E21244DB30B007A8D19 /* GameTrailersCollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				A30A6E28244DD1C8007A8D19 /* TrailerCell */,
 				A30A6E24244DC7F0007A8D19 /* GameTrailersDataSource.swift */,
 			);
-			path = GameTrailersCollection;
+			path = GameTrailersCollectionView;
 			sourceTree = "<group>";
 		};
 		A30A6E28244DD1C8007A8D19 /* TrailerCell */ = {

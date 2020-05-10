@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Swiftools
 
 class ScreenshotsDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   
@@ -14,14 +15,16 @@ class ScreenshotsDataSource: NSObject, UICollectionViewDataSource, UICollectionV
     private weak var collectionView: UICollectionView!
     private var pageControl: PageIndicatorView?
     
-    func set(_ collectionView: UICollectionView, _ data: [String], _ pageControl: PageIndicatorView) {
-        collectionView.dataSource = self
-        collectionView.delegate   = self
-        collectionView.registerCell(ScreenshotCell.self)
-        self.collectionView = collectionView
-        self.pageControl = pageControl
-        self.screenshots = data
-        self.pageControl?.numberOfPages = self.screenshots.count
+    func set(_ collection: UICollectionView, _ data: [String], _ pageControlView: PageIndicatorView) {
+        collection.dataSource = self
+        collection.delegate   = self
+        collection.registerCell(ScreenshotCell.self)
+        collectionView = collection
+        pageControl = pageControlView
+        screenshots = data
+        Log(screenshots.count)
+        pageControl?.numberOfPages = self.screenshots.count
+        collection.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
