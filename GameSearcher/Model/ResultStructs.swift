@@ -9,15 +9,16 @@
 import Foundation
 import RealmSwift
 
+class TrailerResults: Decodable {
+    let results: [Trailer]
+}
+
 class SearchResults: Decodable {
     let results: [GameItem]
 }
 
-struct Screenshots: Codable {
+struct ScreenshotResults: Codable {
     let results: [Screenshot]
 }
 
-struct Screenshot: Codable {
-    let image: String
-}
 

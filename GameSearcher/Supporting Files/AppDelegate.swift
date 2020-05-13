@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RealmSwift
+import Swiftools
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,8 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        performRealmMigration()
+        
         return true
+    }
+    
+    private func performRealmMigration() {
+        let config = Realm.Configuration(
+            schemaVersion: 2,
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 1) {
+                
+                }
+            })
+        Realm.Configuration.defaultConfiguration = config
     }
 
 }

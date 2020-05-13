@@ -8,37 +8,95 @@
 
 import UIKit
 import RealmSwift
+import Swiftools
+
+enum PresentationType {
+    case all
+    case byYear
+}
 
 class MyGamesViewController: UIViewController {
+        
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    private var myGames: Results<GameItem>!
-    
-    @IBOutlet weak var tableView: UITableView!
+    private var games: Results<GameItem> {
+        RealmService.shared.objects(GameItem.self)
+    }
+    private var groupedGames = [[GameItem]]()
+    private var type: PresentationType = .all
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        assembleGroupedGames()
+        collectionViewSetup()
+    }
+    
+    private func collectionViewSetup() {
+        collectionView.collectionViewLayout = MyGamesLayoutManager.createAllGamesLayout()
+        collectionView.registerCell(SimilarGamesCell.self)
+        collectionView.registerHeader(HeaderView.self)
+    }
+    
+    private func assembleGroupedGames() {
+        let groupedUsers = Dictionary(grouping: games) { $0.releaseYear }
+        let sortedKeys = groupedUsers.keys.sorted { $0 > $1 }
+        sortedKeys.forEach { (key) in
+            if let values = groupedUsers[key] {
+                groupedGames.append(values)
+            }
+        }
+    }
+    
+    @IBAction func didPressSwitchLayout(_ sender: UIBarButtonItem) {
+        if type == .all {
+            type = .byYear
+            collectionView.setCollectionViewLayout(MyGamesLayoutManager.createSortedLayout(), animated: true)
+        } else if type == .byYear {
+            type = .all
+            collectionView.setCollectionViewLayout(MyGamesLayoutManager.createAllGamesLayout(), animated: true)
+        }
+    }
+}
+
+
+extension MyGamesViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch type {
+        case .all:
+            return collectionView.cell(SimilarGamesCell.self, for: indexPath).setupGame(games[indexPath.row])
+        case .byYear:
+            return collectionView.cell(SimilarGamesCell.self, for: indexPath).setupGame(groupedGames[indexPath.section][indexPath.row])
+        }
+    }
         
-        let realm = RealmService.shared.realm
-        myGames = realm.objects(GameItem.self)
-        tableViewSetup()
-    }
-    
-    private func tableViewSetup() {
-        tableView.registerCell(GameCell.self)
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        type == .all ? games.count : groupedGames[section].count
     }
     
 }
 
+extension MyGamesViewController: UICollectionViewDelegate {
 
-extension MyGamesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myGames.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.cell(GameCell.self).setupGameInfo(myGames[indexPath.row])
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        LogInfo(games[indexPath.item].gameInfo)
+        LogInfo(games[indexPath.item].releaseYear)
     }
 }
+
+extension MyGamesViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if type == .all { return UICollectionReusableView() }
+        let firstItemInSectionYear = groupedGames[indexPath.section].first!.releaseYear
+        return collectionView.header(HeaderView.self, for: indexPath).setup(String(firstItemInSectionYear))
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return type == .all ? 1 : groupedGames.count
+    }
+}
+
 
 
 

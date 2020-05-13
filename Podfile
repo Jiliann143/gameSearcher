@@ -11,5 +11,8 @@ target 'GameSearcher' do
   pod 'SVPullToRefresh'
   pod 'RealmSwift'
   pod 'NVActivityIndicatorView'
+  pod 'Swiftools', :git => 'https://github.com/Jiliann143/swiftools.git'
+  pod 'MMPlayerView'
+  pod 'HelperKit', :git => 'https://github.com/Jiliann143/helperkit.git'
 
 end

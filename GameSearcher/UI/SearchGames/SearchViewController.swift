@@ -8,21 +8,21 @@
 
 import UIKit
 import SVPullToRefresh
+import HelperKit
 
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let searchController = UISearchController(searchResultsController: nil)
+    private let searchController = UISearchController(searchResultsController: nil)
     
-    var games = [GameItem]()
+    private var games = [GameItem]()
     
     private var finished = false
     private var page     = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableViewSetup()
         setupSearchBar()
     }
@@ -63,7 +63,7 @@ class SearchViewController: UIViewController {
             }
             
             HUD.show()
-            APIService.fetchAllGames(page: self.page, searchText: self.searchController.searchBar.searchTextField.text ?? "") { games in
+            APIService.fetchAllGames(page: self.page, searchText: self.searchController.searchBar.searchTextField.text ?? "") { error, games in
                 HUD.hide()
                 self.tableView.infiniteScrollingView.stopAnimating()
                 
@@ -90,12 +90,16 @@ extension SearchViewController: UISearchBarDelegate {
         page = 2
         tableView.infiniteScrollingView.stopAnimating()
         
-        APIService.fetchAllGames(page: 1, searchText: searchText) { games in
+        APIService.fetchAllGames(page: 1, searchText: searchText) { error, games in
             guard let games = games else { return }
-               self.games = games
-               self.tableView.reloadData()
-           }
-       }
+            self.games = games
+            self.tableView.reloadData()
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchController.searchBar.resignFirstResponder()
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -115,10 +119,6 @@ extension SearchViewController: UITableViewDataSource {
 //MARK: - UITableViewDataSource
 
 extension SearchViewController: UITableViewDelegate {
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-           searchController.searchBar.resignFirstResponder()
-       }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let details = GameDetailsController.instantiate("GameDetails")

@@ -10,33 +10,36 @@ import UIKit
 import Kingfisher
 import Alamofire
 import RealmSwift
+import AVFoundation
+import AVKit
+import HelperKit
+import Swiftools
 
 class GameDetailsController: UIViewController {
     
-    @IBOutlet weak var gameDescriptionLabel: UILabel!
-    @IBOutlet weak var screenshotsCollectionView: UICollectionView!
     @IBOutlet weak var collectionPageControl: PageIndicatorView!
     @IBOutlet weak var noScreensView: UIImageView!
-    @IBOutlet weak var genreLabel: UILabel!
-    @IBOutlet weak var releasedDateLabel: UILabel!
-    @IBOutlet weak var platformsLabel: UILabel!
-    @IBOutlet weak var developerLabel: UILabel!
+    @IBOutlet weak var trailersCollectionView: UICollectionView!
+    @IBOutlet weak var screenshotsCollectionView: UICollectionView!
+    @IBOutlet weak var similarCollectionView: UICollectionView!
+    @IBOutlet weak var gameInfoTableView: InfoTableView!
     
-    @IBOutlet weak var expandArrow: UIButton!
-    @IBOutlet weak var descriptionStackView: UIStackView!
+    private let similarGamesDataSource = SimilarGamesDataSource()
+    private let screenshotsDataSource  = ScreenshotsDataSource()
+    private let trailersDataSource     = GameTrailersDataSource()
     
+    @IBOutlet weak var addToPlayedButton: TwoStateButton!
+    @IBOutlet weak var addToListButton: TwoStateButton!
     
-    var game: GameItem!
-    var screenshots: [String] = []
+    private var screenshots: [String] = []
+    private var storedGame: GameItem? {
+        RealmService.shared.object(GameItem.self, key: game.id)
+    }
     
-    var isDescriptionVisible: Bool = false {
+    var game: GameItem! {
         didSet {
-            if isDescriptionVisible {
-                expandArrow.rotateView(360)
-                gameDescriptionLabel.hideAnimated()
-            } else {
-                expandArrow.rotateView(180)
-                gameDescriptionLabel.showAnimated()
+            if let game = RealmService.shared.object(GameItem.self, key: game.id) {
+                self.game = game
             }
         }
     }
@@ -45,9 +48,12 @@ class GameDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gameDescriptionLabel.isHidden = true
-        screenshotsCollectionView.registerCell(ScreenshotCell.self)
+        gameInfoTableView.setup(game)
+        Log(game.id)
+        setupButtonsState()
         setupGame(game)
+        getSimilarGames()
+     //   getTrailers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,88 +61,94 @@ class GameDetailsController: UIViewController {
         setupGradientNavBar()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        handleSaveButtonsState()
+    }
+    
 //MARK: - Setup
     
-    private func setupGame(_ game: GameItem) {
-        title = game.name
-        releasedDateLabel.text = game.released
-        genreLabel.text = game.genres.joined(separator: ", ")
-        
-        if let image = game.mainImage {
-            screenshots.append(image)
-            screenshotsCollectionView.reloadData()
-        }
-        
-        fetchDetails {
-            self.noScreensView.isHidden = !self.screenshots.isEmpty
+    private func getTrailers() {
+        APIService.getGameTrailers(game.id) { error, trailers in
+            if let trailers = trailers {
+                self.trailersDataSource.set(self.trailersCollectionView, trailers)
+            }
         }
     }
     
-
+    private func getSimilarGames() {
+        APIService.getSimilarGames(1, game.id) { error, games in
+            if let games = games {
+                self.similarGamesDataSource.set(collectionView: self.similarCollectionView, data: games, presentingVC: self)
+            }
+        }
+    }
+    
+    private func setupGame(_ game: GameItem) {
+        title = game.name
+        fetchDetails()
+        if let image = game.mainImage {
+            screenshots.append(image)
+            screenshotsDataSource.set(screenshotsCollectionView, screenshots, collectionPageControl)
+            screenshotsCollectionView.reloadData()
+        }
+        fetchScreenshots()
+    }
+    
+    private func setupButtonsState() {
+        guard let game = storedGame else { return }
+        addToListButton.isActive = game.isFavourite
+        addToPlayedButton.isActive = game.played
+    }
+    
+    private func handleSaveButtonsState() {
+        if let game = storedGame {
+            (!addToListButton.isActive && !addToPlayedButton.isActive) ? RealmService.shared.delete(game) : RealmService.shared.append(game)
+        }
+    }
     
 //MARK: - Private methods
     
-    private func fetchDetails(_ completion: @escaping () -> ()) {
-        APIService.fetchGameDetails(gameId: game.id) { game in
+    private func fetchDetails() {
+        APIService.fetchGameDetails(gameId: game.id) { error, game in
             if let game = game {
-                self.gameDescriptionLabel.text = game.gameInfo?.strip()
-                self.platformsLabel.text = game.platforms.compactMap{ $0 }.joined(separator: ", ")
+                self.game = game
+                self.gameInfoTableView.setup(game)
             }
         }
-        
-        APIService.getScreenshots(game.slug) { screenshots in
+    }
+    
+    private func fetchScreenshots() {
+        APIService.getScreenshots(game.slug) { error, screenshots in
             if let screens = screenshots {
                 screens.forEach {
                     self.screenshots.append($0.image)
                 }
-                self.collectionPageControl.numberOfPages = self.screenshots.count
+                self.noScreensView.isHidden = !self.screenshots.isEmpty
+                self.screenshotsDataSource.set(self.screenshotsCollectionView, self.screenshots, self.collectionPageControl)
                 self.screenshotsCollectionView.reloadData()
             }
-            completion()
         }
     }
     
+        
+//MARK: - @IBActions
     
-    
-    @IBAction func didTapExpandDescription(_ sender: UITapGestureRecognizer) {
-        isDescriptionVisible = !isDescriptionVisible
+    @IBAction func didPressSaveGameButton(_ sender: TwoStateButton) {
+        sender.togle()
+        RealmService.shared.commitWriting {
+            game.isFavourite = sender.isActive
+            RealmService.shared.append(game)
+        }
     }
     
-    @IBAction func didPressSaveGameButton(_ sender: UIButton) {
-        RealmService.shared.create(game)
-    }
-}
-
-
-//MARK: - UICollectionViewDataSource
-
-extension GameDetailsController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return screenshots.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.cell(ScreenshotCell.self, for: indexPath)
-        cell.screenshot = screenshots[indexPath.item]
-        return cell
-    }
-    
-}
-    
-    //MARK: - UICollectionViewDelegate
-
-extension GameDetailsController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == screenshotsCollectionView {
-            let x = scrollView.contentOffset.x
-            let width = scrollView.bounds.size.width
-            collectionPageControl.currentPage = Int(round(x/width))
+    @IBAction func didPressAddToPlayedButton(_ sender: TwoStateButton) {
+        sender.togle()
+        RealmService.shared.commitWriting {
+            game.played = sender.isActive
+            RealmService.shared.append(game)
         }
     }
 }
+
+

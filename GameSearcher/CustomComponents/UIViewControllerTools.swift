@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Swiftools
 
 
 extension UIViewController {
@@ -20,23 +21,29 @@ extension UIViewController {
         let controller = storyboard.instantiateViewController(withIdentifier: String(describing: self)) as! T
         return controller
     }
+    
+}
 
-//MARK: - Navigation helpers
+public var topmostController: UIViewController {
     
-    func push(_ controller: UIViewController) {
-        navigationController?.pushViewController(controller, animated: true)
+    var topController = UIApplication.shared.keyWindow?.rootViewController;
+    
+    while topController?.presentedViewController != nil {
+        topController = topController?.presentedViewController;
     }
     
-    func pop() {
-        navigationController?.popViewController(animated: true)
-    }
+    guard let controller = topController
+        else { LogError(); return UIViewController() }
     
-    func present(_ controller: UIViewController) {
-        present(controller, animated: true, completion: nil)
-    }
+    return controller
+}
+
+public var keyWindow: UIView {
     
-    func dismiss() {
-        dismiss(animated: true, completion: nil)
-    }
+    guard let _window = UIApplication.shared.delegate?.window,
+        let window = _window
+        else { LogError(); return UIView() }
+    
+    return window
 }
 

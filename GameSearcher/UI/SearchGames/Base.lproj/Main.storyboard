@@ -35,11 +35,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="22Z-Jy-5pb">
                         <barButtonItem key="backBarButtonItem" title=" " id="Nvx-Oh-nvc"/>
-                        <barButtonItem key="rightBarButtonItem" title="MY" id="DhQ-Uk-EOH">
-                            <connections>
-                                <action selector="didPressMyGamesButton:" destination="BYZ-38-t0r" id="YlW-J5-Xg9"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="MY" id="DhQ-Uk-EOH">
+                                <connections>
+                                    <action selector="didPressMyGamesButton:" destination="BYZ-38-t0r" id="YlW-J5-Xg9"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Table" id="QYu-Bq-Qd5">
+                                <connections>
+                                    <segue destination="r6c-sO-Lcz" kind="show" id="HiX-L1-cK9"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="bFV-OT-JpY" id="Kjh-ID-sWZ"/>
@@ -48,6 +55,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1957.9710144927537" y="117.85714285714285"/>
+        </scene>
+        <!--Test View Controller-->
+        <scene sceneID="cwy-do-reK">
+            <objects>
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="r6c-sO-Lcz" customClass="TestViewController" customModule="GameSearcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U2l-Cl-86Q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6nU-do-5Cw">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="6nU-do-5Cw" secondAttribute="bottom" id="ApF-Oj-5OT"/>
+                            <constraint firstItem="6nU-do-5Cw" firstAttribute="leading" secondItem="3PI-rW-TUc" secondAttribute="leading" id="UZ3-fI-aXW"/>
+                            <constraint firstItem="6nU-do-5Cw" firstAttribute="top" secondItem="3PI-rW-TUc" secondAttribute="top" id="aMY-w9-Y4d"/>
+                            <constraint firstItem="6nU-do-5Cw" firstAttribute="trailing" secondItem="3PI-rW-TUc" secondAttribute="trailing" id="gKl-bF-BSk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3PI-rW-TUc"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="I0I-aN-Blb"/>
+                    <connections>
+                        <outlet property="tableView" destination="6nU-do-5Cw" id="yrp-3g-zdn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cAY-0H-p49" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2715.9420289855075" y="117.85714285714285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tp8-Tv-H6H">

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HelperKit
 
 extension UIViewController {
     
@@ -16,6 +17,9 @@ extension UIViewController {
             app.configureWithOpaqueBackground()
             app.backgroundImage = nil
             app.shadowImage = nil
+            app.titleTextAttributes = [.foregroundColor: UIColor.white]
+            app.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            app.backgroundColor = .black
             navigationController?.navigationBar.scrollEdgeAppearance = app
             navigationController?.navigationBar.standardAppearance = app
             navigationController?.navigationBar.compactAppearance = app
@@ -45,6 +49,8 @@ extension UIViewController {
                 let app = UINavigationBarAppearance()
                 app.configureWithTransparentBackground()
                 app.backgroundImage = image
+                app.titleTextAttributes = [.foregroundColor: UIColor.white]
+                app.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
                 self.navigationController?.navigationBar.standardAppearance = app
                 self.navigationController?.navigationBar.scrollEdgeAppearance = app
                 self.navigationController?.navigationBar.compactAppearance = app
