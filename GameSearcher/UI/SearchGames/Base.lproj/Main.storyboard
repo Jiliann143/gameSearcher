@@ -36,12 +36,12 @@
                     <navigationItem key="navigationItem" id="22Z-Jy-5pb">
                         <barButtonItem key="backBarButtonItem" title=" " id="Nvx-Oh-nvc"/>
                         <rightBarButtonItems>
-                            <barButtonItem title="MY" id="DhQ-Uk-EOH">
+                            <barButtonItem systemItem="bookmarks" id="DhQ-Uk-EOH">
                                 <connections>
                                     <action selector="didPressMyGamesButton:" destination="BYZ-38-t0r" id="YlW-J5-Xg9"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Table" id="QYu-Bq-Qd5">
+                            <barButtonItem id="QYu-Bq-Qd5">
                                 <connections>
                                     <segue destination="r6c-sO-Lcz" kind="show" id="HiX-L1-cK9"/>
                                 </connections>
