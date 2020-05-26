@@ -1,10 +1,9 @@
 PODS:
   - Alamofire (5.1.0)
-  - HelperKit (1.0.5)
-  - Kingfisher (5.13.4):
-    - Kingfisher/Core (= 5.13.4)
-  - Kingfisher/Core (5.13.4)
-  - MMPlayerView (6.0.0)
+  - HelperKit (1.0.6)
+  - Kingfisher (5.14.0):
+    - Kingfisher/Core (= 5.14.0)
+  - Kingfisher/Core (5.14.0)
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
@@ -14,13 +13,12 @@ PODS:
   - RealmSwift (4.4.1):
     - Realm (= 4.4.1)
   - SVPullToRefresh (0.4.1)
-  - Swiftools (1.0.2)
+  - Swiftools (1.0.3)
 
 DEPENDENCIES:
   - Alamofire
   - HelperKit (from `https://github.com/Jiliann143/helperkit.git`)
   - Kingfisher
-  - MMPlayerView
   - NVActivityIndicatorView
   - RealmSwift
   - SVPullToRefresh
@@ -30,7 +28,6 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
-    - MMPlayerView
     - NVActivityIndicatorView
     - Realm
     - RealmSwift
@@ -44,23 +41,22 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   HelperKit:
-    :commit: a329139ade4dba4664cb1db8b60e3f41d798face
+    :commit: e2c5a8ebf60cb0a21f19c6a0c5b5c0cf6f27096d
     :git: https://github.com/Jiliann143/helperkit.git
   Swiftools:
-    :commit: cd25c8eb5f2f12a0f41df677c82c642d67c5a472
+    :commit: 2feb6ca24926db63352091161823fac20648d784
     :git: https://github.com/Jiliann143/swiftools.git
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
-  HelperKit: 85303609f502acea86cd82c796959a2d0fa3f681
-  Kingfisher: d2279a7abece3c7f25a80cd2b7f363ca5cf3f44c
-  MMPlayerView: 563b53392b7b2af32982b6f5a890cafff64ae806
+  HelperKit: 97f3ce53f1eef16ee0722a78700d0c67562606a1
+  Kingfisher: 7b64389a43139c903ec434788344c288217c792d
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
   RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  Swiftools: 9d569f6c96285d749d39c3968f6e744cf18df738
+  Swiftools: 720d1e10350ec28ae31afdeda04e432e886e97f7
 
-PODFILE CHECKSUM: 6b0b0abc2f468f285312245c576fbd5c2ab654a8
+PODFILE CHECKSUM: 96958c26df44cb5f3201d9f28a49731e41ec5c70
 
 COCOAPODS: 1.9.1

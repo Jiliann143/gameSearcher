@@ -43,7 +43,4 @@ import Swiftools
             self.setTitle(self.deselectedTitle, for: .normal)
             self.setTitleColor(self.deselectedTextColor, for: .normal)
     }
-    
-    
-
 }

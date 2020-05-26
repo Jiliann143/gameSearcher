@@ -171,7 +171,7 @@
 		A307074923B68AAC001F089F /* GameDetails */ = {
 			isa = PBXGroup;
 			children = (
-				A35C7025246815EC00B57632 /* InfoTableView */,
+				A35C7025246815EC00B57632 /* GameInfoTableView */,
 				A307074E23B68EC0001F089F /* GameDetails.storyboard */,
 				A307074A23B68ABF001F089F /* GameDetailsController.swift */,
 				A30A6E21244DB30B007A8D19 /* GameTrailersCollectionView */,
@@ -265,14 +265,14 @@
 			path = HeaderView;
 			sourceTree = "<group>";
 		};
-		A35C7025246815EC00B57632 /* InfoTableView */ = {
+		A35C7025246815EC00B57632 /* GameInfoTableView */ = {
 			isa = PBXGroup;
 			children = (
 				A35C703624681C0A00B57632 /* InfoCell */,
 				A35C703524681BFF00B57632 /* DescriptionCell */,
 				A35C70262468160E00B57632 /* InfoTableView.swift */,
 			);
-			path = InfoTableView;
+			path = GameInfoTableView;
 			sourceTree = "<group>";
 		};
 		A35C703524681BFF00B57632 /* DescriptionCell */ = {
