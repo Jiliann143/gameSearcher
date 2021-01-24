@@ -23,12 +23,28 @@ class MyGamesViewController: UIViewController {
         RealmService.shared.objects(GameItem.self)
     }
     private var groupedGames = [[GameItem]]()
-    private var type: PresentationType = .all
+    
+    private var type: PresentationType = .all {
+        didSet {
+            layoutCollection(for: type)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         assembleGroupedGames()
         collectionViewSetup()
+    }
+    
+    private func layoutCollection(for type: PresentationType) {
+        collectionView.reloadData()
+
+        switch type {
+        case .all:
+            collectionView.setCollectionViewLayout(MyGamesLayoutManager.createAllGamesLayout(), animated: true)
+        case .byYear:
+            collectionView.setCollectionViewLayout(MyGamesLayoutManager.createSortedLayout(), animated: true)
+        }
     }
     
     private func collectionViewSetup() {
@@ -48,13 +64,8 @@ class MyGamesViewController: UIViewController {
     }
     
     @IBAction func didPressSwitchLayout(_ sender: UIBarButtonItem) {
-        if type == .all {
-            type = .byYear
-            collectionView.setCollectionViewLayout(MyGamesLayoutManager.createSortedLayout(), animated: true)
-        } else if type == .byYear {
-            type = .all
-            collectionView.setCollectionViewLayout(MyGamesLayoutManager.createAllGamesLayout(), animated: true)
-        }
+        if type == .all { type = .byYear }
+        else { type = .all }
     }
 }
 
@@ -64,6 +75,7 @@ extension MyGamesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch type {
         case .all:
+            print(games[indexPath.row].name)
             return collectionView.cell(SimilarGamesCell.self, for: indexPath).setupGame(games[indexPath.row])
         case .byYear:
             return collectionView.cell(SimilarGamesCell.self, for: indexPath).setupGame(groupedGames[indexPath.section][indexPath.row])
@@ -93,7 +105,7 @@ extension MyGamesViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return type == .all ? 1 : groupedGames.count
+        type == .all ? 1 : groupedGames.count
     }
 }
 
