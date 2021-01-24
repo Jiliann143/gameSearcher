@@ -10,35 +10,49 @@ import UIKit
 import Swiftools
 
 class ScreenshotsDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-  
-    private var screenshots: [String] = []
+    
     private weak var collectionView: UICollectionView!
+  
+    var screenshots: [String] = [] {
+        didSet {
+            placeholder.isHidden = !screenshots.isEmpty
+            pageControl?.numberOfPages = screenshots.count
+        }
+    }
+        
     private var pageControl: PageIndicatorView?
     
-    func set(_ collection: UICollectionView, _ data: [String], _ pageControlView: PageIndicatorView) {
+    private lazy var placeholder: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = #imageLiteral(resourceName: "testimage")
+        imageView.contentMode = .scaleAspectFill
+        imageView.frame = collectionView.bounds
+        return imageView
+    }()
+    
+    func set(_ collection: UICollectionView, _ pageControlView: PageIndicatorView?) {
         collection.dataSource = self
         collection.delegate   = self
         collection.registerCell(ScreenshotCell.self)
         collectionView = collection
         pageControl = pageControlView
-        screenshots = data
-        Log(screenshots.count)
-        pageControl?.numberOfPages = self.screenshots.count
-        collection.reloadData()
+        collectionView.backgroundView = placeholder
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return screenshots.count
+        screenshots.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         collectionView.cell(ScreenshotCell.self, for: indexPath).setup(screenshots[indexPath.item])
     }
+    
       
 //MARK:- UICollectionViewDelegate + FlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -49,3 +63,4 @@ class ScreenshotsDataSource: NSObject, UICollectionViewDataSource, UICollectionV
         }
     }
 }
+
