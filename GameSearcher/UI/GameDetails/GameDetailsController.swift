@@ -31,6 +31,8 @@ class GameDetailsController: UIViewController {
     @IBOutlet weak var addToPlayedButton: TwoStateButton!
     @IBOutlet weak var addToListButton: TwoStateButton!
     
+    weak var coordinator: MainCoordinator?
+    
     private var screenshots: [String] = []
     private var storedGame: GameItem? {
         RealmService.shared.object(GameItem.self, key: game.id)

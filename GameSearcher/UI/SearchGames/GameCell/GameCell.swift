@@ -21,8 +21,9 @@ class GameCell: UITableViewCell {
         gameTitle.text = game.name
         gameGenre.text = game.genres.joined(separator: ", ")
         
-        guard let image = game.mainImage else   { return self }
-        guard let url = URL(string: image) else { return self }
+        guard let image = game.mainImage,
+              let url = URL(string: image) else { return self }
+        
         gameImageView.kf.indicatorType = .activity
         gameImageView.kf.setImage(with: url)
         

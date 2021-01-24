@@ -1,19 +1,17 @@
 PODS:
-  - Alamofire (5.1.0)
-  - HelperKit (1.0.6)
-  - Kingfisher (5.14.0):
-    - Kingfisher/Core (= 5.14.0)
-  - Kingfisher/Core (5.14.0)
-  - NVActivityIndicatorView (4.8.0):
-    - NVActivityIndicatorView/Presenter (= 4.8.0)
-  - NVActivityIndicatorView/Presenter (4.8.0)
-  - Realm (4.4.1):
-    - Realm/Headers (= 4.4.1)
-  - Realm/Headers (4.4.1)
-  - RealmSwift (4.4.1):
-    - Realm (= 4.4.1)
+  - Alamofire (5.4.1)
+  - HelperKit (1.0.7)
+  - Kingfisher (6.0.1)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - Realm (10.5.1):
+    - Realm/Headers (= 10.5.1)
+  - Realm/Headers (10.5.1)
+  - RealmSwift (10.5.1):
+    - Realm (= 10.5.1)
   - SVPullToRefresh (0.4.1)
-  - Swiftools (1.0.3)
+  - Swiftools (1.0.4)
 
 DEPENDENCIES:
   - Alamofire
@@ -41,22 +39,22 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   HelperKit:
-    :commit: e2c5a8ebf60cb0a21f19c6a0c5b5c0cf6f27096d
+    :commit: f31ec5c975f6c5d4e3e14f81178dd3fbdc642d90
     :git: https://github.com/Jiliann143/helperkit.git
   Swiftools:
-    :commit: 2feb6ca24926db63352091161823fac20648d784
+    :commit: d1ab258271f082d8e4f36962b64d3af2ccee705f
     :git: https://github.com/Jiliann143/swiftools.git
 
 SPEC CHECKSUMS:
-  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
-  HelperKit: 97f3ce53f1eef16ee0722a78700d0c67562606a1
-  Kingfisher: 7b64389a43139c903ec434788344c288217c792d
-  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
-  Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
-  RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  HelperKit: 8cabfb460f2901dd365a95467dd062762879a810
+  Kingfisher: adde87a4f74f6a3845395769354efff593581740
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  Realm: 77fcb4e0b9f2963ea06f584749a0d7dc9cab95e1
+  RealmSwift: 6abe6aa6cd8b70cc1a87afcb9232cabea74ff1ac
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  Swiftools: 720d1e10350ec28ae31afdeda04e432e886e97f7
+  Swiftools: 3ac370c0cfce991463f53806f703fac4f689ac28
 
-PODFILE CHECKSUM: 96958c26df44cb5f3201d9f28a49731e41ec5c70
+PODFILE CHECKSUM: 9ab62099a01353dfe81d9647659311ddac31b6c6
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.1

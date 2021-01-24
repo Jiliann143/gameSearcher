@@ -14,12 +14,18 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    weak var coordinator: MainCoordinator?
+    
     private let searchController = UISearchController(searchResultsController: nil)
     
     private var games = [GameItem]()
     
     private var finished = false
     private var page     = 2
+    
+    private var searchText: String {
+        searchController.searchBar.searchTextField.text ?? ""
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +48,6 @@ class SearchViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
     }
     
-    
     private func tableViewSetup() {
         tableView.registerCell(GameCell.self)
         addLazyLoading()
@@ -62,9 +67,7 @@ class SearchViewController: UIViewController {
                 return
             }
             
-            HUD.show()
-            APIService.fetchAllGames(page: self.page, searchText: self.searchController.searchBar.searchTextField.text ?? "") { error, games in
-                HUD.hide()
+            APIService.fetchAllGames(page: self.page, searchText: self.searchText) { error, games in
                 self.tableView.infiniteScrollingView.stopAnimating()
                 
                 guard let games = games else {
@@ -107,23 +110,21 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return games.count
+        games.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.cell(GameCell.self).setupGameInfo(games[indexPath.row])
+        tableView.cell(GameCell.self).setupGameInfo(games[indexPath.row])
     }
 }
 
 
-//MARK: - UITableViewDataSource
+//MARK: - UITableViewDelegate
 
 extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let details = GameDetailsController.instantiate("GameDetails")
-        details.game = games[indexPath.row]
-        push(details)
+        coordinator?.openGameDetails(games[indexPath.row])
     }
 }
 

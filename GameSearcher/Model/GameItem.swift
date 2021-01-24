@@ -57,18 +57,18 @@ class GameItem: Object, Decodable {
         rating    = try  container.decode(Double.self, forKey: .rating)
         
         let genreList     = try container.decode([Genre].self, forKey: .genres)
+        let platformList  = try container.decode([Platforms].self, forKey: .platforms)
         
-        let platformList = try container.decode([Platforms].self, forKey: .platforms)
         let arrayOfStrings = platformList.compactMap{ $0.platform.name }
+        
         platforms.append(objectsIn: arrayOfStrings)
-        
-        
+    
         genres.append(objectsIn: genreList.compactMap { $0.name })
         
         super.init()
     }
     
-    required init() {
+    required override init() {
         super.init()
     }
 }
@@ -82,10 +82,6 @@ extension GameItem {
     }
     
 }
-
-
-
-
 
 
 class Platforms: Codable {
